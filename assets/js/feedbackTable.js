@@ -1,11 +1,20 @@
+var fs = require('fs');
+var worker = require('./workers/judge_worker.js')
+
 function FeedbackTable(tests) {
     this.correct = 0;
     this.wrong = 0;
     this.tests = tests;
 }
 
+FeedbackTable.method = function(name, body) {
+    FeedbackTable.prototype[name] = body;
+}
+
 // add row to feedback table
 FeedbackTable.method('add', function (args) {
+    console.log('add');
+    return;
 
     // define row templates
     var row_base_template = '<tr class="feedback-row {type} {eval} {color}">{cols}</tr>';
@@ -64,6 +73,8 @@ FeedbackTable.method('add', function (args) {
 
 // show error message in feedback table
 FeedbackTable.method('error', function (error) {
+    console.log('error')
+    return
     var feedbackTable = this;
 
     // show error message
@@ -80,6 +91,8 @@ FeedbackTable.method('error', function (error) {
 
 // clear feedback table
 FeedbackTable.method('clear', function () {
+    console.log('clear');
+    return
     // empty feedback table
     $("#feedback-table").html('');
 
@@ -96,111 +109,102 @@ FeedbackTable.method('clear', function () {
 // test submitted source code
 FeedbackTable.method('test', function (args) {
     var feedbackTable = this;
-    return new Promise(function (resolve, reject) {
-        var source = args.source || '';
-        var currentStatement;
+    var source = args.source || '';
+    var currentStatement;
 
-        // use timer to avoid infinite loops or source code executing too slow
-        var timer;
+    // use timer to avoid infinite loops or source code executing too slow
+    var timer;
 
-        // helper function to set custom timeout
-        function setCustomTimeout(ms) {
-            ms = ms || 10 * 1000; // default timeout after 10 seconds
+    // helper function to set custom timeout
+    function setCustomTimeout(ms) {
+        ms = ms || 10 * 1000; // default timeout after 10 seconds
 
-            // clear previous timer
-            clearTimeout(timer);
+        // clear previous timer
+        clearTimeout(timer);
 
-            // set new timeout to abort code execution after ms milliseconds
-            timer = setTimeout(function () {
-                // terminate the worker
-                judge.terminate();
+        // set new timeout to abort code execution after ms milliseconds
+        timer = setTimeout(function () {
+            // terminate the worker
+            judge.terminate();
 
-                // issue error message
-                feedbackTable.error("JudgeError: time limit exceeded");
-                resolve({status: "timeout"});
-            }, ms);
+            // issue error message
+            feedbackTable.error("JudgeError: time limit exceeded");
+            resolve({status: "timeout"});
+        }, ms);
 
-        }
+    }
 
-        // clear the feedback table
-        feedbackTable.clear();
+    // clear the feedback table
+    feedbackTable.clear();
 
-        // evaluate the submitted source code
-        if (!!window.Worker) {
-            try {
-                // create a new JavaScript Judge
-                var judge = new Worker("assets/js/workers/judge_worker.js?1");
+    var judge = worker.Judge(code);
 
-                // perform actions if test case has been evaluated
-                judge.onmessage = function (e) {
-                    // adjust judge based on incoming setting
-                    if (e.data.type === "setting") {
-                        if (e.data.name === "timeout") {
-                            // set new timeout
-                            setCustomTimeout(e.data.value);
-                        }
-
-                        // stop further processing
-                        return;
-                    }
-
-                    // translate messages from judge into feedback table rows
-                    e.data.rows.forEach(function (row) {
-                        feedbackTable.add(row);
-                    });
-
-                    // increment badge corresponding to outcome of evaluation
-                    if (e.data.eval == "AC") {
-                        feedbackTable.correct += (e.data.weight || 1);
-                        $("#tests-correct").html(feedbackTable.correct);
-                    } else {
-                        feedbackTable.wrong += (e.data.weight || 1);
-                        $("#tests-wrong").html(feedbackTable.wrong);
-                    }
-
-                    // check if additional results are expected
-                    if (e.data.done) {
-                        // hide loading icon
-                        $("#feedback-loading").hide();
-
-                        // terminate the worker
-                        judge.terminate();
-
-                        // clear the timer
-                        clearTimeout(timer);
-                        resolve({correct: feedbackTable.correct, wrong: feedbackTable.wrong, status: "done"});
-                    }
-                };
-
-                judge.onerror = function (e) {
-                    // show error message from Web Worker
-                    feedbackTable.error(e);
-                };
-
-                // show loading icon of feedback table
-                $("#feedback-loading").show();
-
-                // set default timeout
-                setCustomTimeout();
-
-                // execute source code and tests cases
-                judge.postMessage({
-                    "source": source,
-                    "tests": feedbackTable.tests
-                });
-
-            } catch (e) {
-                // show message about failing Web Workers
-                //
-                // NOTE: for testing purposes, activate running local web workers
-                // https://github.com/mrdoob/three.js/wiki/How-to-run-things-locally
-                feedbackTable.error(
-                    e.name === "SecurityError" ? "JudgeError: local execution of Web Workers not supported" : displayError(e)
-                );
+    // perform actions if test case has been evaluated
+    judge.onmessage = function (e) {
+        // adjust judge based on incoming setting
+        if (e.data.type === "setting") {
+            if (e.data.name === "timeout") {
+                // set new timeout
+                setCustomTimeout(e.data.value);
             }
-        } else {
-            // show message about non-supported Web Workers
-            feedbackTable.error("JudgeError: browser does not support Web Workers");
+
+            // stop further processing
+            return;
         }
+
+        // translate messages from judge into feedback table rows
+        e.data.rows.forEach(function (row) {
+            feedbackTable.add(row);
+        });
+
+        // increment badge corresponding to outcome of evaluation
+        if (e.data.eval == "AC") {
+            feedbackTable.correct += (e.data.weight || 1);
+            $("#tests-correct").html(feedbackTable.correct);
+        } else {
+            feedbackTable.wrong += (e.data.weight || 1);
+            $("#tests-wrong").html(feedbackTable.wrong);
+        }
+
+        // check if additional results are expected
+        if (e.data.done) {
+            // hide loading icon
+            $("#feedback-loading").hide();
+
+            // terminate the worker
+            judge.terminate();
+
+            // clear the timer
+            clearTimeout(timer);
+            resolve({correct: feedbackTable.correct, wrong: feedbackTable.wrong, status: "done"});
+        }
+    };
+
+    judge.onerror = function (e) {
+        // show error message from Web Worker
+        feedbackTable.error(e);
+    };
+
+    // set default timeout
+    setCustomTimeout();
+    for (var i=0; i < feedbackTable.tests.length; i++) {
+        eval(feedbackTable.tests[i]);
+    }
+    judge.run(code, tests);
+
+    return;
+
+    // execute source code and tests cases
+    judge.postMessage({
+        "source": source,
+        "tests": feedbackTable.tests
     });
 });
+
+var tests = fs.readFileSync('tests.js').toString().split('\n');
+var code = fs.readFileSync('code.js').toString();
+var feedbackTable = new FeedbackTable(tests);
+feedbackTable.test(code);
+
+
+
