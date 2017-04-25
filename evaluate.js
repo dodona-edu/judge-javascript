@@ -6,7 +6,7 @@ config = JSON.parse((fs.readFileSync('/dev/stdin').toString()));
 var jsJudge = require('./judge.js');
 
 // process tests
-var js = new jsJudge.Judge(path.join(config['resources'], '/tests.js'));
+var js = new jsJudge.Judge(path.join(config['resources'], 'tests.js'));
 
 // evaluate tests
 console.log(js.run(config['source']));
