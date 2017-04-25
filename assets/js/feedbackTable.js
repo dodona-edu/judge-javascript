@@ -1,15 +1,16 @@
-var fs = require('fs');
-var worker = require('./workers/judge_worker.js')
-var parallel = require('dimas-parallel');
+var javascriptJudge = require('./judge.js');
 
 function FeedbackTable(tests) {
+	
     this.correct = 0;
     this.wrong = 0;
     this.tests = tests;
+
 }
 
 // test submitted source code
 FeedbackTable.prototype.test = function (args) {
+	
     var feedbackTable = this;
     var source = args.source || '';
     var currentStatement;
@@ -55,4 +56,6 @@ var feedbackTable = new FeedbackTable(tests);
 feedbackTable.test(code);
 
 
-
+// execute workflow for evaluating tests
+var judge = new javascriptJudge.Judge('tests.js');
+console.log(judge.run('code.js'));
