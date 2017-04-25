@@ -1,12 +1,16 @@
-path = require('path')
-fs=require('fs');
-config = JSON.parse((fs.readFileSync('/dev/stdin').toString()));
+var path = require('path')
+var fs=require('fs');
 
-// import js-judge module
-var jsJudge = require('./judge.js');
 
-// process tests
-var js = new jsJudge.Judge(path.join(config['resources'], 'tests.js'));
+process.stdin.on('data', function(data) {
+    config = JSON.parse(data);
+    // import js-judge module
+    var jsJudge = require('./judge.js');
 
-// evaluate tests
-console.log(js.run(config['source']));
+    // process tests
+    var js = new jsJudge.Judge(path.join(config['resources'], 'tests.js'));
+
+    // evaluate tests
+    console.log(js.run(config['source']));     
+})
+
