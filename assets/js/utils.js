@@ -133,6 +133,6 @@ function displayError(e, showLine) {
 }
 
 module.exports = {
-	display: display,
-	displayError: displayError
+    display: display,
+    displayError: displayError
 };
