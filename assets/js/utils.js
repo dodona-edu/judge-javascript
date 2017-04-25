@@ -93,27 +93,19 @@ function display(obj) {
 
 // helper function for converting Error objects to string
 function displayError(e, showLine) {
+	
+	var message;
+	
     try {
         if (typeof e === "string") {
             return e;
+        } else if (e.stack !== undefined) {
+        	return e.stack;
         } else {
             // format message
             if (e.name !== undefined && e.message !== undefined) {
                 // add line number if available
-                if (
-                    // check if line number is available
-                    e.lineNumber &&
-                    // check if stack trace is available
-                    e.stack &&
-                    // check if stack trace goes deeper than error in statement
-                    // that is being executed (in other words: in the submitted
-                    // source code)
-                    e.stack.split("\n").length != 5
-                ) {
-                    message = "{name} (line {line}): {message}";
-                } else {
-                    message = "{name}: {message}";
-                }
+            	message = e.lineNumber === undefined ? "{name}: {message}" : "{name} (line {line}): {message}" 
                 message = message.format({
                     name: e.name,
                     message: e.message,

@@ -69,14 +69,53 @@ Judge.prototype.parseTests = function(testfile) {
 Judge.prototype.run = function(sourcefile) {
     
     // read source file
-    var code = fs.readFileSync(sourcefile).toString();
+    var code = fs.readFileSync(sourcefile).toString(),
+        criticalError = false;
+    
+    // evaluate source code
+    try {
+    	
+        // execute source code in the global scope
+        // TODO: this should be executed in a separate scope
+        eval(code);
+        
+    } catch (e) {
+    	    	    	
+    	// set status to compilation error
+    	this.submission.update({
+    		status: 'compilation error'
+    	});
+    	
+    	// add message with compilation error (student version)
+    	this.submission.addMessage(new dodona.Message({
+    		description: utils.displayError(e).split('\n')[0],
+    		permission: 'student'
+    	}));
+    	
+    	// add message with compilation error (staff version)
+    	this.submission.addMessage(new dodona.Message({
+    		description: utils.displayError(e),
+    		permission: 'staff'
+    	}));
+    	
+    	// clear all tabs
+    	this.submission.clearGroups();
+    	this.submission.clearTests();
+
+    	// stop further processing
+    	criticalError = true;
+        
+    }
+    
     
     // evaluate each context
-    for (var tab of this.submission) {
-        for (var context of tab) {
-            this.evaluate(code, context);
-        }
-    }    
+    if (!criticalError) {
+        for (var tab of this.submission) {
+            for (var context of tab) {
+                this.evaluate(code, context);
+            }
+        }    	
+    }
     
     // return feedback as JSON string
     return this.submission.toString();
@@ -87,7 +126,6 @@ Judge.prototype.evaluate = function(code, context) {
     
     // execute source code in the global scope
     // TODO: this should be executed in a separate scope
-    // TODO: catch compilation errors
     eval(code);
     
     // check equality of JavaScript objects
@@ -150,7 +188,7 @@ Judge.prototype.evaluate = function(code, context) {
             
         } catch (e) {
             
-            generated = utils.displayError(e);
+            generated = utils.displayError(e).split('\n')[0];
 
             // check whether exception is as expected
             if ('exception' in tests) {
