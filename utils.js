@@ -131,3 +131,8 @@ function displayError(e, showLine) {
         return e.toString();
     }
 }
+
+module.exports = {
+    display: display,
+    displayError: displayError
+};
