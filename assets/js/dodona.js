@@ -184,7 +184,7 @@ Test.prototype.toJson = function() {
                         return Test.prototype.toJson.call(element); 
                     }
                 );
-            } else if (property === 'message') {
+            } else if (property === 'messages') {
             	json[property] = this.getProperty(property).map(
             		function(element) { return element.toJson(); }
             	);
@@ -204,12 +204,12 @@ Test.prototype.toString = function() {
 Test.prototype.addMessage = function(message) {
 	
     // add message property if not present
-	if (!this.hasProperty('message')) {
-		this.setProperty('message', []);
+	if (!this.hasProperty('messages')) {
+		this.setProperty('messages', []);
 	}
 	
 	// add message to list of messages
-	this.getProperty('message').push(message);
+	this.getProperty('messages').push(message);
 	
 }
     

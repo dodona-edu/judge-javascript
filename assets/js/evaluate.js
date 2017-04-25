@@ -6,7 +6,9 @@ config = {resources: 'trash/', source: 'code.js'};
 var jsJudge = require('./judge.js');
 
 // process tests
-var judge = new jsJudge.Judge(config['resources'] + 'tests.short.js');
+var judge = new jsJudge.Judge(
+	config['resources'] + 'tests.short.js'
+);
 
 // evaluate tests
 console.log(judge.run(config['source']));
