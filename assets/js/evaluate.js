@@ -1,4 +1,5 @@
-fs=require('fs');
+var fs = require('fs');
+
 // config = JSON.parse((fs.readFileSync('/dev/stdin').toString()));
 config = {resources: 'trash/', source: 'code.js'};
 
@@ -11,4 +12,7 @@ var judge = new jsJudge.Judge(
 );
 
 // evaluate tests
-console.log(judge.run(config['source']));
+var feedback = judge.run(config['source']);
+
+// output feedback on tests
+console.log(feedback);
