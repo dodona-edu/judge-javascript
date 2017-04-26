@@ -36,6 +36,9 @@ Judge.prototype.parseTests = function(testfile) {
     // create parser for test cases
     var TestParser = function() {
     	
+    	// support for tab switches
+    	this.tabSwitched = false;         // context switch since last testcase
+
     	// support for context switches
     	this.autoSwitchContext = true;    // automatic context switching between testcases
     	this.contextSwitched = false;     // context switch since last testcase
@@ -49,7 +52,8 @@ Judge.prototype.parseTests = function(testfile) {
     	if (this.autoSwitchContext && !this.contextSwitched) {
             self.submission.addContext(new dodona.Context());
     	}
-    	// get ready for next context switch
+    	// get ready for next tab and context switch
+        this.tabSwitched = false;
         this.contextSwitched = false;
         
         // add expression as testcase
@@ -93,10 +97,19 @@ Judge.prototype.parseTests = function(testfile) {
     	} else if (name === 'auto-switch-context') {
         	// switch context if not already switched
 			if (typeof value !== 'boolean') {
-				throw new JudgeError('parameter "auto-switch-context" must be boolean');
+				throw new JudgeError('parameter "auto-switch-context" must be a boolean');
 			}
 			this.autoSwitchContext = value;
-    	}
+		} else if (name === 'switch-tab') {
+	    	// switch context if not already switched
+			if (typeof value !== 'string') {
+				throw new JudgeError('parameter "switch-tab" must be a string');
+			}
+    		if (!this.tabSwitched) {
+				self.submission.addTab(new dodona.Tab({description: value}));
+				this.tabSwitched = true;
+    		}
+		}
     	
     };
     
