@@ -33,26 +33,31 @@ String.method('format', function (dict) {
 
 // helper function for pretty printing values
 function display(obj) {
+	
     var str = '',
         keys = [],
-        key, i;
+        key, 
+        i;
 
     if (obj === undefined) {
-        return 'undefined';
+    	
+    	// represent undefined as undefined
+        return "undefined";
+        
     } else if (obj === null) {
-        return 'null';
+    	
+    	// represent null as null
+        return "null";
+        
     } else if (Array.isArray(obj)) {
-        for (i = 0; i < obj.length; ++i) {
-            if (str) {
-                str += ', ';
-            }
-            str += display(obj[i]);
-        }
-        return '[' + str + ']';
+    	
+    	// recursively convert array element to string
+    	return '[' + obj.map(function(element){ return display(element); }).join(', ') + ']';
+        
     } else if (typeof obj === 'object') {
-        // pretty print object
-        if (obj.hasOwnProperty !== undefined &&
-            typeof obj.hasOwnProperty === 'function') {
+    	
+    	// put all object keys in array
+        if (obj.hasOwnProperty !== undefined && typeof obj.hasOwnProperty === 'function') {
             for (key in obj) {
                 if (obj.hasOwnProperty(key)) {
                     keys.push(key);
@@ -63,16 +68,17 @@ function display(obj) {
                 keys.push(key);
             }
         }
+        
+        // sort array of keys lexicographically
         keys.sort();
-        for (i = 0; i < keys.length; ++i) {
-            if (str) {
-                str += ', ';
-            }
-            str += display(keys[i]) + ': ' + display(obj[keys[i]]);
-        }
-        return '{' + str + '}';
+
+    	// recursively convert object key/value pairs to string
+        return '{' + keys.map(function(element){ return display(element) + ": " + display(obj[element]); }) + '}'
+        
     } else {
+    	
         if (typeof obj === 'string') {
+        	
             // return "'" + obj + "'";
             var repr = JSON.stringify(obj);
             if (
@@ -84,11 +90,16 @@ function display(obj) {
                 });
             }
             return repr;
+            
         } else {
+        	
             // pretty print general object
             return obj.toString();
+            
         }
+        
     }
+    
 }
 
 // helper function for converting Error objects to string
