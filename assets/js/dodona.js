@@ -189,7 +189,11 @@ Test.prototype.toJson = function() {
             		function(element) { return element.toJson(); }
             	);
             } else {
-                json[property] = this.getProperty(property);
+            	try {
+                	json[property] = this.getProperty(property).toJson();            		
+            	} catch(e) {
+                    json[property] = this.getProperty(property);            		
+            	}
             }
         }
     }
@@ -355,9 +359,11 @@ TestGroup.prototype.addTest = function(test) {
 };
 
 TestGroup.prototype.clearTests = function(group) {
+	
     if (this.hasProperty('tests')) {
     	this.getProperty('tests').length = 0;
     }
+    
 }
 
 TestGroup.prototype.getLastTest = function() {
@@ -423,6 +429,17 @@ TestGroup.prototype[Symbol.iterator] = function() {
 //
 
 var TestCase = function(properties, parent) {
+	
+	// wrap string description into message
+	if (
+		properties.hasOwnProperty('description') && 
+		typeof properties['description'] == 'string'
+	) {
+		properties['description'] = new Message({
+			description: properties['description'],
+			format: 'code'
+		});
+	}
     
     // call super constructor
     TestGroup.call(this, properties, parent);
