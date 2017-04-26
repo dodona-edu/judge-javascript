@@ -14,11 +14,39 @@ var statusCodes = [
 //
 
 TestError = function(message) {
+	
     this.name = 'TestError';
     this.message = message;
+    
 };
+
 TestError.prototype = Object.create(Error.prototype);
 TestError.prototype.constructor = TestError;
+
+//
+// Message
+//
+
+var Message = function(properties) {
+	
+	// set default values
+	this.properties = {
+		description: '',
+		format: 'text'
+	}
+	
+	// overwrite with specific values
+	for (var property in properties) {
+		this.properties[property] = properties[property];
+	}
+	
+};
+
+Message.prototype.toJson = function() {
+	
+	return this.properties;
+	
+};
 
 //
 // Test
@@ -81,7 +109,7 @@ Test.prototype.getProperty = function(name) {
 Test.prototype.setAccepted = function(value) {
 
     // set acceptance of current object
-    if (value === false) {
+    if (!this.hasProperty('accepted') || value === false) {
         this.properties['accepted'] = value;
     }
     
@@ -156,6 +184,10 @@ Test.prototype.toJson = function() {
                         return Test.prototype.toJson.call(element); 
                     }
                 );
+            } else if (property === 'messages') {
+            	json[property] = this.getProperty(property).map(
+            		function(element) { return element.toJson(); }
+            	);
             } else {
                 json[property] = this.getProperty(property);
             }
@@ -168,6 +200,18 @@ Test.prototype.toJson = function() {
 Test.prototype.toString = function() {
     return JSON.stringify(this.toJson(), null, 4);
 };
+
+Test.prototype.addMessage = function(message) {
+	
+    // add message property if not present
+	if (!this.hasProperty('messages')) {
+		this.setProperty('messages', []);
+	}
+	
+	// add message to list of messages
+	this.getProperty('messages').push(message);
+	
+}
     
 //
 // TestGroup
@@ -258,6 +302,31 @@ TestGroup.prototype.addGroup = function(group) {
 
 };
 
+TestGroup.prototype.clearGroups = function(group) {
+    if (this.hasProperty('groups')) {
+    	this.getProperty('groups').length = 0;
+    }
+}
+
+TestGroup.prototype.getLastGroup = function() {
+
+    // add groups property if not present
+    if (!this.hasGroups()) {
+        throw new TestError('no groups')
+    }
+    
+    // append test to tests
+    var groups = this.getProperty('groups');
+    
+    // add groups property if not present
+    if (groups.length === 0) {
+        throw new TestError('no groups')
+    }
+    
+    return groups[groups.length - 1];
+
+};
+
 TestGroup.prototype.addTest = function(test) {
     
     // add tests property if not present
@@ -285,24 +354,11 @@ TestGroup.prototype.addTest = function(test) {
 
 };
 
-TestGroup.prototype.getLastGroup = function() {
-
-    // add groups property if not present
-    if (!this.hasGroups()) {
-        throw new TestError('no groups')
+TestGroup.prototype.clearTests = function(group) {
+    if (this.hasProperty('tests')) {
+    	this.getProperty('tests').length = 0;
     }
-    
-    // append test to tests
-    var groups = this.getProperty('groups');
-    
-    // add groups property if not present
-    if (groups.length === 0) {
-        throw new TestError('no groups')
-    }
-    
-    return groups[groups.length - 1];
-
-};
+}
 
 TestGroup.prototype.getLastTest = function() {
 
@@ -538,6 +594,7 @@ Submission.prototype.addTest = function(test) {
 };
 
 module.exports = {
+    Message: Message,
     Submission: Submission,
     Tab: Tab,
     Context: Context,

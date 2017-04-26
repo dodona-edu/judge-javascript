@@ -1,16 +1,22 @@
+var fs = require('fs');
 var path = require('path')
-var fs=require('fs');
-
 
 process.stdin.on('data', function(data) {
-    config = JSON.parse(data);
+	
+	// parse JSON with configuration settings from stdin 
+    var config = JSON.parse(data);
+    
+    // extract configuration settings
+    var resourcesDir = config['resources'];
+    var sourceFile = config['source'];
+    
     // import js-judge module
     var jsJudge = require('./judge.js');
 
     // process tests
-    var js = new jsJudge.Judge(path.join(config['resources'], 'tests.js'));
+    var js = new jsJudge.Judge(path.join(resourcesDir, 'tests.js'));
 
-    // evaluate tests
-    console.log(js.run(config['source']));     
-})
+    // evaluate tests and output result to stdout
+    console.log(js.run(sourceFile));     
 
+});

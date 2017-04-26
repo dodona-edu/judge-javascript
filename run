@@ -1,5 +1,7 @@
 #!/bin/bash
 
-
+# find location of this script
 DIR="$(dirname $0)"
+
+# launch js-judge
 node "$DIR/evaluate.js"
