@@ -1,6 +1,6 @@
 function draaien(a, b, c) {
-
-    // lokale variabelen
+	
+	// lokale variabelen
     var waarde;
     
     // nagaan of de drie opgegeven punten verschillend zijn

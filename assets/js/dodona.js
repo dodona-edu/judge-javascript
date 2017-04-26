@@ -109,7 +109,7 @@ Test.prototype.getProperty = function(name) {
 Test.prototype.setAccepted = function(value) {
 
     // set acceptance of current object
-    if (value === false) {
+    if (!this.hasProperty('accepted') || value === false) {
         this.properties['accepted'] = value;
     }
     

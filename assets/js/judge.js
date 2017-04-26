@@ -7,13 +7,13 @@ const dodona = require('./dodona.js');
 // JudgeTimeoutError
 //
 
-var JugeTimeoutError = function() {
-	this.name = 'JugeTimeoutError',
-	this.description = 'time limit exceeded'
+var JudgeTimeoutError = function() {
+	this.name = 'JudgeTimeoutError',
+	this.message = 'time limit exceeded'
 }
 
-JugeTimeoutError.prototype = Object.create(Error.prototype);
-JugeTimeoutError.prototype.constructor = JugeTimeoutError;
+JudgeTimeoutError.prototype = Object.create(Error.prototype);
+JudgeTimeoutError.prototype.constructor = JudgeTimeoutError;
 
 //
 // Judge
@@ -24,14 +24,38 @@ var Judge = function(testfile, timeout) {
     // data structure that contains all test results
     this.submission = new dodona.Submission();
 
-    // default timeout after 10 seconds
-    this.timeout = timeout === undefined ? 10 * 1000 : timeout;
-    
     // parse test file
     this.parseTests(testfile);
     
     // use timer to avoid infinite loops or source code executing too slow
+    this.timeout = timeout;
     this.timer = null;
+
+};
+
+Judge.prototype.clearTimer = function(ms) {
+
+    // clear previous timer
+	if (this.timer !== null) {
+	    clearTimeout(this.timer);
+	    this.timer = null;
+	}
+
+};
+
+Judge.prototype.setTimer = function(ms) {
+	
+	// default timeout after 10 seconds
+    ms = (ms === undefined ? 1 * 1000 : ms); 
+
+    // clear previous timer
+    this.clearTimer();
+
+    // set new timeout to abort code execution after ms milliseconds
+    this.timer = setTimeout(
+    	function () { throw new JudgeTimeoutError(); }, 
+    	ms
+    );
 
 };
 
@@ -90,6 +114,11 @@ Judge.prototype.parseTests = function(testfile) {
 
 Judge.prototype.run = function(sourcefile) {
     
+	// set timer to end processing early on
+    this.setTimer(this.timeout);
+    
+    // while (true) {};
+
     // read source file
     var code = fs.readFileSync(sourcefile).toString(),
         criticalError = false;
@@ -138,6 +167,9 @@ Judge.prototype.run = function(sourcefile) {
         }    	
     }
     
+	// clear the timer
+    this.clearTimer();
+
     // return feedback as JSON string
     return this.submission.toString();
     
