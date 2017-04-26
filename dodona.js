@@ -188,12 +188,13 @@ Test.prototype.toJson = function() {
             	json[property] = this.getProperty(property).map(
             		function(element) { return element.toJson(); }
             	);
+            } else if (
+            	property === 'description' &&
+            	typeof this.getProperty(property) === 'object'
+            ) {
+            	json[property] = this.getProperty(property).toJson();
             } else {
-            	try {
-                	json[property] = this.getProperty(property).toJson();            		
-            	} catch(e) {
-                    json[property] = this.getProperty(property);            		
-            	}
+                json[property] = this.getProperty(property);            		
             }
         }
     }
