@@ -6,13 +6,13 @@ const dodona = require('./dodona.js');
 // JudgeTimeoutError
 //
 
-var JudgeTimeoutError = function() {
-	this.name = 'JudgeTimeoutError',
-	this.message = 'time limit exceeded'
+var JudgeError = function(message) {
+	this.name = 'JudgeError',
+	this.message = message || 'internal judge error'
 }
 
-JudgeTimeoutError.prototype = Object.create(Error.prototype);
-JudgeTimeoutError.prototype.constructor = JudgeTimeoutError;
+JudgeError.prototype = Object.create(Error.prototype);
+JudgeError.prototype.constructor = JudgeError;
 
 //
 // Judge
@@ -26,36 +26,6 @@ var Judge = function(testfile, timeout) {
     // parse test file
     this.parseTests(testfile);
     
-    // use timer to avoid infinite loops or source code executing too slow
-    this.timeout = timeout;
-    this.timer = null;
-
-};
-
-Judge.prototype.clearTimer = function(ms) {
-
-    // clear previous timer
-	if (this.timer !== null) {
-	    clearTimeout(this.timer);
-	    this.timer = null;
-	}
-
-};
-
-Judge.prototype.setTimer = function(ms) {
-	
-	// default timeout after 10 seconds
-    ms = (ms === undefined ? 1 * 1000 : ms); 
-
-    // clear previous timer
-    this.clearTimer();
-
-    // set new timeout to abort code execution after ms milliseconds
-    this.timer = setTimeout(
-    	function () { throw new JudgeTimeoutError(); }, 
-    	ms
-    );
-
 };
 
 // parse test cases
@@ -64,11 +34,23 @@ Judge.prototype.parseTests = function(testfile) {
     var self = this;
     
     // create parser for test cases
-    var TestParser = function() {};
+    var TestParser = function() {
+    	
+    	// support for context switches
+    	this.autoSwitchContext = true;    // automatic context switching between testcases
+    	this.contextSwitched = false;     // context switch since last testcase
+    	
+    };
+    
     TestParser.prototype.test = function(expression, expected, comparison) {
         
-        // for now, each testcase is in its own context
-        self.submission.addContext(new dodona.Context());
+        // switch to a new context if automatic context switching is on and no
+    	// context switch has happend since last testcase
+    	if (this.autoSwitchContext && !this.contextSwitched) {
+            self.submission.addContext(new dodona.Context());
+    	}
+    	// get ready for next context switch
+        this.contextSwitched = false;
         
         // add expression as testcase
         self.submission.addTestCase(
@@ -100,6 +82,24 @@ Judge.prototype.parseTests = function(testfile) {
         
     };
     
+    TestParser.prototype.config = function(name, value) {
+
+    	if (name === 'switch-context') {
+        	// switch context if not already switched
+    		if (!this.contextSwitched) {
+    			self.submission.addContext(new dodona.Context());
+    			this.contextSwitched = true;
+    		}
+    	} else if (name === 'auto-switch-context') {
+        	// switch context if not already switched
+			if (typeof value !== 'boolean') {
+				throw new JudgeError('parameter "auto-switch-context" must be boolean');
+			}
+			this.autoSwitchContext = value;
+    	}
+    	
+    };
+    
     // create judge object used in description of test cases
     var judge = new TestParser();
     
@@ -113,11 +113,6 @@ Judge.prototype.parseTests = function(testfile) {
 
 Judge.prototype.run = function(sourcefile) {
     
-	// set timer to end processing early on
-    this.setTimer(this.timeout);
-    
-    // while (true) {};
-
     // read source file
     var code = fs.readFileSync(sourcefile).toString(),
         criticalError = false;
@@ -166,9 +161,6 @@ Judge.prototype.run = function(sourcefile) {
         }    	
     }
     
-	// clear the timer
-    this.clearTimer();
-
     // return feedback as JSON string
     return this.submission.toString();
     

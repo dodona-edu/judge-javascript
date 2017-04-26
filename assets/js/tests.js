@@ -1,5 +1,7 @@
 // testgevallen voor functie draaien
 
+judge.config('auto-switch-context', false);
+
 judge.test('draaien({"x":0, "y":4}, {"x":2, "y":4}, {"x":5, "y":2});', -1);
 
 judge.test('draaien({"x":0, "y":4}, {"x":2, "y":4}, {"x":4, "y":4});', 0);
