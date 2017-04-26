@@ -188,12 +188,13 @@ Test.prototype.toJson = function() {
             	json[property] = this.getProperty(property).map(
             		function(element) { return element.toJson(); }
             	);
+            } else if (
+            	property === 'description' &&
+            	typeof this.getProperty(property) === 'object'
+            ) {
+            	json[property] = this.getProperty(property).toJson();
             } else {
-            	try {
-                	json[property] = this.getProperty(property).toJson();            		
-            	} catch(e) {
-                    json[property] = this.getProperty(property);            		
-            	}
+                json[property] = this.getProperty(property);            		
             }
         }
     }
@@ -430,17 +431,6 @@ TestGroup.prototype[Symbol.iterator] = function() {
 
 var TestCase = function(properties, parent) {
 	
-	// wrap string description into message
-	if (
-		properties.hasOwnProperty('description') && 
-		typeof properties['description'] == 'string'
-	) {
-		properties['description'] = new Message({
-			description: properties['description'],
-			format: 'code'
-		});
-	}
-    
     // call super constructor
     TestGroup.call(this, properties, parent);
     

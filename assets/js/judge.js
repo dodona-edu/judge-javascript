@@ -1,7 +1,6 @@
 const fs = require('fs');
 const utils = require('./utils.js');
 const dodona = require('./dodona.js');
-// const parallel = require('dimas-parallel');
 
 //
 // JudgeTimeoutError
@@ -196,6 +195,20 @@ Judge.prototype.evaluate = function(code, context) {
         if (comparison === undefined) {
             comparison = deepEqual;
         }
+        
+    	// wrap testcase description into message (if string)
+    	if (
+    		testcase.hasProperty('description') && 
+    		typeof testcase.getProperty('description') === 'string'
+    	) {
+    		testcase.setProperty(
+    			'description', 
+    			new dodona.Message({
+	    			description: testcase.getProperty('description'),
+	    			format: 'code'
+	    		})
+	    	);
+    	}        
 
         // evaluate expression
         var generated, 
