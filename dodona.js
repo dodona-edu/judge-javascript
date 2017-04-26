@@ -431,17 +431,6 @@ TestGroup.prototype[Symbol.iterator] = function() {
 
 var TestCase = function(properties, parent) {
 	
-	// wrap string description into message
-	if (
-		properties.hasOwnProperty('description') && 
-		typeof properties['description'] == 'string'
-	) {
-		properties['description'] = new Message({
-			description: properties['description'],
-			format: 'code'
-		});
-	}
-    
     // call super constructor
     TestGroup.call(this, properties, parent);
     
