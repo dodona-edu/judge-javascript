@@ -214,7 +214,7 @@ Judge.prototype.evaluate = function(code, context) {
         var comparison = test.getProperty('data')['evaluation']['comparison'] || deepEqual;
         var arguments = test.getProperty('data')['evaluation']['arguments'];
         
-    	// wrap testcase description into message (if string)
+    	// wrap testcase description in javascript message (if string)
     	if (
     		testcase.hasProperty('description') && 
     		typeof testcase.getProperty('description') === 'string'
@@ -223,7 +223,7 @@ Judge.prototype.evaluate = function(code, context) {
     			'description', 
     			new dodona.Message({
 	    			description: testcase.getProperty('description'),
-	    			format: 'code'
+	    			format: 'javascript'
 	    		})
 	    	);
     	}        
