@@ -163,6 +163,11 @@ Test.prototype.setProperty = function(name, value) {
     
 };
     
+Test.prototype.deleteProperty = function(name) {
+    delete this.properties[name];
+    return this;
+};
+    
 Test.prototype.getParent = function() {
     return this.parent;
 };
