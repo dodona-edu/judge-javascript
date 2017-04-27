@@ -110,12 +110,14 @@ function displayError(e, cleanup) {
 					);
 					
 					// link references to source code in stack trace
+					/*
 					line = line.replace(
 						/<code>:([0-9]+):([0-9]+)/,
 						function(match, row, col) {
 							return '<a href="#" class="tab-link" data-tab="code" data-line="' + row + '">' + match + '</a>';
 						}
 					);
+					*/
 
     				message.push(line);
 

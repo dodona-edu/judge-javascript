@@ -318,14 +318,13 @@ Judge.prototype.evaluate = function(code, context) {
                 }));
                 
             	// add message with runtime error (staff version)
-                // TODO: a cleaned up version of this stack trace should be
-                //       shown to the students (so they can see the lines in
-                //       their code that generated the error)
+                /*
                 testcase.addMessage(new dodona.Message({
-            		description: '<span class="code"><pre>' + utils.displayError(e, false).replace('\n', '<br />') + '</pre></span>',
+            		description: utils.displayError(e, false),
             		permission: 'staff',
-            		format: 'html'
+            		format: 'code'
             	}));
+            	*/
             	
                 tests['return'].update({
                     status: 'runtime error',
