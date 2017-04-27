@@ -156,7 +156,8 @@ Judge.prototype.run = function(sourcefile) {
     	// add message with compilation error (student version)
     	this.submission.addMessage(new dodona.Message({
     		description: utils.displayError(e, true),
-    		permission: 'student'
+    		permission: 'student',
+        	format: 'code'
     	}));
     	
     	// add message with compilation error (staff version)
@@ -256,6 +257,7 @@ Judge.prototype.evaluate = function(code, context) {
                 
                 // unexpected return value
                 testcase.addTest(new dodona.Test({
+                    status: 'wrong answer',
                     generated: utils.display(generated),
                     data: { channel: 'return' }
                 }));
@@ -310,6 +312,7 @@ Judge.prototype.evaluate = function(code, context) {
                 
                 // unexpected exception
                 testcase.addTest(new dodona.Test({
+                    status: 'wrong answer',
                     generated: generated,
                     data: { channel: 'exception' }
                 }));
@@ -319,9 +322,9 @@ Judge.prototype.evaluate = function(code, context) {
                 //       shown to the students (so they can see the lines in
                 //       their code that generated the error)
                 testcase.addMessage(new dodona.Message({
-            		description: utils.displayError(e, false),
+            		description: '<span class="code"><pre>' + utils.displayError(e, false).replace('\n', '<br />') + '</pre></span>',
             		permission: 'staff',
-            		format: 'code'
+            		format: 'html'
             	}));
             	
                 tests['return'].update({
