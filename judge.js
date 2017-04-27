@@ -271,6 +271,14 @@ Judge.prototype.evaluate = function(code, context) {
                     generated: utils.display(generated)
                 });
                 
+                // hide expected and generated return values if both are equal
+                // to undefined (fixes #18)
+                if (expected === undefined && generated === undefined) {
+                	tests['return']
+	            		.deleteProperty('expected')
+	            		.deleteProperty('generated');
+                };
+                
             }
             
         } catch (e) {
