@@ -1,19 +1,20 @@
-var fs = require('fs');
-var path = require('path');
+(function(){
 
-// config = JSON.parse((fs.readFileSync('/dev/stdin').toString()));
-config = {resources: 'trash', source: 'code.js'};
+	const fs = require('fs');
+	const path = require('path');
+	const jsJudge = require('./judge.js');
 
-// import js-judge module
-var jsJudge = require('./judge.js');
+	// config = JSON.parse((fs.readFileSync('/dev/stdin').toString()));
+	var config = {resources: 'trash', source: 'code.js'};
 
-// process tests
-var judge = new jsJudge.Judge(
-	path.join(config['resources'], 'tests.short.js')
-);
+	// process tests
+	var js = new jsJudge.Judge(path.join(config.resources, 'tests.short.js'));
 
-// evaluate tests
-var feedback = judge.run(path.join(config['resources'], 'code.js'));
+	// evaluate tests
+	var feedback = js.run(path.join(config.resources, 'code.js'));
 
-// output feedback on tests
-console.log(feedback);
+	// output feedback on tests
+	console.log(feedback);
+	
+}());
+

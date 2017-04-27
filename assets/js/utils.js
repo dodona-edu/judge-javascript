@@ -1,36 +1,3 @@
-// helper function to dynamically attach method to Function prototype
-function dynamicMethodLoader(name, func) {
-
-    // attach given function to prototype attribute having the given name, in
-    // case prototype did not had attribute with the given name
-    if (!this.prototype.hasOwnProperty(name)) {
-        Object.defineProperty(
-            this.prototype,
-            name, {
-                value: func,
-                enumerable: false
-            }
-        );
-    }
-
-    // return Function instance to allow chaining of method calls
-    return this;
-}
-
-// attach helper function to Function prototype as method with name "method"
-dynamicMethodLoader.call(Function, 'method', dynamicMethodLoader);
-
-// new string method that replaces in a string all placeholders having format
-// {name} by the value mapped from "name" by the object that is passed as an
-// argument to the method; the placeholder is not replaced if the passed object
-// has not property "name"
-String.method('format', function (dict) {
-    return this.replace(/{([^{}]*)}/g, function (match, naam) {
-        var waarde = dict[naam];
-        return waarde !== undefined ? waarde.toString() : match;
-    });
-});
-
 // helper function for pretty printing values
 function display(obj) {
 	
@@ -52,7 +19,7 @@ function display(obj) {
     } else if (Array.isArray(obj)) {
     	
     	// recursively convert array element to string
-    	return '[' + obj.map(function(element){ return display(element); }).join(', ') + ']';
+    	return "[" + obj.map(function(element){ return display(element); }).join(', ') + "]";
         
     } else if (typeof obj === 'object') {
     	
@@ -73,7 +40,7 @@ function display(obj) {
         keys.sort();
 
     	// recursively convert object key/value pairs to string
-        return '{' + keys.map(function(element){ return display(element) + ": " + display(obj[element]); }).join(', ') + '}'
+        return '{' + keys.map(function(element){ return display(element) + ": " + display(obj[element]); }).join(', ') + '}';
         
     } else {
     	
@@ -85,9 +52,7 @@ function display(obj) {
                 repr.indexOf("'") === -1 &&
                 repr.slice(1, -1).indexOf('\\"') >= 0
             ) {
-                repr = "'{repr}'".format({
-                    repr: repr.slice(1, -1).replace('\\"', '"', "g")
-                });
+                repr = "'" + repr.slice(1, -1).replace('\\"', '"', "g") + "'";
             }
             return repr;
             
@@ -103,36 +68,95 @@ function display(obj) {
 }
 
 // helper function for converting Error objects to string
-function displayError(e, showLine) {
+function displayError(e, cleanup) {
 	
-	var message;
+	var line,
+	    message;
+	
+	// cleanup error message by default
+	if (cleanup === undefined) {
+		cleanup = true;
+	}
 	
     try {
+    	
         if (typeof e === "string") {
+        	
             return e;
+            
         } else if (e.stack !== undefined) {
-        	return e.stack;
+        	
+        	message = [];
+        	for (line of e.stack.split('\n')) {
+        		
+        		if (!cleanup || !line.startsWith(' ')) {
+        			
+        			// always include line if no cleanup is needed or if line
+        			// does not start with a space
+        			// NOTE: the latter is only supposed to be the header line
+            		message.push(line);        			
+
+        		} else if (
+    				line.search("<anonymous>:") !== -1 && 
+    				line.search("^    at eval ") === -1
+    			) {
+        			
+        			// remove eval wrapping from line
+					line = line.replace(
+						/^    at ([^ ]+) .* <anonymous>:([0-9]+):([0-9]+).*$/, 
+						function(match, func, row, col) {
+							return "    at " + func + "(<code>:" + row + ":" + col + ")";
+						}
+					);
+					
+					// link references to source code in stack trace
+					line = line.replace(
+						/<code>:([0-9]+):([0-9]+)/,
+						function(match, row, col) {
+							return '<a href="#" class="tab-link" data-tab="code" data-line="' + row + '">' + match + '</a>';
+						}
+					);
+
+    				message.push(line);
+
+        		}
+        	
+        	}
+        			
+        	return message.join('\n');
+        	
         } else {
+        	
             // format message
             if (e.name !== undefined && e.message !== undefined) {
+            	
                 // add line number if available
-            	message = e.lineNumber === undefined ? "{name}: {message}" : "{name} (line {line}): {message}" 
-                message = message.format({
-                    name: e.name,
-                    message: e.message,
-                    line: e.lineNumber
-                });
+            	message = e.name;
+            	if (e.lineNumber !== undefined) {
+            		message += " (line " + e.lineNumber + ")";
+            	}
+            	message += ":" + e.message;
+                
             } else {
+            	
                 message = "JudgeError: ill-formed Error";
-                if (display(e) !== "") {
-                    message += ": " + display(e)
+                if (display(e) !== "") { 
+                	message += ": " + display(e); 
                 }
+                
             }
+            
             return message;
+            
         }
+        
     } catch (e) {
+    	
+    	// for converting Error objects to string
         return e.toString();
+        
     }
+    
 }
 
 module.exports = {
