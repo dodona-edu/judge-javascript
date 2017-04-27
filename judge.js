@@ -183,6 +183,9 @@ Judge.prototype.run = function(sourcefile) {
         }    	
     }
     
+    // cleanup submission
+    this.cleanup();
+    
     // return feedback as JSON string
     return this.submission.toString();
     
@@ -328,6 +331,23 @@ Judge.prototype.evaluate = function(code, context) {
         }
         
     }
+
+};
+
+Judge.prototype.cleanup = function() {
+	
+	var badgeCount;
+	
+	// add badge counts to tabs
+    for (var tab of this.submission) {
+    	badgeCount = 0;
+        for (var context of tab) {
+            for (var testcase of context) {
+            	badgeCount += testcase.getProperty('accepted') === false
+            }
+        }
+        tab.setProperty('badgeCount', badgeCount);
+    }    	
 
 };
 
