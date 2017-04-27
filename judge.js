@@ -280,6 +280,16 @@ Judge.prototype.evaluate = function(code, context) {
                     data: { channel: 'exception' }
                 }));
                 
+            	// add message with runtime error (staff version)
+                // TODO: a cleaned up version of this stack trace should be
+                //       shown to the students (so they can see the lines in
+                //       their code that generated the error)
+                testcase.addMessage(new dodona.Message({
+            		description: utils.displayError(e),
+            		permission: 'staff',
+            		format: 'code'
+            	}));
+            	
                 tests['return'].update({
                     status: 'runtime error',
                     expected: utils.display(
