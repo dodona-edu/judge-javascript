@@ -105,7 +105,7 @@ function displayError(e, cleanup) {
 					line = line.replace(
 						/^    at ([^ ]+) .* <anonymous>:([0-9]+):([0-9]+).*$/, 
 						function(match, func, row, col) {
-							return "    at " + func + "(<code>:" + row + ":" + col + ")";
+							return "    at " + func + " (<code>:" + row + ":" + col + ")";
 						}
 					);
 					
