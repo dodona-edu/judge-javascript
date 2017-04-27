@@ -117,10 +117,7 @@ Judge.prototype.parseTests = function(testfile) {
     var judge = new TestParser();
     
     // evaluate all tests
-    var tests = fs.readFileSync(testfile).toString().split('\n');
-    for (var statement of tests) {
-        eval(statement);
-    }
+    eval(fs.readFileSync(testfile).toString());
     
 };
 
