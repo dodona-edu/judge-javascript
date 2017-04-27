@@ -283,7 +283,8 @@ Judge.prototype.evaluate = function(code, context) {
                 }));
                 
                 tests['return'].update({
-                    status: 'runtime error'
+                    status: 'runtime error',
+                    expected: utils.display(tests['return'].getProperty('expected'))
                 });
                 
             }

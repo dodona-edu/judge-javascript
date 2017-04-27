@@ -9,7 +9,7 @@ var jsJudge = require('./judge.js');
 
 // process tests
 var judge = new jsJudge.Judge(
-	path.join(config['resources'], 'tests.js')
+	path.join(config['resources'], 'tests.short.js')
 );
 
 // evaluate tests
