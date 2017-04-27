@@ -185,6 +185,10 @@ Judge.prototype.run = function(sourcefile) {
 };
 
 Judge.prototype.evaluate = function(code, context) {
+	
+	// avoid that console.log can output results to stdout
+	// TODO: replace this by properly capturing stdout and stderr
+	console.log = function() {};
     
     // execute source code in the global scope
     // TODO: this should be executed in a separate scope
