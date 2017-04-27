@@ -7,9 +7,9 @@ const dodona = require('./dodona.js');
 //
 
 var JudgeError = function(message) {
-	this.name = 'JudgeError',
-	this.message = message || 'internal judge error'
-}
+	this.name = 'JudgeError';
+	this.message = message || 'internal judge error';
+};
 
 JudgeError.prototype = Object.create(Error.prototype);
 JudgeError.prototype.constructor = JudgeError;
@@ -135,12 +135,13 @@ Judge.prototype.run = function(sourcefile) {
         criticalError = false;
     
     // evaluate source code
+	// avoid that console.log can output results to stdout
+	// TODO: replace this by properly capturing stdout and stderr
+	var stdout = console.log;
+	console.log = function() {};
+    
     try {
     	
-    	// avoid that console.log can output results to stdout
-    	// TODO: replace this by properly capturing stdout and stderr
-    	console.log = function() {};
-        
         // execute source code in the global scope
         // TODO: this should be executed in a separate scope
         eval(code);
@@ -154,13 +155,13 @@ Judge.prototype.run = function(sourcefile) {
     	
     	// add message with compilation error (student version)
     	this.submission.addMessage(new dodona.Message({
-    		description: utils.displayError(e).split('\n')[0],
+    		description: utils.displayError(e, true),
     		permission: 'student'
     	}));
     	
     	// add message with compilation error (staff version)
     	this.submission.addMessage(new dodona.Message({
-    		description: utils.displayError(e),
+    		description: utils.displayError(e, false),
     		permission: 'staff',
     		format: 'code'
     	}));
@@ -174,6 +175,9 @@ Judge.prototype.run = function(sourcefile) {
         
     }
     
+    // restore stdout
+    console.log = stdout;
+
     // evaluate each context
     if (!criticalError) {
         for (var tab of this.submission) {
@@ -192,11 +196,14 @@ Judge.prototype.evaluate = function(code, context) {
 	
 	// avoid that console.log can output results to stdout
 	// TODO: replace this by properly capturing stdout and stderr
+	var stdout = console.log;
 	console.log = function() {};
     
     // execute source code in the global scope
+	// NOTE: this should be safe now
     // TODO: this should be executed in a separate scope
     eval(code);
+    console.log = stdout;
     
     // check equality of JavaScript objects
     var deepEqual = require('deep-equal');
@@ -206,13 +213,13 @@ Judge.prototype.evaluate = function(code, context) {
     	// map channels to their corresponding tests
         var tests = {};
         for (var test of testcase) {
-            tests[test.getProperty('data')['channel']] = test;
+            tests[test.getProperty('data').channel] = test;
         }
     	
     	// extract information from testcase
         var expression = testcase.getProperty('description');
-        var comparison = test.getProperty('data')['evaluation']['comparison'] || deepEqual;
-        var arguments = test.getProperty('data')['evaluation']['arguments'];
+        var comparison = test.getProperty('data').evaluation.comparison || deepEqual;
+        var comparisonArguments = test.getProperty('data').evaluation.arguments;
         
     	// wrap testcase description in javascript message (if string)
     	if (
@@ -234,11 +241,12 @@ Judge.prototype.evaluate = function(code, context) {
             args,
             correct;
         
+    	// avoid that console.log can output results to stdout
+    	// TODO: replace this by properly capturing stdout and stderr
+    	var stdout = console.log;
+    	console.log = function() {};
+        
         try {
-            
-        	// avoid that console.log can output results to stdout
-        	// TODO: replace this by properly capturing stdout and stderr
-        	console.log = function() {};
             
             // evaluate expression
             generated = eval(expression);
@@ -252,7 +260,7 @@ Judge.prototype.evaluate = function(code, context) {
                     data: { channel: 'return' }
                 }));
                 
-                tests['exception'].update({
+                tests.exception.update({
                     status: 'wrong answer'
                 });
                 
@@ -261,7 +269,7 @@ Judge.prototype.evaluate = function(code, context) {
                 
                 // compare expected and generated return values
                 expected = tests['return'].getProperty('expected');
-                args = [expected, generated].concat(arguments);
+                args = [expected, generated].concat(comparisonArguments);
                 correct = comparison.apply(comparison, args);
                 
                 // update return channel
@@ -277,23 +285,23 @@ Judge.prototype.evaluate = function(code, context) {
                 	tests['return']
 	            		.deleteProperty('expected')
 	            		.deleteProperty('generated');
-                };
+                }
                 
             }
             
         } catch (e) {
             
-            generated = utils.displayError(e).split('\n')[0];
+            generated = utils.displayError(e, true);
 
             // check whether exception is as expected
             if ('exception' in tests) {
             
                 // compare expected and generated exceptions
-                expected = tests['exception'].getProperty('expected');
+                expected = tests.exception.getProperty('expected');
                 correct = deepEqual(expected, generated);
                 
                 // update exception channel
-                tests['exception'].update({
+                tests.exception.update({
                     status: correct ? 'correct answer' : 'wrong answer',
                     generated: generated
                 });
@@ -311,7 +319,7 @@ Judge.prototype.evaluate = function(code, context) {
                 //       shown to the students (so they can see the lines in
                 //       their code that generated the error)
                 testcase.addMessage(new dodona.Message({
-            		description: utils.displayError(e),
+            		description: utils.displayError(e, false),
             		permission: 'staff',
             		format: 'code'
             	}));
@@ -326,6 +334,9 @@ Judge.prototype.evaluate = function(code, context) {
             }
             
         }
+
+        // restore stdout
+        console.log = stdout;
         
     }
 
@@ -339,7 +350,7 @@ Judge.prototype.toString = function() {
     	badgeCount = 0;
         for (var context of tab) {
             for (var testcase of context) {
-            	badgeCount += testcase.getProperty('accepted') === false
+            	badgeCount += testcase.getProperty('accepted') === false;
             }
         }
         tab.setProperty('badgeCount', badgeCount);
