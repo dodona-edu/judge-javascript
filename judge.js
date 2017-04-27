@@ -150,7 +150,8 @@ Judge.prototype.run = function(sourcefile) {
     	// add message with compilation error (staff version)
     	this.submission.addMessage(new dodona.Message({
     		description: utils.displayError(e),
-    		permission: 'staff'
+    		permission: 'staff',
+    		format: 'code'
     	}));
     	
     	// clear all tabs
@@ -281,7 +282,9 @@ Judge.prototype.evaluate = function(code, context) {
                 
                 tests['return'].update({
                     status: 'runtime error',
-                    expected: utils.display(tests['return'].getProperty('expected'))
+                    expected: utils.display(
+                    	tests['return'].getProperty('expected')
+                    )
                 });
                 
             }
