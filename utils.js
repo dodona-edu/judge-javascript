@@ -137,7 +137,7 @@ function displayError(e, cleanup) {
             	if (e.lineNumber !== undefined) {
             		message += " (line " + e.lineNumber + ")";
             	}
-            	message += ":" + e.message;
+            	message += ": " + e.message;
                 
             } else {
             	
