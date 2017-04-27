@@ -223,7 +223,7 @@ Judge.prototype.evaluate = function(code, context) {
     			'description', 
     			new dodona.Message({
 	    			description: testcase.getProperty('description'),
-	    			format: 'javascript'
+	    			format: 'code'
 	    		})
 	    	);
     	}        
