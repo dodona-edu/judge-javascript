@@ -78,7 +78,14 @@ Judge.prototype.parseTests = function(testfile) {
                 data: { 
                     channel: channel,
                     evaluation: {
-                        comparison: comparison
+                        comparison: comparison,
+                        // capture additional arguments passed on to the test
+                        // method (following the expression to evaluate, the
+                        // expected result and the comparison function to be
+                        // used; these additional argument will be provided to
+                        // the comparison function, following the expected and
+                        // generated result
+                        arguments: [].slice.call(arguments, 3)
                     }
                 }
             })
@@ -188,16 +195,16 @@ Judge.prototype.evaluate = function(code, context) {
 
     for (var testcase of context) {
         
-        // extract information from testcase
-        var expression = testcase.getProperty('description');
+    	// map channels to their corresponding tests
         var tests = {};
         for (var test of testcase) {
             tests[test.getProperty('data')['channel']] = test;
         }
-        var comparison = test.getProperty('data')['evaluation']['comparison'];
-        if (comparison === undefined) {
-            comparison = deepEqual;
-        }
+    	
+    	// extract information from testcase
+        var expression = testcase.getProperty('description');
+        var comparison = test.getProperty('data')['evaluation']['comparison'] || deepEqual;
+        var arguments = test.getProperty('data')['evaluation']['arguments'];
         
     	// wrap testcase description into message (if string)
     	if (
@@ -242,8 +249,7 @@ Judge.prototype.evaluate = function(code, context) {
                 
                 // compare expected and generated return values
                 expected = tests['return'].getProperty('expected');
-                args = [expected, generated]
-                args = args.concat([].slice.call(arguments, 3));
+                args = [expected, generated].concat(arguments);
                 correct = comparison.apply(comparison, args);
                 
                 // update return channel
