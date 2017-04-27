@@ -73,7 +73,7 @@ function display(obj) {
         keys.sort();
 
     	// recursively convert object key/value pairs to string
-        return '{' + keys.map(function(element){ return display(element) + ": " + display(obj[element]); }) + '}'
+        return '{' + keys.map(function(element){ return display(element) + ": " + display(obj[element]); }).join(', ') + '}'
         
     } else {
     	
