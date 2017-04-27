@@ -183,11 +183,8 @@ Judge.prototype.run = function(sourcefile) {
         }    	
     }
     
-    // cleanup submission
-    this.cleanup();
-    
-    // return feedback as JSON string
-    return this.submission.toString();
+    // output submission (includes final cleanups)
+    return this.toString();
     
 };
 
@@ -334,11 +331,10 @@ Judge.prototype.evaluate = function(code, context) {
 
 };
 
-Judge.prototype.cleanup = function() {
-	
-	var badgeCount;
+Judge.prototype.toString = function() {
 	
 	// add badge counts to tabs
+	var badgeCount;
     for (var tab of this.submission) {
     	badgeCount = 0;
         for (var context of tab) {
@@ -347,7 +343,10 @@ Judge.prototype.cleanup = function() {
             }
         }
         tab.setProperty('badgeCount', badgeCount);
-    }    	
+    }
+    
+    // return string representation of submission
+    return this.submission.toString();
 
 };
 
