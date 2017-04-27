@@ -137,6 +137,10 @@ Judge.prototype.run = function(sourcefile) {
     // evaluate source code
     try {
     	
+    	// avoid that console.log can output results to stdout
+    	// TODO: replace this by properly capturing stdout and stderr
+    	console.log = function() {};
+        
         // execute source code in the global scope
         // TODO: this should be executed in a separate scope
         eval(code);
@@ -231,6 +235,10 @@ Judge.prototype.evaluate = function(code, context) {
             correct;
         
         try {
+            
+        	// avoid that console.log can output results to stdout
+        	// TODO: replace this by properly capturing stdout and stderr
+        	console.log = function() {};
             
             // evaluate expression
             generated = eval(expression);
