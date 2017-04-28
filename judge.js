@@ -148,10 +148,18 @@ Judge.prototype.run = function(sourcefile) {
         
     } catch (e) {
     	    	    	
-    	// set status to compilation error
-    	this.submission.update({
-    		status: (e.hasOwnProperty("name") && e.name === "SyntaxError") ? "compilation error" : "runtime error"
-    	});
+    	// set status: differentiate between to compilation errors (SyntaxError)
+    	// and runtime errors when evaluating submitted source code
+    	if (e.hasOwnProperty("name") && e.name === "SyntaxError") {
+        	this.submission.update({
+        		status: "compilation error"
+        	});    		
+    	} else {
+        	this.submission.update({
+        		description: e.name !== undefined ? e.name : "",
+        		status: "runtime error"
+        	});    		
+    	}
     	
     	// add message with compilation error (student version)
     	this.submission.addMessage(new dodona.Message({
