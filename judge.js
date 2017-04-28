@@ -340,7 +340,7 @@ Judge.prototype.evaluate = function(code, context) {
                 expected = tests['return'].getProperty('expected');
                 tests['return'].update({
                     status: 'runtime error',
-                    expected: multiline(expected) ? expected : utils.display(expected);
+                    expected: multiline(expected) ? expected : utils.display(expected)
                 });
                 
             }
