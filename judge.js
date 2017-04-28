@@ -274,11 +274,21 @@ Judge.prototype.evaluate = function(code, context) {
                 args = [expected, generated].concat(comparisonArguments);
                 correct = comparison.apply(comparison, args);
                 
+                // multiline support
+                var multiline = (
+                	typeof expected === "string" &&
+                	typeof generated === "string" &&
+                	(
+                		expected.indexOf("\n") > -1 || 
+                		generated.indexOf("\n") > -1
+                	)
+                );
+                
                 // update return channel
                 tests['return'].update({
                     status: correct ? 'correct answer' : 'wrong answer',
-                    expected: utils.display(expected),
-                    generated: utils.display(generated)
+                    expected: multiline ? expected : utils.display(expected),
+                    generated: multiline ? generated : utils.display(generated)
                 });
                 
                 // hide expected and generated return values if both are equal
