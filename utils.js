@@ -96,16 +96,17 @@ function displayError(e, cleanup) {
         			// NOTE: the latter is only supposed to be the header line
             		message.push(line);        			
 
-        		} else if (
-    				line.search("<anonymous>:") !== -1 && 
-    				line.search("^    at eval ") === -1
-    			) {
+        		} else if (line.search("<anonymous>:") !== -1) {
         			
         			// remove eval wrapping from line
 					line = line.replace(
 						/^    at ([^ ]+) .* <anonymous>:([0-9]+):([0-9]+).*$/, 
 						function(match, func, row, col) {
-							return "    at " + func + " (<code>:" + row + ":" + col + ")";
+							if (func === "eval") {
+								return "    at <code>:" + row + ":" + col;								
+							} else {
+								return "    at " + func + " (<code>:" + row + ":" + col + ")";								
+							}
 						}
 					);
 					
