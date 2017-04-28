@@ -150,7 +150,7 @@ Judge.prototype.run = function(sourcefile) {
     	    	    	
     	// set status: differentiate between to compilation errors (SyntaxError)
     	// and runtime errors when evaluating submitted source code
-    	if (e.hasOwnProperty("name") && e.name === "SyntaxError") {
+    	if (e.name === "SyntaxError") {
         	this.submission.update({
         		status: "compilation error"
         	});    		
