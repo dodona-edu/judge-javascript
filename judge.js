@@ -150,7 +150,7 @@ Judge.prototype.run = function(sourcefile) {
     	    	    	
     	// set status to compilation error
     	this.submission.update({
-    		status: 'compilation error'
+    		status: (e.hasOwnProperty("name") && e.name === "SyntaxError") ? "compilation error" : "runtime error"
     	});
     	
     	// add message with compilation error (student version)
