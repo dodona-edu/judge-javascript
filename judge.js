@@ -208,6 +208,13 @@ Judge.prototype.evaluate = function(code, context) {
     
     // check equality of JavaScript objects
     var deepEqual = require('deep-equal');
+    
+    function multiline(s) {
+    	return (
+    		typeof s === "string" && 
+    		s.indexOf("\n") > -1
+    	);
+    }
 
     for (var testcase of context) {
         
@@ -258,7 +265,7 @@ Judge.prototype.evaluate = function(code, context) {
                 // unexpected return value
                 testcase.addTest(new dodona.Test({
                     status: 'wrong answer',
-                    generated: utils.display(generated),
+                    generated: multiline(generated) ? generated : utils.display(generated),
                     data: { channel: 'return' }
                 }));
                 
@@ -274,21 +281,11 @@ Judge.prototype.evaluate = function(code, context) {
                 args = [expected, generated].concat(comparisonArguments);
                 correct = comparison.apply(comparison, args);
                 
-                // multiline support
-                var multiline = (
-                	typeof expected === "string" &&
-                	typeof generated === "string" &&
-                	(
-                		expected.indexOf("\n") > -1 || 
-                		generated.indexOf("\n") > -1
-                	)
-                );
-                
                 // update return channel
                 tests['return'].update({
                     status: correct ? 'correct answer' : 'wrong answer',
-                    expected: multiline ? expected : utils.display(expected),
-                    generated: multiline ? generated : utils.display(generated)
+                    expected: multiline(expected) ? expected : utils.display(expected),
+                    generated: multiline(generated) ? generated : utils.display(generated)
                 });
                 
                 // hide expected and generated return values if both are equal
@@ -340,11 +337,10 @@ Judge.prototype.evaluate = function(code, context) {
             	}));
             	*/
             	
+                expected = tests['return'].getProperty('expected');
                 tests['return'].update({
                     status: 'runtime error',
-                    expected: utils.display(
-                    	tests['return'].getProperty('expected')
-                    )
+                    expected: multiline(expected) ? expected : utils.display(expected);
                 });
                 
             }
