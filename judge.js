@@ -299,10 +299,14 @@ Judge.prototype.evaluate = function(code, context) {
             if ('exception' in tests) {
             
                 // compare expected and generated exceptions
+            	// NOTE: expected exception is compared only to the first line
+            	//       of the generated exception
                 expected = tests.exception.getProperty('expected');
-                correct = deepEqual(expected, generated);
+                correct = deepEqual(expected, generated.split('\n')[0]);
                 
                 // update exception channel
+                // NOTE: the entire cleaned up stack trace is shown to help the 
+                //       user find where the exception was raised
                 tests.exception.update({
                     status: correct ? 'correct answer' : 'wrong answer',
                     generated: generated
