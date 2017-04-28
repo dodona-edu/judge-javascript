@@ -3,5 +3,12 @@
 # find location of this script
 DIR="$(dirname $0)"
 
-# launch js-judge
-node "$DIR/evaluate.js"
+config="$(mktemp)"      # configuration
+# Saving the configuration from stdin
+cat > "$config"
+
+# time and memory limit with margins
+time_limit="$(jshon -e 'time_limit' -u < "$config")"
+time_limit="$((time_limit - 10))"
+
+timeout  --preserve-status "$time_limit" bash -c "node ${DIR}/evaluate.js < ${config}"
