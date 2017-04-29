@@ -8,7 +8,7 @@
 	var config = {resources: 'test', source: 'code.js'};
 
 	// process tests
-	var js = new jsJudge.Judge(path.join(config.resources, 'tests.short.js'));
+	var js = new jsJudge.Judge(path.join(config.resources, 'tests.js'));
 
 	// evaluate tests
 	var feedback = js.run(path.join(config.resources, 'code.js'));

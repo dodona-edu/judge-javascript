@@ -1,7 +1,7 @@
 // helper function for pretty printing values
 function display(obj) {
 	
-    var str = '',
+    var str = "",
         keys = [],
         key, 
         i;
@@ -19,12 +19,12 @@ function display(obj) {
     } else if (Array.isArray(obj)) {
     	
     	// recursively convert array element to string
-    	return "[" + obj.map(function(element){ return display(element); }).join(', ') + "]";
+    	return "[" + obj.map(function(element){ return display(element); }).join(", ") + "]";
         
-    } else if (typeof obj === 'object') {
+    } else if (typeof obj === "object") {
     	
     	// put all object keys in array
-        if (obj.hasOwnProperty !== undefined && typeof obj.hasOwnProperty === 'function') {
+        if (obj.hasOwnProperty !== undefined && typeof obj.hasOwnProperty === "function") {
             for (key in obj) {
                 if (obj.hasOwnProperty(key)) {
                     keys.push(key);
@@ -40,31 +40,31 @@ function display(obj) {
         keys.sort();
 
     	// recursively convert object key/value pairs to string
-        return '{' + keys.map(function(element){ return display(element) + ": " + display(obj[element]); }).join(', ') + '}';
+        return "{" + keys.map(function(element){ return display(element) + ": " + display(obj[element]); }).join(", ") + "}";
+        
+    } else if (typeof obj === "string") {
+    	
+    	return JSON.stringify(obj);
+    	
+    	/*
+        // return "\"" + obj + "\"";
+        var repr = JSON.stringify(obj);
+        if (
+            repr.indexOf("\"") === -1 &&
+            repr.slice(1, -1).indexOf("\\\"") >= 0
+        ) {
+            repr = "\"" + repr.slice(1, -1).replace("\\\"", "\"", "g") + "\"";
+        }
+        return repr;
+        */
         
     } else {
-    	
-        if (typeof obj === 'string') {
         	
-            // return "'" + obj + "'";
-            var repr = JSON.stringify(obj);
-            if (
-                repr.indexOf("'") === -1 &&
-                repr.slice(1, -1).indexOf('\\"') >= 0
-            ) {
-                repr = "'" + repr.slice(1, -1).replace('\\"', '"', "g") + "'";
-            }
-            return repr;
-            
-        } else {
-        	
-            // pretty print general object
-            return obj.toString();
-            
-        }
+        // pretty print general object
+        return obj.toString();
         
     }
-    
+        
 }
 
 // helper function for converting Error objects to string
@@ -87,9 +87,9 @@ function displayError(e, cleanup) {
         } else if (e.stack !== undefined) {
         	
         	message = [];
-        	for (line of e.stack.split('\n')) {
+        	for (line of e.stack.split("\n")) {
         		
-        		if (!cleanup || !line.startsWith(' ')) {
+        		if (!cleanup || !line.startsWith(" ")) {
         			
         			// always include line if no cleanup is needed or if line
         			// does not start with a space
@@ -115,7 +115,7 @@ function displayError(e, cleanup) {
 					line = line.replace(
 						/<code>:([0-9]+):([0-9]+)/,
 						function(match, row, col) {
-							return '<a href="#" class="tab-link" data-tab="code" data-line="' + row + '">' + match + '</a>';
+							return "<a href="#" class=\"tab-link\" data-tab=\"code\" data-line=\"" + row + "\">" + match + "</a>";
 						}
 					);
 					*/
@@ -126,7 +126,7 @@ function displayError(e, cleanup) {
         	
         	}
         			
-        	return message.join('\n');
+        	return message.join("\n");
         	
         } else {
         	
