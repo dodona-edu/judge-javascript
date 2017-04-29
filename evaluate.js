@@ -5,7 +5,7 @@
 	const jsJudge = require('./judge.js');
 
 	// config = JSON.parse((fs.readFileSync('/dev/stdin').toString()));
-	var config = {resources: 'trash', source: 'code.js'};
+	var config = {resources: 'test', source: 'code.js'};
 
 	// process tests
 	var js = new jsJudge.Judge(path.join(config.resources, 'tests.short.js'));
