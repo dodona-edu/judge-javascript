@@ -4,7 +4,7 @@
 	const path = require('path');
 	const jsJudge = require('./judge.js');
 
-	// config = JSON.parse((fs.readFileSync('/dev/stdin').toString()));
+	// use configuration for testing
 	var config = {resources: 'test', source: 'code.js'};
 
 	// process tests

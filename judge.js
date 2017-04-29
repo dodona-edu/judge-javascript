@@ -113,7 +113,9 @@ Judge.prototype.parseTests = function(testfile) {
 				throw new JudgeError('parameter "switch-tab" must be a string');
 			}
     		if (!this.tabSwitched) {
-				self.submission.addTab(new dodona.Tab({description: value}));
+				self.submission.addTab(new dodona.Tab({
+					description: value
+				}));
 				this.tabSwitched = true;
     		}
 		}
@@ -124,14 +126,14 @@ Judge.prototype.parseTests = function(testfile) {
     var judge = new TestParser();
     
     // evaluate all tests
-    eval(fs.readFileSync(testfile).toString());
+    eval(fs.readFileSync(testfile, "utf8"));
     
 };
 
 Judge.prototype.run = function(sourcefile) {
     
     // read source file
-    var code = fs.readFileSync(sourcefile).toString(),
+    var code = fs.readFileSync(sourcefile, "utf8"),
         criticalError = false;
     
     // evaluate source code
@@ -148,15 +150,24 @@ Judge.prototype.run = function(sourcefile) {
         
     } catch (e) {
     	    	    	
-    	// set status to compilation error
-    	this.submission.update({
-    		status: 'compilation error'
-    	});
+    	// set status: differentiate between to compilation errors (SyntaxError)
+    	// and runtime errors when evaluating submitted source code
+    	if (e.name === "SyntaxError") {
+        	this.submission.update({
+        		status: "compilation error"
+        	});    		
+    	} else {
+        	this.submission.update({
+        		description: e.name !== undefined ? e.name : "",
+        		status: "runtime error"
+        	});    		
+    	}
     	
     	// add message with compilation error (student version)
     	this.submission.addMessage(new dodona.Message({
     		description: utils.displayError(e, true),
-    		permission: 'student'
+    		permission: 'student',
+        	format: 'code'
     	}));
     	
     	// add message with compilation error (staff version)
@@ -187,6 +198,10 @@ Judge.prototype.run = function(sourcefile) {
         }    	
     }
     
+    // lint source code
+    // TODO: enable linting as soon as ESLint has been added to JavaScript docker
+    // this.lint(code);
+    
     // output submission (includes final cleanups)
     return this.toString();
     
@@ -207,6 +222,13 @@ Judge.prototype.evaluate = function(code, context) {
     
     // check equality of JavaScript objects
     var deepEqual = require('deep-equal');
+    
+    function multiline(s) {
+    	return (
+    		typeof s === "string" && 
+    		s.indexOf("\n") > -1
+    	);
+    }
 
     for (var testcase of context) {
         
@@ -256,7 +278,8 @@ Judge.prototype.evaluate = function(code, context) {
                 
                 // unexpected return value
                 testcase.addTest(new dodona.Test({
-                    generated: utils.display(generated),
+                    status: 'wrong answer',
+                    generated: multiline(generated) ? generated : utils.display(generated),
                     data: { channel: 'return' }
                 }));
                 
@@ -275,8 +298,8 @@ Judge.prototype.evaluate = function(code, context) {
                 // update return channel
                 tests['return'].update({
                     status: correct ? 'correct answer' : 'wrong answer',
-                    expected: utils.display(expected),
-                    generated: utils.display(generated)
+                    expected: multiline(expected) ? expected : utils.display(expected),
+                    generated: multiline(generated) ? generated : utils.display(generated)
                 });
                 
                 // hide expected and generated return values if both are equal
@@ -297,10 +320,14 @@ Judge.prototype.evaluate = function(code, context) {
             if ('exception' in tests) {
             
                 // compare expected and generated exceptions
+            	// NOTE: expected exception is compared only to the first line
+            	//       of the generated exception
                 expected = tests.exception.getProperty('expected');
-                correct = deepEqual(expected, generated);
+                correct = deepEqual(expected, generated.split('\n')[0]);
                 
                 // update exception channel
+                // NOTE: the entire cleaned up stack trace is shown to help the 
+                //       user find where the exception was raised
                 tests.exception.update({
                     status: correct ? 'correct answer' : 'wrong answer',
                     generated: generated
@@ -310,25 +337,24 @@ Judge.prototype.evaluate = function(code, context) {
                 
                 // unexpected exception
                 testcase.addTest(new dodona.Test({
+                    status: 'wrong answer',
                     generated: generated,
                     data: { channel: 'exception' }
                 }));
                 
             	// add message with runtime error (staff version)
-                // TODO: a cleaned up version of this stack trace should be
-                //       shown to the students (so they can see the lines in
-                //       their code that generated the error)
+                /*
                 testcase.addMessage(new dodona.Message({
             		description: utils.displayError(e, false),
             		permission: 'staff',
             		format: 'code'
             	}));
+            	*/
             	
+                expected = tests['return'].getProperty('expected');
                 tests['return'].update({
                     status: 'runtime error',
-                    expected: utils.display(
-                    	tests['return'].getProperty('expected')
-                    )
+                    expected: multiline(expected) ? expected : utils.display(expected)
                 });
                 
             }
@@ -340,6 +366,44 @@ Judge.prototype.evaluate = function(code, context) {
         
     }
 
+};
+
+Judge.prototype.lint = function(code) {
+	
+	// import ESLint API
+	var linter = require("eslint").linter;
+	
+	// read ESLINT configuration file
+	var config = JSON.parse(fs.readFileSync("config.eslint.json", "utf8"));
+	
+	// lint source code
+	var messages = linter.verify(
+		code, 
+		config,
+		{
+			allowInlineConfig: false
+		}
+	);
+	
+	// add linter messages to submission (if any)
+	if (messages.length > 0) {
+		
+		// add new code tab
+		this.submission.addTab(new dodona.Tab({
+			description: "code",
+			data: {
+				// NOTE: for now, the messages as generated by ESLint are passed
+				//       on to the JSON output as is
+				annotations: messages.map(function(message){
+					return {
+						message
+					};
+				})
+			}
+		}));
+		
+	}
+	
 };
 
 Judge.prototype.toString = function() {
