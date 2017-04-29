@@ -1,0 +1,22 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "script",
+        "ecmaFeatures": {
+            "impliedStrict": true
+        }
+    },
+    "env": {
+        "browser": false,
+        "node": false,
+        "shared-node-browser": false
+    },
+    "extends": [
+        "eslint:recommended",
+        "eslint:all"
+    ],
+    "rules": {
+        "semi": ["error",  "always"],
+        "no-unused-vars": ["warn"]
+    }
+}

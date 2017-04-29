@@ -1,12 +1,12 @@
 var statusCodes = [
-    'correct answer',
-    'wrong answer',
-    'segmentation error',
-    'compilation error',
-    'runtime error',
-    'time limit exceeded',
-    'memory limit exceeded',
-    'unexpected end of line',
+    "correct answer",
+    "wrong answer",
+    "segmentation error",
+    "compilation error",
+    "runtime error",
+    "time limit exceeded",
+    "memory limit exceeded",
+    "unexpected end of line",
 ];
 
 //
@@ -15,11 +15,10 @@ var statusCodes = [
 
 TestError = function(message) {
 	
-    this.name = 'TestError';
+    this.name = "TestError";
     this.message = message;
     
 };
-
 TestError.prototype = Object.create(Error.prototype);
 TestError.prototype.constructor = TestError;
 
@@ -31,8 +30,8 @@ var Message = function(properties) {
 	
 	// set default values
 	this.properties = {
-		description: '',
-		format: 'text'
+		description: "",
+		format: "text"
 	}
 	
 	// overwrite with specific values
@@ -70,11 +69,13 @@ var Test = function(properties, parent) {
     //     generated
 
     // object properties
-    this.properties = {'status': 'correct answer'};
+    this.properties = {
+    	status: "correct answer"
+    };
     this.parent = parent || null;
     
     // set default status
-    this.setStatus('correct answer');
+    this.setStatus("correct answer");
 
     // set other properties
     this.update(properties);
@@ -84,7 +85,7 @@ var Test = function(properties, parent) {
 Test.prototype.update = function(properties) {
     
     for (var property in properties) {
-        if (property === 'status') {
+        if (property === "status") {
             this.setStatus(properties[property]);
         } else {
             this.setProperty(property, properties[property]);
@@ -94,23 +95,28 @@ Test.prototype.update = function(properties) {
 }
 
 Test.prototype.hasProperty = function(name) {
+	
+	// check if object has a property with the given name
     return this.properties.hasOwnProperty(name);
+    
 };
 
 Test.prototype.getProperty = function(name) {
     
+	// check if object has a property with the given name
     if (this.properties.hasOwnProperty(name)) {
         return this.properties[name];        
     }
-    
-    throw new TestError('unknown property');
+  
+	// report that object has no property with the given name
+    throw new TestError('unknown property "' + name + '"');
 };
 
 Test.prototype.setAccepted = function(value) {
 
     // set acceptance of current object
-    if (!this.hasProperty('accepted') || value === false) {
-        this.properties['accepted'] = value;
+    if (!this.hasProperty("accepted") || value === false) {
+        this.properties["accepted"] = value;
     }
     
     // recursively call function on parent
@@ -129,17 +135,17 @@ Test.prototype.setStatus = function(value) {
     if (index1 === -1) {
         throw new TestError('invalid status "' + value + '"');
     }
-    if (this.hasProperty('status')) {
-        index2 = statusCodes.indexOf(this.properties['status']);
+    if (this.hasProperty("status")) {
+        index2 = statusCodes.indexOf(this.properties["status"]);
     }
     if (index2 === -1 || index2 === undefined || index1 > index2) {
         // only update status in case it was not set before or in case it is
         // more severe than the previous status
-        this.properties['status'] = value;
+        this.properties["status"] = value;
     }
     
     // update object acceptance according to status
-    this.setAccepted(this.getProperty('status') === 'correct answer');
+    this.setAccepted(this.getProperty("status") === "correct answer");
     
     // recursively call function on parent
     if (this.parent !== null) {
@@ -151,9 +157,9 @@ Test.prototype.setStatus = function(value) {
 Test.prototype.setProperty = function(name, value) {
     
     // update status of parent object
-    if (name === 'status') {
+    if (name === "status") {
         this.setStatus(value);
-    } else if (name === 'accepted') {
+    } else if (name === "accepted") {
         this.setAccepted(value);        
     } else {
         this.properties[name] = value;        
@@ -183,19 +189,19 @@ Test.prototype.toJson = function() {
     
     for (var property in this.properties) {
         if (this.hasProperty(property)) {
-            if (property === 'groups' || property === 'tests') {
+            if (property === "groups" || property === "tests") {
                 json[property] = this.getProperty(property).map(
                     function(element) { 
                         return Test.prototype.toJson.call(element); 
                     }
                 );
-            } else if (property === 'messages') {
+            } else if (property === "messages") {
             	json[property] = this.getProperty(property).map(
             		function(element) { return element.toJson(); }
             	);
             } else if (
-            	property === 'description' &&
-            	typeof this.getProperty(property) === 'object'
+            	property === "description" &&
+            	typeof this.getProperty(property) === "object"
             ) {
             	json[property] = this.getProperty(property).toJson();
             } else {
@@ -214,12 +220,12 @@ Test.prototype.toString = function() {
 Test.prototype.addMessage = function(message) {
 	
     // add message property if not present
-	if (!this.hasProperty('messages')) {
-		this.setProperty('messages', []);
+	if (!this.hasProperty("messages")) {
+		this.setProperty("messages", []);
 	}
 	
 	// add message to list of messages
-	this.getProperty('messages').push(message);
+	this.getProperty("messages").push(message);
 	
 }
     
@@ -266,46 +272,46 @@ TestGroup.prototype.constructor = TestGroup;
 TestGroup.prototype.hasGroups = function() {
 
     // add groups property if not present
-    if (!this.hasProperty('groups')) {
+    if (!this.hasProperty("groups")) {
         return false;
     }
     
-    return this.getProperty('groups').length !== 0;
+    return this.getProperty("groups").length !== 0;
 
 };
 
 TestGroup.prototype.hasTests = function() {
 
     // add groups property if not present
-    if (!this.hasProperty('tests')) {
+    if (!this.hasProperty("tests")) {
         return false;
     }
     
-    return this.getProperty('tests').length !== 0;
+    return this.getProperty("tests").length !== 0;
 
 };
 
 TestGroup.prototype.addGroup = function(group) {
     
     // add groups property if not present
-    if (!this.hasProperty('groups')) {
-        this.setProperty('groups', [])
+    if (!this.hasProperty("groups")) {
+        this.setProperty("groups", [])
     }
     
     // set parent of group
     group.setParent(this);
     
     // append group to groups
-    this.getProperty('groups').push(group);
+    this.getProperty("groups").push(group);
     
     // update status of test group according to status of group
-    if (group.hasProperty('status')) {
-        this.setStatus(group.getProperty('status'));
+    if (group.hasProperty("'status")) {
+        this.setStatus(group.getProperty("status"));
     }
     
     // update accepted of test group according to status of group
-    if (group.hasProperty('accepted')) {
-        this.setAccepted(group.getProperty('accepted'));
+    if (group.hasProperty("accepted")) {
+        this.setAccepted(group.getProperty("accepted"));
     }
     
     return this;
@@ -313,24 +319,26 @@ TestGroup.prototype.addGroup = function(group) {
 };
 
 TestGroup.prototype.clearGroups = function(group) {
-    if (this.hasProperty('groups')) {
-    	this.getProperty('groups').length = 0;
+	
+    if (this.hasProperty("groups")) {
+    	this.getProperty("groups").length = 0;
     }
+    
 }
 
 TestGroup.prototype.getLastGroup = function() {
 
     // add groups property if not present
     if (!this.hasGroups()) {
-        throw new TestError('no groups')
+        throw new TestError("no groups");
     }
     
     // append test to tests
-    var groups = this.getProperty('groups');
+    var groups = this.getProperty("groups");
     
     // add groups property if not present
     if (groups.length === 0) {
-        throw new TestError('no groups')
+        throw new TestError("no groups")
     }
     
     return groups[groups.length - 1];
@@ -340,24 +348,24 @@ TestGroup.prototype.getLastGroup = function() {
 TestGroup.prototype.addTest = function(test) {
     
     // add tests property if not present
-    if (!this.hasProperty('tests')) {
-        this.setProperty('tests', [])
+    if (!this.hasProperty("tests")) {
+        this.setProperty("tests", [])
     }
     
     // set parent of test
     test.setParent(this);
     
     // append test to tests
-    this.getProperty('tests').push(test);
+    this.getProperty("tests").push(test);
     
     // update status of test group according to status of test
-    if (test.hasProperty('status')) {
-        this.setStatus(test.getProperty('status'));
+    if (test.hasProperty("status")) {
+        this.setStatus(test.getProperty("status"));
     }
     
     // update accepted of test group according to status of group
-    if (test.hasProperty('accepted')) {
-        this.setAccepted(test.getProperty('accepted'));
+    if (test.hasProperty("accepted")) {
+        this.setAccepted(test.getProperty("accepted"));
     }
     
     return this;
@@ -366,8 +374,8 @@ TestGroup.prototype.addTest = function(test) {
 
 TestGroup.prototype.clearTests = function(group) {
 	
-    if (this.hasProperty('tests')) {
-    	this.getProperty('tests').length = 0;
+    if (this.hasProperty("tests")) {
+    	this.getProperty("tests").length = 0;
     }
     
 }
@@ -376,15 +384,15 @@ TestGroup.prototype.getLastTest = function() {
 
     // add groups property if not present
     if (!this.hasTests()) {
-        throw new TestError('no tests')
+        throw new TestError("no tests");
     }
     
     // append test to tests
-    var tests = this.getPropery('tests');
+    var tests = this.getPropery("tests");
     
     // add groups property if not present
     if (tests.length === 0) {
-        throw new TestError('no tests')
+        throw new TestError("no tests");
     }
     
     return tests[tests.length - 1];
@@ -394,22 +402,22 @@ TestGroup.prototype.getLastTest = function() {
 TestGroup.prototype.getGroups = function() {
     
     // add groups property if not present
-    if (!this.hasGroups()) {
-        throw new TestError('no groups')
+    if (!this.hasProperty("groups")) {
+        throw new TestError("no groups");
     }
     
-    return this.getPropery('groups');
+    return this.getPropery("groups");
 
 };
 
 TestGroup.prototype.getTests = function() {
     
     // add groups property if not present
-    if (!this.hasTests()) {
-        throw new TestError('no tests')
+    if (!this.hasProperty("tests")) {
+        throw new TestError("no tests");
     }
     
-    return this.getPropery('tests');
+    return this.getPropery("tests");
 
 };
 
@@ -424,7 +432,7 @@ TestGroup.prototype[Symbol.iterator] = function() {
                 return { done: true };
             }
         },
-        array: [].concat(this.getProperty('groups')),
+        array: [].concat(this.hasProperty("groups") ? this.getProperty("groups") : []),
         index: 0
     };
 
@@ -454,7 +462,7 @@ TestCase.prototype[Symbol.iterator] = function() {
                 return { done: true };
             }
         },
-        array: [].concat(this.getProperty('tests')),
+        array: [].concat(this.hasProperty("tests") ? this.getProperty("tests") : []),
         index: 0
     };
 
@@ -554,7 +562,7 @@ Submission.prototype = Object.create(TestGroup.prototype);
 Submission.prototype.constructor = Submission;
 
 Submission.prototype.addTab = function(tab) {
-    this['groups'].push(tab)
+    this["groups"].push(tab)
 };
 
 Submission.prototype.addTab = function(tab) {
