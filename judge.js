@@ -154,20 +154,24 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 			status: utils.statusError(generated["exception"])
 		});
 		
-		// add message containing runtime error (student version)
-		testgroup.addMessage(new Message({
-			description: utils.displayError(generated["exception"], true),
-			permission: 'student',
-	    	format: 'code'
-		}));
-		
-		// add message containing runtime error (staff version)
-		testgroup.addMessage(new Message({
-			description: utils.displayError(generated["exception"], false),
-			permission: 'staff',
-			format: 'code'
-		}));
+		if (!options || options.silent === false) {
+			
+			// add message containing runtime error (student version)
+			testgroup.addMessage(new Message({
+				description: utils.displayError(generated["exception"], true),
+				permission: 'student',
+		    	format: 'code'
+			}));
+			
+			// add message containing runtime error (staff version)
+			testgroup.addMessage(new Message({
+				description: utils.displayError(generated["exception"], false),
+				permission: 'staff',
+				format: 'code'
+			}));
 
+		}
+		
 	}
 	
 	// TODO: consider what should be done if other channels are available
@@ -187,8 +191,15 @@ Judge.prototype.evaluateContext = function(script, options, context) {
     // execute submitted source code in sandbox
 	// NOTE: this should be safe due to the fact that we checked earlier if
 	//       there was a runtime error and stopped processing if this were the
-	//       case
+	//       case; as a result, we run it in silent mode
+	var silent = options ? options.silent : undefined;
+	options.silent = true;
 	this.evaluateCode(script, options, context, sandbox);
+	if (silent === undefined) {
+		delete options.silent;
+	} else {
+		options.silent = silent;
+	}
 
 	// execute all test cases of the context in the same sandbox
 	for (var testcase of context) {
