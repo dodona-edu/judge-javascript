@@ -88,33 +88,10 @@ function displayError(e, cleanup) {
         			line.search("<code>:") !== -1
         		) {
         			
-        			// always include line if no cleanup is needed or if line
-        			// does not start with a space
-        			// NOTE: the latter is only supposed to be the header line
             		message.push(line);        			
 
         		} 
-        		
-        		/* 
-        		else if (line.search("<anonymous>:") !== -1) {
-        			
-        			// remove eval wrapping from line
-					line = line.replace(
-						/^    at ([^ ]+) .* <anonymous>:([0-9]+):([0-9]+).*$/, 
-						function(match, func, row, col) {
-							if (func === "eval") {
-								return "    at <code>:" + row + ":" + col;								
-							} else {
-								return "    at " + func + " (<code>:" + row + ":" + col + ")";								
-							}
-						}
-					);
-					
-    				message.push(line);
-
-        		}
-        		*/
-        	
+        		        	
         	}
         		
         	console.error(message.join("\n"));

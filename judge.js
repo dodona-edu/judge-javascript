@@ -105,13 +105,42 @@ Judge.prototype.run = function(sourceFile) {
     // NOTE: this is done only when code was correctly compiled
 	this.evaluateCode(script, options, this.feedback);
     
-    // evaluate each context of each tab
-    for (var tab of this.feedback) {
-        for (var context of tab) {
-        	options.timeout = Math.max(this.timeRemaining(), 1);
-            this.evaluateContext(script, options, context);
-        }
-    }    	
+	if (this.feedback.getProperty("accepted")) {
+	    // evaluate each context of each tab
+	    for (var tab of this.feedback) {
+	        for (var context of tab) {
+	        	options.timeout = Math.max(this.timeRemaining(), 1);
+	            this.evaluateContext(script, options, context);
+	        }
+	    }		
+	} else {
+		// mark all tests as unprocessed
+		var status = this.feedback.getProperty("status");
+	    for (var tab of this.feedback) {
+	        for (var context of tab) {
+	        	for (var testcase of context) {
+	        		for (var test of testcase) {
+	        			
+	        			// update status
+	        			test.update({ status: status });
+	        			
+	        			// convert return value to string
+	        			if (test.getProperty("data").channel === "return") {
+	        				const expected_result = test.getProperty("expected");
+	        				test.update({
+	        	                expected: (
+	        	                	multiline(expected_result) ? 
+	        	                	expected_result : 
+	        	                	utils.display(expected_result)
+	        	                )
+	        				});
+	        			}
+	        			
+	        		}
+	        	}
+	        }
+	    }		
+	}
     
     // lint source code
     // TODO: enable linting as soon as ESLint has been added to JavaScript docker
@@ -230,7 +259,6 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
 			
 			// convert return value to string
 			if (test.getProperty("data").channel === "return") {
-				
 				const expected_result = test.getProperty("expected");
 				test.update({
 	                expected: (
@@ -239,8 +267,8 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
 	                	utils.display(expected_result)
 	                )
 				});
-				
 			}
+			
 		}
 		
 		// no further processing of testgroup
