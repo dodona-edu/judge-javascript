@@ -123,19 +123,7 @@ Judge.prototype.run = function(sourceFile) {
 	        			
 	        			// update status
 	        			test.update({ status: status });
-	        			
-	        			// convert return value to string
-	        			if (test.getProperty("data").channel === "return") {
-	        				const expected_result = test.getProperty("expected");
-	        				test.update({
-	        	                expected: (
-	        	                	multiline(expected_result) ? 
-	        	                	expected_result : 
-	        	                	utils.display(expected_result)
-	        	                )
-	        				});
-	        			}
-	        			
+	        				        			
 	        		}
 	        	}
 	        }
@@ -285,20 +273,6 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
     var comparison = test.getProperty("data").evaluation.comparison || deepEqual;
     var comparisonArguments = test.getProperty("data").evaluation.arguments;
     
-	// wrap testcase description in javascript message (if string)
-	if (
-		testcase.hasProperty("description") && 
-		typeof testcase.getProperty("description") === "string"
-	) {
-		testcase.setProperty(
-			"description", 
-			new Message({
-    			description: testcase.getProperty("description"),
-    			format: "code"
-    		})
-    	);
-	}        
-
 	// execute testcase statements in sandbox
 	// NOTE: update timeout based on remaining time for judging
 	options.timeout = Math.max(this.timeRemaining(), 1);
@@ -487,16 +461,33 @@ Judge.prototype.toString = function() {
     	badgeCount = 0;
     	
         for (var context of tab) {
+        	
             for (var testcase of context) {
+
+            	// wrap testcase description in Dodona message (if string)
+            	if (
+            		testcase.hasProperty("description") && 
+            		typeof testcase.getProperty("description") === "string"
+            	) {
+            		testcase.setProperty(
+            			"description", 
+            			new Message({
+                			description: testcase.getProperty("description"),
+                			format: "code"
+                		})
+                	);
+            	}        
 
             	// increment badge counts of tab
             	badgeCount += testcase.getProperty('accepted') === false;
 
-            	// remove evaluation sections from tests
             	for (var test of testcase) {
+            		
+                	// remove evaluation sections from tests            		
             		if (test.hasProperty("data")) {
             			delete test.getProperty("data")["evaluation"];
             		}
+            		
             	}
             	
             }
