@@ -239,11 +239,6 @@ Judge.prototype.evaluateContext = function(script, options, context) {
     
 Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
 	
-    // define helper function to determine if object is multiline string
-    function multiline(s) {
-    	return typeof s === "string" && s.indexOf("\n") > -1;
-    }
-
 	// testgroup remains unprocessed if severe error occurred
 	var status = this.feedback.getProperty("status");
 	if (this.criticalErrors.indexOf(status) > -1) {
@@ -513,6 +508,11 @@ Judge.prototype.toString = function() {
     return this.feedback.toString();
 
 };
+
+// define helper function to determine if object is multiline string
+function multiline(s) {
+	return typeof s === "string" && s.indexOf("\n") > -1;
+}
 
 module.exports = {
     Judge: Judge
