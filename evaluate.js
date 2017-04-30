@@ -1,20 +1,21 @@
 (function(){
 
-	const fs = require('fs');
-	const path = require('path');
-	const jsJudge = require('./judge.js');
+	const path = require("path");
+	const Judge = require("./judge.js").Judge;
 
 	// use configuration for testing
-	var config = {resources: 'test', source: 'code.js'};
+	const config = {resources: "test", source: "code.js"};
 
 	// process tests
-	var js = new jsJudge.Judge(path.join(config.resources, 'tests.js'));
+	const judge = new Judge(
+		path.join(config.resources, "tests.js"),
+		{
+			time_limit: 1000,  // time limit in milliseconds
+		}
+	);
 
 	// evaluate tests
-	var feedback = js.run(path.join(config.resources, 'code.js'));
-
-	// output feedback on tests
-	console.log(feedback);
+	judge.run(path.join(config.resources, "code.js"));
+	console.log("done");
 	
 }());
-

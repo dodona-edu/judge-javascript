@@ -46,18 +46,6 @@ function display(obj) {
     	
     	return JSON.stringify(obj);
     	
-    	/*
-        // return "\"" + obj + "\"";
-        var repr = JSON.stringify(obj);
-        if (
-            repr.indexOf("\"") === -1 &&
-            repr.slice(1, -1).indexOf("\\\"") >= 0
-        ) {
-            repr = "\"" + repr.slice(1, -1).replace("\\\"", "\"", "g") + "\"";
-        }
-        return repr;
-        */
-        
     } else {
         	
         // pretty print general object
@@ -110,16 +98,6 @@ function displayError(e, cleanup) {
 						}
 					);
 					
-					// link references to source code in stack trace
-					/*
-					line = line.replace(
-						/<code>:([0-9]+):([0-9]+)/,
-						function(match, row, col) {
-							return "<a href="#" class=\"tab-link\" data-tab=\"code\" data-line=\"" + row + "\">" + match + "</a>";
-						}
-					);
-					*/
-
     				message.push(line);
 
         		}
@@ -162,7 +140,18 @@ function displayError(e, cleanup) {
     
 }
 
+function statusError(e) {
+	
+	if (displayError(e).split("\n")[0] === "Error: Script execution timed out.") {
+		return "time limit exceeded";
+	}
+	
+	return "runtime error";
+
+}
+
 module.exports = {
     display: display,
-    displayError: displayError
+    displayError: displayError,
+    statusError: statusError
 };
