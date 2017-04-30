@@ -23,9 +23,9 @@ process.stdin.on("data", function(data) {
 			// 90% of the available time in order to have some spare time to
 			// generate the feedback on stdout
 			time_limit: Math.floor(timeLimit * 900),
-			memory_limit: memoryLimit
-			natural_language: naturalLanguage
-			programming_language: programmingLanguage
+			memory_limit: memoryLimit,
+			natural_language: naturalLanguage,
+			programming_language: programmingLanguage,
 		}
 	);
 
