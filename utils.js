@@ -150,7 +150,7 @@ function lineError(e) {
 	}
 	
 	for (var line of e.split("\n")) {
-		if (!line.startswith(" ")) {
+		if (!line.startsWith(" ")) {
 			last = line;
 		}
 	}
