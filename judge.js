@@ -293,14 +293,23 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
             
             // compare expected and generated return values
             expected_result = expected["return"].getProperty("expected");
-            args = [expected_result, generated_result].concat(comparisonArguments);
+            args = [expected_result, generated_result]
+            	.concat(comparisonArguments);
             correct = comparison.apply(comparison, args);
             
             // update test of return values
             expected["return"].update({
                 status: correct ? 'correct answer' : 'wrong answer',
-                expected: multiline(expected_result) ? expected_result : utils.display(expected_result),
-                generated: multiline(generated_result) ? generated_result : utils.display(generated_result)
+                expected: (
+                	multiline(expected_result) ? 
+                	expected_result : 
+                	utils.display(expected_result)
+                ),
+                generated: (
+                	multiline(generated_result) ? 
+                	generated_result : 
+                	utils.display(generated_result)
+                )
             });
             
             // hide expected and generated return values if both are undefined 
@@ -317,7 +326,11 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
             // add test for generated return value
             testcase.addTest(new Test({
                 status: "wrong answer",
-                generated: multiline(generated_result) ? generated_result : utils.display(generated_result),
+                generated: (
+                	multiline(generated_result) ? 
+                	generated_result : 
+                	utils.display(generated_result)
+                ),
                 data: { channel: "return" }
             }));
             
@@ -342,13 +355,19 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
         	// compare expected and generated exceptions
         	// NOTE: expected exception is compared only to the first line of
         	//       the generated exception
-            correct = deepEqual(expected_result, utils.lineError(generated_result));
+            args = [expected_result, utils.lineError(generated_result)]
+            	.concat(comparisonArguments);
+            correct = comparison.apply(comparison, args);
             
             // update test of exceptions
             // NOTE: the entire cleaned up stack trace is shown to help the 
             //       user find where the exception was raised
             expected.exception.update({
-                status: correct ? "correct answer" : utils.statusError(generated["exception"]),
+                status: (
+                	correct ? 
+                	"correct answer" : 
+                	utils.statusError(generated["exception"])
+                ),
                 generated: generated_result
             });
             
@@ -376,7 +395,11 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
             // update test of expected return value
             expected["return"].update({
                 status: "wrong answer",
-                expected: multiline(expected_result) ? expected_result : utils.display(expected_result)
+                expected: (
+                	multiline(expected_result) ? 
+                	expected_result : 
+                	utils.display(expected_result)
+                )
             });
             
         }

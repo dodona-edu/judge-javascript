@@ -94,7 +94,6 @@ function displayError(e, cleanup) {
         		        	
         	}
         		
-        	console.error(message.join("\n"));
         	return message.join("\n");
         	
         } else {
@@ -145,8 +144,8 @@ function lineError(e) {
 		}
 	}
 	
-	return line;
-	
+	return last;
+
 }
 
 function statusError(e) {

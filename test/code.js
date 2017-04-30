@@ -1,28 +1,43 @@
-function lineup(personen) {
-    
-    console.log("spam");
-    
-    // start met een lege wachtrij    
-    var wachtrij = [];
+function Combinatieslot(sleutel, grootste=9) {
 
-    // breekpunt initialiseren (dit is de positie waar de volgende persoon zal
-    // gaan staan; het breekpunt geeft de positie aan tussen personen met rode 
-    // hoeden en personen met blauwe hoeden, en correspondeert met het aantal 
-    // personen met een rode hoed die voor het breekpunt staan)
-    var breekpunt = 0;
-    
-    // plaats telkens volgende persoon op positie van het breekpunt en verplaats
-    // het breekpunt naar rechts als die persoon een rode hoed opheeft (één 
-    // extra persoon met een rode hoed vóór het breekpunt) 
-    for (var persoon of personen) {
-        wachtrij.splice(breekpunt, 0, persoon.naam);
-        if (persoon.kleur === 'R') {
-            breekpunt += 1;
-        }
+    for(let element of sleutel) {
+        console.assert(element <= grootste, 'ongeldige combinatie');
     }
-    
-    // namen van personen teruggeven in volgorde waarin ze staan in de finale 
-    // rij
-    return wachtrij;
+    console.assert(sleutel.length > 0, 'ongeldige combinatie');
+
+    this.huidige_code = new Array(sleutel.length).fill(0);
+    this.sleutel = sleutel;
+    this.grootste = grootste;
 
 }
+Combinatieslot.prototype.toString = function() {
+
+    return this.huidige_code.join('-')
+};
+Combinatieslot.prototype.roteer = function(plaatsen, waarde) {
+
+    if (!(typeof plaatsen === 'object')) {   //checken of plaatsen array zijn of niet
+
+        console.assert(plaatsen <= this.sleutel.length - 1, 'ongeldige schijf');
+        this.huidige_code[plaatsen] += waarde;
+        this.huidige_code[plaatsen] %= (this.grootste + 1);
+    }
+    else {
+        for (let plek of plaatsen) {
+            console.assert(plek <= this.sleutel.length - 1, 'ongeldige schijf');
+        }
+        for (let plek of plaatsen) {
+            this.huidige_code[plek] += waarde;
+            this.huidige_code[plek] %= (this.grootste + 1);
+        }
+    }
+};
+Combinatieslot.prototype.open = function () {
+
+    for (let i = this.sleutel.length; i--;) {
+        if (this.sleutel[i] !== this.huidige_code[i])
+            return false;
+
+    }
+    return true
+};
