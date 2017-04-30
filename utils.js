@@ -77,7 +77,7 @@ function displayError(e, cleanup) {
         	message = [];
         	for (line of e.stack.split("\n")) {
         		
-        		if (!cleanup || !line.startsWith(" ")) {
+        		if (!cleanup || !line.startsWith(" ") || /^[ ^]+$/.test(line)) {
         			
         			// always include line if no cleanup is needed or if line
         			// does not start with a space
@@ -103,7 +103,8 @@ function displayError(e, cleanup) {
         		}
         	
         	}
-        			
+        		
+        	console.error(message.join("\n"));
         	return message.join("\n");
         	
         } else {
@@ -140,9 +141,27 @@ function displayError(e, cleanup) {
     
 }
 
+function lineError(e) {
+	
+	var last = "";
+	
+	if (typeof e !== "string") {
+		e = displayError(e);
+	}
+	
+	for (var line of e.split("\n")) {
+		if (!line.startswith(" ")) {
+			last = line;
+		}
+	}
+	
+	return line;
+	
+}
+
 function statusError(e) {
 	
-	if (displayError(e).split("\n")[0] === "Error: Script execution timed out.") {
+	if (lineError(e) === "Error: Script execution timed out.") {
 		return "time limit exceeded";
 	}
 	
