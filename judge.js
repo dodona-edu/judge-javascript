@@ -384,9 +384,12 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
     }
 
     // compare expected and generated output channels
-    for (var channel in ["stdout", "stderr"]) {
+    for (var channel of ["stdout", "stderr"]) {
     	
-        if (channel in generated || channel in expected) {
+    	expected_result = channel in expected ? expected[channel].getProperty("expected") : "";
+    	generated_result = channel in generated ? generated[channel] : "";
+    	
+        if (channel in expected || generated_result !== "") {
         	
         	// create new test for output channel if no output was expected
         	if (!(channel in expected)) {
@@ -395,18 +398,27 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
         	}
         	
         	// add generated output on the channel
-        	if (channel in generated) {
+        	if (generated_result !== "") {
         		expected[channel].update({
-        			generated: generated[channel]
+        			expected: expected_result,
+        			generated: generated_result,
         		});
         	}
         	
         	// compare expected and generated output channels
-            args = [expected[channel].expected, expected[channel].generated].concat(comparisonArguments);
+            args = [expected_result, generated_result].concat(comparisonArguments);
             correct = comparison.apply(comparison, args);
         	expected[channel].update({
                 status: correct ? "correct answer" : "wrong answer"
             });
+        	
+        	// add message about unexpected output on channel
+        	expected[channel].addMessage(new Message({
+        		description: "Error: unexpected output on " + channel,
+        		permission: "student",
+            	format: "code"        		
+        	}));
+        	
         	
         }
         

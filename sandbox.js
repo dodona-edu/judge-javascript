@@ -44,7 +44,7 @@ Sandbox.prototype.execute = function(statements, options) {
 	channels["stdout"] = stdoutBuffer.getOutput();
 
 	// capture stderr
-	stdoutBuffer.release();
+	stderrBuffer.release();
 	channels["stderr"] = stderrBuffer.getOutput();
 	
 	return channels;
