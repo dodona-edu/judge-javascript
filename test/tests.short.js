@@ -1,7 +1,8 @@
-// testgevallen voor functie opeenvolgend
+// testgevallen voor functie lineup
 
-judge.config('switch-tab', 'opeenvolgend');
+judge.config('switch-tab', 'lineup');
 
-judge.test('opeenvolgend([7, 5, 4, 9, 6, 3, 8]);', true);
+judge.test('lineup([{naam: "Alice", kleur: "R"}, {naam: "Bob", kleur: "B"}, {naam: "Claire", kleur: "R"}, {naam: "Dave", kleur: "R"}, {naam: "Elsa", kleur: "B"}]);', ['Alice', 'Claire', 'Dave', 'Elsa', 'Bob']);
 
-judge.test('opeenvolgend([16, 13, 18, 17, 15, 14, 20]);', false);
+judge.test('lineup([{naam: "Sparkle", kleur: "R"}, {naam: "Rolf", kleur: "R"}, {naam: "Eileen", kleur: "R"}, {naam: "Madie", kleur: "R"}]);', ['Sparkle', 'Rolf', 'Eileen', 'Madie']);
+

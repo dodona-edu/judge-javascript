@@ -77,31 +77,21 @@ function displayError(e, cleanup) {
         	message = [];
         	for (line of e.stack.split("\n")) {
         		
-        		if (!cleanup || !line.startsWith(" ") || /^[ ^]+$/.test(line)) {
+        		if (
+        			// include all lines if no cleanup is needed
+        			!cleanup || 
+        			// always include lines that are not indented
+        			!line.startsWith(" ") ||
+        			// always include lines that indicate where error occurs
+        			/^[ ^]+$/.test(line) ||
+        			// always include lines that report errors in submitted code
+        			line.search("<code>:") !== -1
+        		) {
         			
-        			// always include line if no cleanup is needed or if line
-        			// does not start with a space
-        			// NOTE: the latter is only supposed to be the header line
             		message.push(line);        			
 
-        		} else if (line.search("<anonymous>:") !== -1) {
-        			
-        			// remove eval wrapping from line
-					line = line.replace(
-						/^    at ([^ ]+) .* <anonymous>:([0-9]+):([0-9]+).*$/, 
-						function(match, func, row, col) {
-							if (func === "eval") {
-								return "    at <code>:" + row + ":" + col;								
-							} else {
-								return "    at " + func + " (<code>:" + row + ":" + col + ")";								
-							}
-						}
-					);
-					
-    				message.push(line);
-
-        		}
-        	
+        		} 
+        		        	
         	}
         		
         	console.error(message.join("\n"));
@@ -150,7 +140,7 @@ function lineError(e) {
 	}
 	
 	for (var line of e.split("\n")) {
-		if (!line.startswith(" ")) {
+		if (!line.startsWith(" ")) {
 			last = line;
 		}
 	}
@@ -172,5 +162,6 @@ function statusError(e) {
 module.exports = {
     display: display,
     displayError: displayError,
-    statusError: statusError
+    lineError: lineError,
+    statusError: statusError,
 };

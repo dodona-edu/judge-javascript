@@ -61,7 +61,7 @@ Judge.prototype.run = function(sourceFile) {
 		filename: "<code>",
 		lineOffset: 0,
 		columnOffset: 0,
-		displayErrors: false,
+		displayErrors: true,
 		timeout: Math.max(this.timeRemaining(), 1),
 	};
 	
@@ -105,13 +105,30 @@ Judge.prototype.run = function(sourceFile) {
     // NOTE: this is done only when code was correctly compiled
 	this.evaluateCode(script, options, this.feedback);
     
-    // evaluate each context of each tab
-    for (var tab of this.feedback) {
-        for (var context of tab) {
-        	options.timeout = Math.max(this.timeRemaining(), 1);
-            this.evaluateContext(script, options, context);
-        }
-    }    	
+	if (this.feedback.getProperty("accepted")) {
+	    // evaluate each context of each tab
+	    for (var tab of this.feedback) {
+	        for (var context of tab) {
+	        	options.timeout = Math.max(this.timeRemaining(), 1);
+	            this.evaluateContext(script, options, context);
+	        }
+	    }		
+	} else {
+		// mark all tests as unprocessed
+		var status = this.feedback.getProperty("status");
+	    for (var tab of this.feedback) {
+	        for (var context of tab) {
+	        	for (var testcase of context) {
+	        		for (var test of testcase) {
+	        			
+	        			// update status
+	        			test.update({ status: status });
+	        				        			
+	        		}
+	        	}
+	        }
+	    }		
+	}
     
     // lint source code
     // TODO: enable linting as soon as ESLint has been added to JavaScript docker
@@ -154,20 +171,24 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 			status: utils.statusError(generated["exception"])
 		});
 		
-		// add message containing runtime error (student version)
-		testgroup.addMessage(new Message({
-			description: utils.displayError(generated["exception"], true),
-			permission: 'student',
-	    	format: 'code'
-		}));
-		
-		// add message containing runtime error (staff version)
-		testgroup.addMessage(new Message({
-			description: utils.displayError(generated["exception"], false),
-			permission: 'staff',
-			format: 'code'
-		}));
+		if (!options || !("silent" in options) || options.silent === false) {
+			
+			// add message containing runtime error (student version)
+			testgroup.addMessage(new Message({
+				description: utils.displayError(generated["exception"], true),
+				permission: 'student',
+		    	format: 'code'
+			}));
+			
+			// add message containing runtime error (staff version)
+			testgroup.addMessage(new Message({
+				description: utils.displayError(generated["exception"], false),
+				permission: 'staff',
+				format: 'code'
+			}));
 
+		}
+		
 	}
 	
 	// TODO: consider what should be done if other channels are available
@@ -187,8 +208,15 @@ Judge.prototype.evaluateContext = function(script, options, context) {
     // execute submitted source code in sandbox
 	// NOTE: this should be safe due to the fact that we checked earlier if
 	//       there was a runtime error and stopped processing if this were the
-	//       case
+	//       case; as a result, we run it in silent mode
+	var silent = options ? options.silent : undefined;
+	options.silent = true;
 	this.evaluateCode(script, options, context, sandbox);
+	if (silent === undefined) {
+		delete options.silent;
+	} else {
+		options.silent = silent;
+	}
 
 	// execute all test cases of the context in the same sandbox
 	for (var testcase of context) {
@@ -199,11 +227,6 @@ Judge.prototype.evaluateContext = function(script, options, context) {
     
 Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
 	
-    // define helper function to determine if object is multiline string
-    function multiline(s) {
-    	return typeof s === "string" && s.indexOf("\n") > -1;
-    }
-
 	// testgroup remains unprocessed if severe error occurred
 	var status = this.feedback.getProperty("status");
 	if (this.criticalErrors.indexOf(status) > -1) {
@@ -219,7 +242,6 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
 			
 			// convert return value to string
 			if (test.getProperty("data").channel === "return") {
-				
 				const expected_result = test.getProperty("expected");
 				test.update({
 	                expected: (
@@ -228,8 +250,8 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
 	                	utils.display(expected_result)
 	                )
 				});
-				
 			}
+			
 		}
 		
 		// no further processing of testgroup
@@ -251,20 +273,6 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
     var comparison = test.getProperty("data").evaluation.comparison || deepEqual;
     var comparisonArguments = test.getProperty("data").evaluation.arguments;
     
-	// wrap testcase description in javascript message (if string)
-	if (
-		testcase.hasProperty("description") && 
-		typeof testcase.getProperty("description") === "string"
-	) {
-		testcase.setProperty(
-			"description", 
-			new Message({
-    			description: testcase.getProperty("description"),
-    			format: "code"
-    		})
-    	);
-	}        
-
 	// execute testcase statements in sandbox
 	// NOTE: update timeout based on remaining time for judging
 	options.timeout = Math.max(this.timeRemaining(), 1);
@@ -334,7 +342,7 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
         	// compare expected and generated exceptions
         	// NOTE: expected exception is compared only to the first line of
         	//       the generated exception
-            correct = deepEqual(expected_result, util.lineError(generated_result));
+            correct = deepEqual(expected_result, utils.lineError(generated_result));
             
             // update test of exceptions
             // NOTE: the entire cleaned up stack trace is shown to help the 
@@ -376,9 +384,12 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
     }
 
     // compare expected and generated output channels
-    for (var channel in ["stdout", "stderr"]) {
+    for (var channel of ["stdout", "stderr"]) {
     	
-        if (channel in generated || channel in expected) {
+    	expected_result = channel in expected ? expected[channel].getProperty("expected") : "";
+    	generated_result = channel in generated ? generated[channel] : "";
+    	
+        if (channel in expected || generated_result !== "") {
         	
         	// create new test for output channel if no output was expected
         	if (!(channel in expected)) {
@@ -387,18 +398,27 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
         	}
         	
         	// add generated output on the channel
-        	if (channel in generated) {
+        	if (generated_result !== "") {
         		expected[channel].update({
-        			generated: generated[channel]
+        			expected: expected_result,
+        			generated: generated_result,
         		});
         	}
         	
         	// compare expected and generated output channels
-            args = [expected[channel].expected, expected[channel].generated].concat(comparisonArguments);
+            args = [expected_result, generated_result].concat(comparisonArguments);
             correct = comparison.apply(comparison, args);
         	expected[channel].update({
                 status: correct ? "correct answer" : "wrong answer"
             });
+        	
+        	// add message about unexpected output on channel
+        	expected[channel].addMessage(new Message({
+        		description: "Error: unexpected output on " + channel,
+        		permission: "student",
+            	format: "code"        		
+        	}));
+        	
         	
         }
         
@@ -453,16 +473,33 @@ Judge.prototype.toString = function() {
     	badgeCount = 0;
     	
         for (var context of tab) {
+        	
             for (var testcase of context) {
+
+            	// wrap testcase description in Dodona message (if string)
+            	if (
+            		testcase.hasProperty("description") && 
+            		typeof testcase.getProperty("description") === "string"
+            	) {
+            		testcase.setProperty(
+            			"description", 
+            			new Message({
+                			description: testcase.getProperty("description"),
+                			format: "code"
+                		})
+                	);
+            	}        
 
             	// increment badge counts of tab
             	badgeCount += testcase.getProperty('accepted') === false;
 
-            	// remove evaluation sections from tests
             	for (var test of testcase) {
+            		
+                	// remove evaluation sections from tests            		
             		if (test.hasProperty("data")) {
             			delete test.getProperty("data")["evaluation"];
             		}
+            		
             	}
             	
             }
@@ -474,6 +511,11 @@ Judge.prototype.toString = function() {
     return this.feedback.toString();
 
 };
+
+// define helper function to determine if object is multiline string
+function multiline(s) {
+	return typeof s === "string" && s.indexOf("\n") > -1;
+}
 
 module.exports = {
     Judge: Judge

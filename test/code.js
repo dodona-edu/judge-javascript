@@ -1,89 +1,28 @@
-// hulpfunctie die voor een gegeven array van getallen een nieuw array 
-// teruggeeft met de getallen in oplopende volgorde
-functions gesorteerd(array) {
-
-	// we geven een functie mee die gebruikt wordt om de elementen met elkaar te
-	// vergelijken, omdat de sort methode standaard de stringvoorstellingen van
-	// de elementen van de array met elkaar vergelijkt
-	return array.slice().sort(function(a, b) { return a - b; });
-
-}
-
-function opeenvolgend(schelpen) {
-	
-    // maak nieuwe array met groottes van schelpen in oplopende volgorde
-    schelpen = gesorteerd(schelpen);
+function lineup(personen) {
     
-    // ga na of schelpgroottes een array van opeenvolgende gehele getallen 
-    // vormen
-    for (i = 0; i < schelpen.length - 1; i += 1) {
-    	if (schelpen[i + 1] - schelpen[i] !== 1) {
-    		return false;
-    	}
-    }
-     
-    // schelpgroottes vormen een array van opeenvolgende gehele getallen
-    return true;
-
-}
+    console.log("spam");
     
-function goudlokje(schelpen) {
-	
-	// definieer lokale variabelen
-    var ontbrekend, i;
+    // start met een lege wachtrij    
+    var wachtrij = [];
 
-    // maak nieuwe array met groottes van schelpen in oplopende volgorde
-    schelpen = gesorteerd(schelpen);
+    // breekpunt initialiseren (dit is de positie waar de volgende persoon zal
+    // gaan staan; het breekpunt geeft de positie aan tussen personen met rode 
+    // hoeden en personen met blauwe hoeden, en correspondeert met het aantal 
+    // personen met een rode hoed die voor het breekpunt staan)
+    var breekpunt = 0;
     
-    // ga na of één schelp een array van opeenvolgende gehele getallen kan 
-    // vormen
-    ontbrekend = undefined;
-    for (i = 0; i < schelpen.length - 1; i += 1) {
-    	if (schelpen[i + 1] - schelpen[i] !== 1) {
-            if (schelpen[i + 1] - schelpen[i] === 2) {
-                if (ontbrekend === undefined) {
-                    // eerste ontbrekende schelp gevonden
-                    ontbrekend = schelpen[i] + 1;               	
-                }
-                else {
-                    // tweede ontbrekende schelp gevonden
-                    return;                	
-                }
-            }
-            else {
-                // gat gevonden dat niet één of twee groot is
-                return;            	
-            }
-    	}
-	}
-        
-    // geef de ene ontbrekende schelp terug (indien gevonden)
-    return ontbrekend;
-    
-}
-
-function verhuizen1(schelpen) {
-	
-    // kopieer groottes van schelpen in nieuwe array
-    schelpen = schelpen.slice();
-    
-    // voeg ontbrekende schelp achteraan de array toe als er juist één gat moet
-    // opgevuld worden om een array van opeenvolgende schelpen te maken
-    verhuizen2(schelpen);
-        
-    // geef nieuwe array terug, die eventueel aangevuld is met de ontbrekende
-    // schelp die een array van opeenvolgende schelpen maakt
-    return schelpen;
-
-}
-
-function verhuizen2(schelpen) {
-	
-    // voeg ontbrekende schelp achteraan de lijst toe als er juist één gat
-    // moet opgevuld worden om een reeks opeenvolgende te maken
-    var ontbrekend = goudlokje(schelpen);
-    if (ontbrekend !== undefined) {
-        schelpen.push(ontbrekend);    	
+    // plaats telkens volgende persoon op positie van het breekpunt en verplaats
+    // het breekpunt naar rechts als die persoon een rode hoed opheeft (één 
+    // extra persoon met een rode hoed vóór het breekpunt) 
+    for (var persoon of personen) {
+        wachtrij.splice(breekpunt, 0, persoon.naam);
+        if (persoon.kleur === 'R') {
+            breekpunt += 1;
+        }
     }
     
+    // namen van personen teruggeven in volgorde waarin ze staan in de finale 
+    // rij
+    return wachtrij;
+
 }
