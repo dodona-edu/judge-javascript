@@ -1,12 +1,12 @@
 var statusCodes = [
     "correct answer",
     "wrong answer",
-    "segmentation error",
-    "compilation error",
     "runtime error",
-    "time limit exceeded",
-    "memory limit exceeded",
+    "segmentation error",
     "unexpected end of line",
+    "memory limit exceeded",
+    "time limit exceeded",
+    "compilation error",
 ];
 
 //
@@ -174,13 +174,23 @@ Test.prototype.deleteProperty = function(name) {
     return this;
 };
     
+Test.prototype.hasParent = function() {
+	
+    return this.parent !== null;
+
+};
+    
 Test.prototype.getParent = function() {
+	
     return this.parent;
+
 };
     
 Test.prototype.setParent = function(parent) {
+	
     this.parent = parent;
     return this;
+    
 };
 
 Test.prototype.toJson = function() {

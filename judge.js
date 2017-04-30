@@ -1,368 +1,406 @@
-const fs = require('fs');
-const utils = require('./utils.js');
-const dodona = require('./dodona.js');
+// file system access
+const fs = require("fs");
 
-//
-// JudgeTimeoutError
-//
+// sandboxing
+const vm = require("vm");                       
 
-var JudgeError = function(message) {
-	this.name = 'JudgeError';
-	this.message = message || 'internal judge error';
-};
+// display utilities
+const utils = require("./utils.js");
 
-JudgeError.prototype = Object.create(Error.prototype);
-JudgeError.prototype.constructor = JudgeError;
+// test parser
+const TestParser = require("./test-parser.js");
+
+// sandbox
+const Sandbox = require("./sandbox.js");
+
+// Dodona types
+const {Message, Submission, Tab, Context, TestCase, Test} = require("./dodona.js"); 
 
 //
 // Judge
 //
 
-var Judge = function(testfile, timeout) {
+const Judge = function(testFile, options) {
     
-    // data structure that contains all test results
-    this.submission = new dodona.Submission();
+	// start timing
+	this.time_start = new Date();
+	
+	// extract options
+	this.time_limit = options ? options.time_limit || 10000 : 10000;
+	
+    // errors that stop further processing
+    this.criticalErrors = [
+        "memory limit exceeded",
+        "time limit exceeded",
+        "compilation error",
+    ];
 
-    // parse test file
-    this.parseTests(testfile);
-    
-};
-
-// parse test cases
-Judge.prototype.parseTests = function(testfile) {
-    
-    var self = this;
-    
-    // create parser for test cases
-    var TestParser = function() {
-    	
-    	// support for tab switches
-    	this.tabSwitched = false;         // context switch since last testcase
-
-    	// support for context switches
-    	this.autoSwitchContext = true;    // automatic context switching between testcases
-    	this.contextSwitched = false;     // context switch since last testcase
-    	
-    };
-    
-    TestParser.prototype.test = function(expression, expected, comparison) {
-        
-        // switch to a new context if automatic context switching is on and no
-    	// context switch has happend since last testcase
-    	if (this.autoSwitchContext && !this.contextSwitched) {
-            self.submission.addContext(new dodona.Context());
+    // setup data structure to which all test results will be added
+	const parser = new TestParser();
+    this.feedback = parser.parse(
+    	testFile,
+    	{
+    		time_limit: Math.max(this.timeRemaining(), 1)
     	}
-    	// get ready for next tab and context switch
-        this.tabSwitched = false;
-        this.contextSwitched = false;
-        
-        // add expression as testcase
-        self.submission.addTestCase(
-            new dodona.TestCase({
-                description: expression
-            })
-        );
-        
-        // determine channel of expected result
-        var channel = 'return';
-        if (typeof expected === 'string' && expected.slice(0, 10) === 'exception:') {
-            channel = 'exception';
-            // remove "expection:" prefix in case of expected exception
-            expected = expected.slice(10);
-        }
-        
-        // add expected result
-        self.submission.addTest(
-            new dodona.Test({
-                expected: expected,
-                data: { 
-                    channel: channel,
-                    evaluation: {
-                        comparison: comparison,
-                        // capture additional arguments passed on to the test
-                        // method (following the expression to evaluate, the
-                        // expected result and the comparison function to be
-                        // used; these additional argument will be provided to
-                        // the comparison function, following the expected and
-                        // generated result
-                        arguments: [].slice.call(arguments, 3)
-                    }
-                }
-            })
-        );
-        
-    };
-    
-    TestParser.prototype.config = function(name, value) {
-
-    	if (name === 'switch-context') {
-        	// switch context if not already switched
-    		if (!this.contextSwitched) {
-    			self.submission.addContext(new dodona.Context());
-    			this.contextSwitched = true;
-    		}
-    	} else if (name === 'auto-switch-context') {
-        	// switch context if not already switched
-			if (typeof value !== 'boolean') {
-				throw new JudgeError('parameter "auto-switch-context" must be a boolean');
-			}
-			this.autoSwitchContext = value;
-		} else if (name === 'switch-tab') {
-	    	// switch context if not already switched
-			if (typeof value !== 'string') {
-				throw new JudgeError('parameter "switch-tab" must be a string');
-			}
-    		if (!this.tabSwitched) {
-				self.submission.addTab(new dodona.Tab({
-					description: value
-				}));
-				this.tabSwitched = true;
-    		}
-		}
-    	
-    };
-    
-    // create judge object used in description of test cases
-    var judge = new TestParser();
-    
-    // evaluate all tests
-    eval(fs.readFileSync(testfile, "utf8"));
+    );
     
 };
 
-Judge.prototype.run = function(sourcefile) {
+// compute time remaining for judge
+Judge.prototype.timeRemaining = function() {
+	
+	// compute time left since start of judging
+	return this.time_limit - (new Date() - this.time_start);
+	
+};
+
+Judge.prototype.run = function(sourceFile) {
     
-    // read source file
-    var code = fs.readFileSync(sourcefile, "utf8"),
-        criticalError = false;
-    
-    // evaluate source code
-	// avoid that console.log can output results to stdout
-	// TODO: replace this by properly capturing stdout and stderr
-	var stdout = console.log;
-	console.log = function() {};
-    
+	// define options for evaluating submitted source code and tests
+	var options = {
+		filename: "<code>",
+		lineOffset: 0,
+		columnOffset: 0,
+		displayErrors: true,
+		timeout: Math.max(this.timeRemaining(), 1),
+	};
+	
+	// read and compile submitted source code
     try {
     	
-        // execute source code in the global scope
-        // TODO: this should be executed in a separate scope
-        eval(code);
+    	// read submitted source code from file
+    	var code = fs.readFileSync(sourceFile, "utf8");
+
+    	// pre-compile submitted source code
+    	// NOTE: this could happen before all test cases are processed; after
+    	//       all, if compiling the submitted source code fails, all test
+    	//       cases are removed from the feedback; in the future we might
+    	//       mark the testcases as not being evaluated
+    	var script = new vm.Script(code, options);
         
     } catch (e) {
     	    	    	
-    	// set status: differentiate between to compilation errors (SyntaxError)
-    	// and runtime errors when evaluating submitted source code
-    	if (e.name === "SyntaxError") {
-        	this.submission.update({
-        		status: "compilation error"
-        	});    		
-    	} else {
-        	this.submission.update({
-        		description: e.name !== undefined ? e.name : "",
-        		status: "runtime error"
-        	});    		
-    	}
+    	// set feedback status to compilation error
+    	this.feedback.update({
+    		status: "compilation error"
+    	});    		
     	
     	// add message with compilation error (student version)
-    	this.submission.addMessage(new dodona.Message({
+    	this.feedback.addMessage(new Message({
     		description: utils.displayError(e, true),
-    		permission: 'student',
-        	format: 'code'
+    		permission: "student",
+        	format: "code"
     	}));
     	
     	// add message with compilation error (staff version)
-    	this.submission.addMessage(new dodona.Message({
+    	this.feedback.addMessage(new Message({
     		description: utils.displayError(e, false),
-    		permission: 'staff',
-    		format: 'code'
+    		permission: "staff",
+    		format: "code"
     	}));
     	
-    	// clear all tabs
-    	this.submission.clearGroups();
-    	this.submission.clearTests();
-
-    	// stop further processing
-    	criticalError = true;
-        
     }
     
-    // restore stdout
-    console.log = stdout;
-
-    // evaluate each context
-    if (!criticalError) {
-        for (var tab of this.submission) {
-            for (var context of tab) {
-                this.evaluate(code, context);
-            }
-        }    	
-    }
+    // run submitted code in sandbox to see if it produces any runtime errors 
+    // NOTE: this is done only when code was correctly compiled
+	this.evaluateCode(script, options, this.feedback);
+    
+    // evaluate each context of each tab
+    for (var tab of this.feedback) {
+        for (var context of tab) {
+        	options.timeout = Math.max(this.timeRemaining(), 1);
+            this.evaluateContext(script, options, context);
+        }
+    }    	
     
     // lint source code
     // TODO: enable linting as soon as ESLint has been added to JavaScript docker
     // this.lint(code);
     
-    // output submission (includes final cleanups)
-    return this.toString();
+    // output feedback (includes final cleanups)
+    process.stdout.write(this.toString());
     
 };
 
-Judge.prototype.evaluate = function(code, context) {
+Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 	
-	// avoid that console.log can output results to stdout
-	// TODO: replace this by properly capturing stdout and stderr
-	var stdout = console.log;
-	console.log = function() {};
+	// testgroup remains unprocessed if severe error occurred
+	var status = this.feedback.getProperty("status");
+	if (this.criticalErrors.indexOf(status) > -1) {
+		
+		// copy status of parent if parent observed a severe error
+		testgroup.update({ status: status });
+		
+		// no further processing of testgroup
+		return;
+		
+	}
+	
+	// create new temporary sandbox if none was provided
+	if (!sandbox) {
+		sandbox = new Sandbox();		
+	}
+	
+	// execute submitted code in sandbox
+	// NOTE: update timeout based on remaining time for judging
+	options.timeout = Math.max(this.timeRemaining(), 1);
+	const generated = sandbox.execute(code, options);
+
+	// update testgroup if exception was generated
+	if ("exception" in generated) {
+		
+		// update status to runtime error
+		testgroup.update({
+			status: utils.statusError(generated["exception"])
+		});
+		
+		// add message containing runtime error (student version)
+		testgroup.addMessage(new Message({
+			description: utils.displayError(generated["exception"], true),
+			permission: 'student',
+	    	format: 'code'
+		}));
+		
+		// add message containing runtime error (staff version)
+		testgroup.addMessage(new Message({
+			description: utils.displayError(generated["exception"], false),
+			permission: 'staff',
+			format: 'code'
+		}));
+
+	}
+	
+	// TODO: consider what should be done if other channels are available
+	//       (return value, stdout, stderr)
+	
+	// return generated channels
+	return generated;
+	
+};
+
+Judge.prototype.evaluateContext = function(script, options, context) {
+	
+	// setup sandbox for execution of submitted source code and all test cases 
+	// in the current context
+	const sandbox = new Sandbox();
+
+    // execute submitted source code in sandbox
+	// NOTE: this should be safe due to the fact that we checked earlier if
+	//       there was a runtime error and stopped processing if this were the
+	//       case
+	this.evaluateCode(script, options, context, sandbox);
+
+	// execute all test cases of the context in the same sandbox
+	for (var testcase of context) {
+		this.evaluateTestcase(testcase, options, sandbox);
+	}
+	
+};
     
-    // execute source code in the global scope
-	// NOTE: this should be safe now
-    // TODO: this should be executed in a separate scope
-    eval(code);
-    console.log = stdout;
-    
-    // check equality of JavaScript objects
-    var deepEqual = require('deep-equal');
-    
+Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
+	
+    // define helper function to determine if object is multiline string
     function multiline(s) {
-    	return (
-    		typeof s === "string" && 
-    		s.indexOf("\n") > -1
-    	);
+    	return typeof s === "string" && s.indexOf("\n") > -1;
     }
 
-    for (var testcase of context) {
+	// testgroup remains unprocessed if severe error occurred
+	var status = this.feedback.getProperty("status");
+	if (this.criticalErrors.indexOf(status) > -1) {
+		
+		// update testcase
+		testcase.update({ status: status });
+		
+		// update all tests of testcase
+		for (var test of testcase) {
+			
+			// update status
+			test.update({ status: status });
+			
+			// convert return value to string
+			if (test.getProperty("data").channel === "return") {
+				
+				const expected_result = test.getProperty("expected");
+				test.update({
+	                expected: (
+	                	multiline(expected_result) ? 
+	                	expected_result : 
+	                	utils.display(expected_result)
+	                )
+				});
+				
+			}
+		}
+		
+		// no further processing of testgroup
+		return;
+		
+	}
+	
+    // import module for checking equality of JavaScript objects
+    const deepEqual = require("deep-equal");
+    
+	// map channels to corresponding tests
+    var expected = {};
+    for (var test of testcase) {
+    	expected[test.getProperty("data").channel] = test;
+    }
+	
+	// extract information from testcase
+    var statements = testcase.getProperty("description");
+    var comparison = test.getProperty("data").evaluation.comparison || deepEqual;
+    var comparisonArguments = test.getProperty("data").evaluation.arguments;
+    
+	// wrap testcase description in javascript message (if string)
+	if (
+		testcase.hasProperty("description") && 
+		typeof testcase.getProperty("description") === "string"
+	) {
+		testcase.setProperty(
+			"description", 
+			new Message({
+    			description: testcase.getProperty("description"),
+    			format: "code"
+    		})
+    	);
+	}        
+
+	// execute testcase statements in sandbox
+	// NOTE: update timeout based on remaining time for judging
+	options.timeout = Math.max(this.timeRemaining(), 1);
+	const generated = sandbox.execute(statements, options);
+
+	// evaluate testcase statements
+    var expected_result,
+        generated_result,
+        args,
+        correct;
+    
+    if ("return" in generated) {
         
-    	// map channels to their corresponding tests
-        var tests = {};
-        for (var test of testcase) {
-            tests[test.getProperty('data').channel] = test;
+    	// fetch expected return value
+        generated_result = generated["return"];
+
+        if ("return" in expected) {
+            
+            // compare expected and generated return values
+            expected_result = expected["return"].getProperty("expected");
+            args = [expected_result, generated_result].concat(comparisonArguments);
+            correct = comparison.apply(comparison, args);
+            
+            // update test of return values
+            expected["return"].update({
+                status: correct ? 'correct answer' : 'wrong answer',
+                expected: multiline(expected_result) ? expected_result : utils.display(expected_result),
+                generated: multiline(generated_result) ? generated_result : utils.display(generated_result)
+            });
+            
+            // hide expected and generated return values if both are undefined 
+            // (fixes #18)
+            // TODO: we might remove the test altogether
+            if (expected_result === undefined && generated_result === undefined) {
+            	expected["return"]
+            		.deleteProperty("expected")
+            		.deleteProperty("generated");
+            }
+            
+        } else {
+            
+            // add test for generated return value
+            testcase.addTest(new Test({
+                status: "wrong answer",
+                generated: multiline(generated_result) ? generated_result : utils.display(generated_result),
+                data: { channel: "return" }
+            }));
+            
+            // update test of expected exception
+            expected.exception.update({
+                status: "wrong answer"
+            });            
+            
         }
+        
+    } else {
+        
+    	// fetch generated exception
+    	generated_result = utils.displayError(generated["exception"], true);
+
+        // check whether exception is as expected
+        if ("exception" in expected) {
+        
+        	// fetch expected exception
+        	expected_result = expected.exception.getProperty("expected");
+
+        	// compare expected and generated exceptions
+        	// NOTE: expected exception is compared only to the first line of
+        	//       the generated exception
+            correct = deepEqual(expected_result, generated_result.split("\n")[0]);
+            
+            // update test of exceptions
+            // NOTE: the entire cleaned up stack trace is shown to help the 
+            //       user find where the exception was raised
+            expected.exception.update({
+                status: correct ? "correct answer" : utils.statusError(generated["exception"]),
+                generated: generated_result
+            });
+            
+        } else {
+        	
+        	// fetch expected return value
+            expected_result = expected["return"].getProperty("expected");
+            
+            // add test for generated exception
+            testcase.addTest(new Test({
+                status: utils.statusError(generated["exception"]),
+                generated: generated_result,
+                data: { channel: "exception" }
+            }));
+            
+            /*
+        	// add message with runtime error (staff version)
+            testcase.addMessage(new Message({
+        		description: utils.displayError(e, false),
+        		permission: "staff",
+        		format: "code"
+        	}));
+        	*/
+        	
+            // update test of expected return value
+            expected["return"].update({
+                status: "wrong answer",
+                expected: multiline(expected_result) ? expected_result : utils.display(expected_result)
+            });
+            
+        }
+        
+    }
+
+    // compare expected and generated output channels
+    for (var channel in ["stdout", "stderr"]) {
     	
-    	// extract information from testcase
-        var expression = testcase.getProperty('description');
-        var comparison = test.getProperty('data').evaluation.comparison || deepEqual;
-        var comparisonArguments = test.getProperty('data').evaluation.arguments;
-        
-    	// wrap testcase description in javascript message (if string)
-    	if (
-    		testcase.hasProperty('description') && 
-    		typeof testcase.getProperty('description') === 'string'
-    	) {
-    		testcase.setProperty(
-    			'description', 
-    			new dodona.Message({
-	    			description: testcase.getProperty('description'),
-	    			format: 'code'
-	    		})
-	    	);
-    	}        
-
-        // evaluate expression
-        var generated, 
-            expected,
-            args,
-            correct;
-        
-    	// avoid that console.log can output results to stdout
-    	// TODO: replace this by properly capturing stdout and stderr
-    	var stdout = console.log;
-    	console.log = function() {};
-        
-        try {
-            
-            // evaluate expression
-            generated = eval(expression);
-            
-            // check whether generated result is as expected
-            if ('exception' in tests) {
-                
-                // unexpected return value
-                testcase.addTest(new dodona.Test({
-                    status: 'wrong answer',
-                    generated: multiline(generated) ? generated : utils.display(generated),
-                    data: { channel: 'return' }
-                }));
-                
-                tests.exception.update({
-                    status: 'wrong answer'
-                });
-                
-                
-            } else {
-                
-                // compare expected and generated return values
-                expected = tests['return'].getProperty('expected');
-                args = [expected, generated].concat(comparisonArguments);
-                correct = comparison.apply(comparison, args);
-                
-                // update return channel
-                tests['return'].update({
-                    status: correct ? 'correct answer' : 'wrong answer',
-                    expected: multiline(expected) ? expected : utils.display(expected),
-                    generated: multiline(generated) ? generated : utils.display(generated)
-                });
-                
-                // hide expected and generated return values if both are equal
-                // to undefined (fixes #18)
-                if (expected === undefined && generated === undefined) {
-                	tests['return']
-	            		.deleteProperty('expected')
-	            		.deleteProperty('generated');
-                }
-                
-            }
-            
-        } catch (e) {
-            
-            generated = utils.displayError(e, true);
-
-            // check whether exception is as expected
-            if ('exception' in tests) {
-            
-                // compare expected and generated exceptions
-            	// NOTE: expected exception is compared only to the first line
-            	//       of the generated exception
-                expected = tests.exception.getProperty('expected');
-                correct = deepEqual(expected, generated.split('\n')[0]);
-                
-                // update exception channel
-                // NOTE: the entire cleaned up stack trace is shown to help the 
-                //       user find where the exception was raised
-                tests.exception.update({
-                    status: correct ? 'correct answer' : 'wrong answer',
-                    generated: generated
-                });
-                
-            } else {
-                
-                // unexpected exception
-                testcase.addTest(new dodona.Test({
-                    status: 'wrong answer',
-                    generated: generated,
-                    data: { channel: 'exception' }
-                }));
-                
-            	// add message with runtime error (staff version)
-                /*
-                testcase.addMessage(new dodona.Message({
-            		description: utils.displayError(e, false),
-            		permission: 'staff',
-            		format: 'code'
-            	}));
-            	*/
-            	
-                expected = tests['return'].getProperty('expected');
-                tests['return'].update({
-                    status: 'runtime error',
-                    expected: multiline(expected) ? expected : utils.display(expected)
-                });
-                
-            }
-            
+        if (channel in generated || channel in expected) {
+        	
+        	// create new test for output channel if no output was expected
+        	if (!(channel in expected)) {
+        		expected[channel] = new Test({data: { channel: channel }});
+        		testcase.addTest(expected[channel]);
+        	}
+        	
+        	// add generated output on the channel
+        	if (channel in generated) {
+        		expected[channel].update({
+        			generated: generated[channel]
+        		});
+        	}
+        	
+        	// compare expected and generated output channels
+            args = [expected[channel].expected, expected[channel].generated].concat(comparisonArguments);
+            correct = comparison.apply(comparison, args);
+        	expected[channel].update({
+                status: correct ? "correct answer" : "wrong answer"
+            });
+        	
         }
-
-        // restore stdout
-        console.log = stdout;
         
     }
 
@@ -385,11 +423,11 @@ Judge.prototype.lint = function(code) {
 		}
 	);
 	
-	// add linter messages to submission (if any)
+	// add linter messages as feedback (if any)
 	if (messages.length > 0) {
 		
 		// add new code tab
-		this.submission.addTab(new dodona.Tab({
+		this.feedback.addTab(new Tab({
 			description: "code",
 			data: {
 				// NOTE: for now, the messages as generated by ESLint are passed
@@ -408,20 +446,32 @@ Judge.prototype.lint = function(code) {
 
 Judge.prototype.toString = function() {
 	
-	// add badge counts to tabs
 	var badgeCount;
-    for (var tab of this.submission) {
+    for (var tab of this.feedback) {
+
+    	// initialize badge count of tab
     	badgeCount = 0;
+    	
         for (var context of tab) {
             for (var testcase of context) {
+
+            	// increment badge counts of tab
             	badgeCount += testcase.getProperty('accepted') === false;
+
+            	// remove evaluation sections from tests
+            	for (var test of testcase) {
+            		if (test.hasProperty("data")) {
+            			delete test.getProperty("data")["evaluation"];
+            		}
+            	}
+            	
             }
         }
         tab.setProperty('badgeCount', badgeCount);
     }
     
-    // return string representation of submission
-    return this.submission.toString();
+    // return string representation of feedback
+    return this.feedback.toString();
 
 };
 
