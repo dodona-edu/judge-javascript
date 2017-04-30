@@ -61,7 +61,7 @@ Judge.prototype.run = function(sourceFile) {
 		filename: "<code>",
 		lineOffset: 0,
 		columnOffset: 0,
-		displayErrors: false,
+		displayErrors: true,
 		timeout: Math.max(this.timeRemaining(), 1),
 	};
 	
