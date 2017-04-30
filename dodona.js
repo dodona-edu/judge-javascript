@@ -28,16 +28,15 @@ TestError.prototype.constructor = TestError;
 
 var Message = function(properties) {
 	
-	// set default values
-	this.properties = {
-		description: "",
-		format: "text"
-	}
-	
-	// overwrite with specific values
-	for (var property in properties) {
-		this.properties[property] = properties[property];
-	}
+	this.properties = Object.assign(
+		// set default values
+		{
+			description: "",
+			format: "text"
+		},
+		// overwrite with specific values
+		properties
+	);
 	
 };
 
