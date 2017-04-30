@@ -172,5 +172,6 @@ function statusError(e) {
 module.exports = {
     display: display,
     displayError: displayError,
-    statusError: statusError
+    lineError: lineError,
+    statusError: statusError,
 };
