@@ -61,7 +61,7 @@ Judge.prototype.run = function(sourceFile) {
 		filename: "<code>",
 		lineOffset: 0,
 		columnOffset: 0,
-		displayErrors: true,
+		displayErrors: false,
 		timeout: Math.max(this.timeRemaining(), 1),
 	};
 	
@@ -334,7 +334,7 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
         	// compare expected and generated exceptions
         	// NOTE: expected exception is compared only to the first line of
         	//       the generated exception
-            correct = deepEqual(expected_result, generated_result.split("\n")[0]);
+            correct = deepEqual(expected_result, util.lineError(generated_result));
             
             // update test of exceptions
             // NOTE: the entire cleaned up stack trace is shown to help the 
