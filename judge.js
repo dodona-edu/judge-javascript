@@ -154,7 +154,7 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 			status: utils.statusError(generated["exception"])
 		});
 		
-		if (!options || options.silent === false) {
+		if (!options || "silent" not in options || options.silent === false) {
 			
 			// add message containing runtime error (student version)
 			testgroup.addMessage(new Message({
