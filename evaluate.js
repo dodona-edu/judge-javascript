@@ -2,7 +2,7 @@ process.stdin.on("data", function(data) {
 	
 	const fs = require("fs");
 	const path = require("path")
-    const judge = require("./judge.js").Judge;
+    const Judge = require("./judge.js").Judge;
 
 	// parse JSON with configuration settings from stdin 
 	const config = JSON.parse(data);
