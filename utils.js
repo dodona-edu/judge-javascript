@@ -77,14 +77,26 @@ function displayError(e, cleanup) {
         	message = [];
         	for (line of e.stack.split("\n")) {
         		
-        		if (!cleanup || !line.startsWith(" ") || /^[ ^]+$/.test(line)) {
+        		if (
+        			// include all lines if no cleanup is needed
+        			!cleanup || 
+        			// always include lines that are not indented
+        			!line.startsWith(" ") ||
+        			// always include lines that indicate where error occurs
+        			/^[ ^]+$/.test(line) ||
+        			// always include lines that report errors in submitted code
+        			line.search("<code>:") !== -1
+        		) {
         			
         			// always include line if no cleanup is needed or if line
         			// does not start with a space
         			// NOTE: the latter is only supposed to be the header line
             		message.push(line);        			
 
-        		} else if (line.search("<anonymous>:") !== -1) {
+        		} 
+        		
+        		/* 
+        		else if (line.search("<anonymous>:") !== -1) {
         			
         			// remove eval wrapping from line
 					line = line.replace(
@@ -101,6 +113,7 @@ function displayError(e, cleanup) {
     				message.push(line);
 
         		}
+        		*/
         	
         	}
         		
