@@ -572,9 +572,17 @@ Judge.prototype.toString = function() {
             			
             			// delete tests with both return values undefined
             			if (
-            				test.getProperty("data").channel === "return" &&
-            				test.getProperty("expected") === "undefined" &&
-            				test.getProperty("generated") === "undefined"
+            				test.getProperty("data").channel === "return"
+            				&&
+            				(
+                				!test.hasProperty("expected") ||
+                				test.getProperty("expected") === "undefined" &&
+            				)
+            				&&
+            				(
+                				!test.hasProperty("generated") ||
+                				test.getProperty("generated") === "undefined" &&
+            				)
             			) {
             				removeTests.push(index);
             			}
