@@ -200,13 +200,12 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 	for (var channel of ["return", "stdout", "stderr"]) {
 
 		if (
-			channel in generated /* &&
+			channel in generated &&
 			// skip "empty" channels
 			!(
 				generated.channel === undefined ||
 				(channel !== "return" && generated.channel === "")
 			)
-			*/
 		) {
 			
 			// update status to runtime error
