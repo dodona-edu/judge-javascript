@@ -79,11 +79,11 @@ function displayError(e, cleanup) {
         		
         		if (
         			// include all lines if no cleanup is needed
-        			!cleanup || 
-        			// always include lines that are not indented
-        			!line.startsWith(" ") ||
-        			// always include lines that indicate where error occurs
-        			/^[ ^]+$/.test(line) ||
+        			!cleanup ||
+        			// always include non at-lines
+        			//   - indicate errors themselves
+        			//   - indicate where error occurs
+        			!line.startswith("    at ")
         			// always include lines that report errors in submitted code
         			line.search("<code>:") !== -1
         		) {
