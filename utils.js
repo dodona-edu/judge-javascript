@@ -83,7 +83,7 @@ function displayError(e, cleanup) {
         			// always include non at-lines
         			//   - indicate errors themselves
         			//   - indicate where error occurs
-        			!line.startswith("    at ")
+        			!line.startswith("    at ") ||
         			// always include lines that report errors in submitted code
         			line.search("<code>:") !== -1
         		) {
