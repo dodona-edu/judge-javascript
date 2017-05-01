@@ -534,15 +534,6 @@ Judge.prototype.toString = function() {
             	// increment badge counts of tab
             	badgeCount += testcase.getProperty('accepted') === false;
 
-            	for (var test of testcase) {
-            		
-                	// remove evaluation sections from tests            		
-            		if (test.hasProperty("data")) {
-            			delete test.getProperty("data")["evaluation"];
-            		}
-            		
-            	}
-            	
             	// increment timings
             	try {
             		let wall_time = testcase.getProperty("runtime_metrics").wall_time;
@@ -553,6 +544,24 @@ Judge.prototype.toString = function() {
                 	}            		
             	} catch(e) {
             		// no timings available
+            	}
+            	
+            	for (var test of testcase) {
+            		
+            		if (test.hasProperty("data")) {
+
+                    	// remove evaluation sections from tests            		
+            			delete test.getProperty("data").evaluation;
+            			
+                    	// add description to test
+            			if (test.getProperty("data").channel !== undefined) {
+                			test.update({
+                				description: test.getProperty("data").channel
+                			});            				
+            			}
+
+            		}
+
             	}
             	
             }
