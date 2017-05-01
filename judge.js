@@ -173,7 +173,7 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 			
 			// add message containing runtime error (student version)
 			testgroup.addMessage(new Message({
-				description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">" + utils.statusError(generated["exception"]) + "</span>",
+				description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">exception</span>",
 				format: "html"
 			}));
 			testgroup.addMessage(new Message({
@@ -183,7 +183,7 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 			
 			// add message containing runtime error (staff version)
 			testgroup.addMessage(new Message({
-				description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">" + utils.statusError(generated["exception"]) + " (staff version)</span>",
+				description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">exception (staff version)</span>",
 				format: "html"
 			}));
 			testgroup.addMessage(new Message({
@@ -216,7 +216,7 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 				
 				// add message containing wrong answer (student version)
 				testgroup.addMessage(new Message({
-					description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">wrong answer</span>",
+					description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">" + channel + "</span>",
 					format: "html"
 				}));
 				testgroup.addMessage(new Message({
