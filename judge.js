@@ -197,15 +197,16 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 	}
 	
 	// process spurious output on other channels
-	for (let channel of ["return", "stdout", "stderr"]) {
+	for (var channel of ["return", "stdout", "stderr"]) {
 
 		if (
-			channel in generated &&
+			channel in generated /* &&
 			// skip "empty" channels
 			!(
 				generated.channel === undefined ||
 				(channel !== "return" && generated.channel === "")
 			)
+			*/
 		) {
 			
 			// update status to runtime error
@@ -228,9 +229,6 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 		}
 		
 	}
-	
-	// return generated channels
-	return generated;
 	
 };
 
@@ -348,17 +346,6 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
                 	utils.display(generated_result)
                 )
             });
-            
-            /*
-            // hide expected and generated return values if both are undefined 
-            // (fixes #18)
-            // TODO: we might remove the test altogether
-            if (expected_result === undefined && generated_result === undefined) {
-            	expected["return"]
-            		.deleteProperty("expected")
-            		.deleteProperty("generated");
-            }
-            */
             
         } else {
             
