@@ -105,30 +105,13 @@ Judge.prototype.run = function(sourceFile) {
     // NOTE: this is done only when code was correctly compiled
 	this.evaluateCode(script, options, this.feedback);
     
-	if (this.feedback.getProperty("accepted")) {
-	    // evaluate each context of each tab
-	    for (var tab of this.feedback) {
-	        for (var context of tab) {
-	        	options.timeout = Math.max(this.timeRemaining(), 1);
-	            this.evaluateContext(script, options, context);
-	        }
-	    }		
-	} else {
-		// mark all tests as unprocessed
-		var status = this.feedback.getProperty("status");
-	    for (var tab of this.feedback) {
-	        for (var context of tab) {
-	        	for (var testcase of context) {
-	        		for (var test of testcase) {
-	        			
-	        			// update status
-	        			test.update({ status: status });
-	        				        			
-	        		}
-	        	}
-	        }
-	    }		
-	}
+    // evaluate each context of each tab
+    for (var tab of this.feedback) {
+        for (var context of tab) {
+        	options.timeout = Math.max(this.timeRemaining(), 1);
+            this.evaluateContext(script, options, context);
+        }
+    }		
     
     // lint source code
     // TODO: enable linting as soon as ESLint has been added to JavaScript docker
@@ -572,9 +555,17 @@ Judge.prototype.toString = function() {
             			
             			// delete tests with both return values undefined
             			if (
-            				test.getProperty("data").channel === "return" &&
-            				test.getProperty("expected") === "undefined" &&
-            				test.getProperty("generated") === "undefined"
+            				test.getProperty("data").channel === "return"
+            				&&
+            				(
+                				!test.hasProperty("expected") ||
+                				test.getProperty("expected") === "undefined"
+            				)
+            				&&
+            				(
+                				!test.hasProperty("generated") ||
+                				test.getProperty("generated") === "undefined"
+            				)
             			) {
             				removeTests.push(index);
             			}

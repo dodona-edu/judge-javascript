@@ -27,6 +27,9 @@ function Combinatieslot(combinatie, maxwaarde=9) {
 
 Combinatieslot.prototype.toString = function() {
     
+    console.log(this.schijven.join("-");
+    console.error(this.schijven.join("-");
+    
     // stringvoorstelling van het object teruggeven in het formaat als een
     // oplijsting van de huidige stand van de schijven, van elkaar gescheiden
     // door koppeltekens
