@@ -576,7 +576,7 @@ Judge.prototype.toString = function() {
             				test.getProperty("expected") === "undefined" &&
             				test.getProperty("generated") === "undefined"
             			) {
-            				removeTests.push(testIndex);
+            				removeTests.push(index);
             			}
 
             		}
