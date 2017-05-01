@@ -204,7 +204,7 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 			// skip "empty" channels
 			if (
 				generated.channel === undefined ||
-				(channel !== "return" && (generated.channel === "")
+				(channel !== "return" && generated.channel === "")
 			) {
 				continue;
 			}
