@@ -101,7 +101,7 @@ Judge.prototype.run = function(sourceFile) {
     		.addMessage(new Message({
 				description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">compilation error (staff version)</span>",
 				format: "html"
-			})).
+			}))
     		.addMessage(new Message({
 	    		description: utils.displayError(e, false),
 	    		permission: "staff",
