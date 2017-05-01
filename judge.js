@@ -135,7 +135,10 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 	
 	// testgroup remains unprocessed if severe error occurred
 	var status = this.feedback.getProperty("status");
-	if (this.criticalErrors.indexOf(status) > -1) {
+	if (
+		this.feedback.hasMessages() ||
+		this.criticalErrors.indexOf(status) > -1
+	) {
 		
 		// copy status of parent if parent observed a severe error
 		testgroup.update({ status: status });
@@ -263,7 +266,10 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
 	
 	// testgroup remains unprocessed if severe error occurred
 	var status = this.feedback.getProperty("status");
-	if (this.criticalErrors.indexOf(status) > -1) {
+	if (
+		this.feedback.hasMessages() ||
+		this.criticalErrors.indexOf(status) > -1
+	) {
 		
 		// update testcase
 		testcase.update({ status: status });

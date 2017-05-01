@@ -226,6 +226,17 @@ Test.prototype.toString = function() {
     return JSON.stringify(this.toJson(), null, 4);
 };
 
+Test.prototype.hasMessages = function() {
+
+    // add groups property if not present
+    if (!this.hasProperty("messages")) {
+        return false;
+    }
+    
+    return this.getProperty("messages").length !== 0;
+
+};
+
 Test.prototype.addMessage = function(message) {
 	
     // add message property if not present
