@@ -545,10 +545,11 @@ Judge.prototype.toString = function() {
             	
             	// increment timings
             	try {
-                	if (testcase.runtime_metrics.wall_time !== undefined) {
-                		timings[0] += testcase.runtime_metrics.wall_time;
-                		timings[1] += testcase.runtime_metrics.wall_time;
-                		timings[2] += testcase.runtime_metrics.wall_time;
+            		let wall_time = testcase.getProperty("runtime_metrics").wall_time;
+                	if (wall_time !== undefined) {
+                		timings[0] += wall_time;
+                		timings[1] += wall_time;
+                		timings[2] += wall_time;
                 	}            		
             	} catch(e) {
             		// no timings available
