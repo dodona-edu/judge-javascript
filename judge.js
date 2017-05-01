@@ -86,25 +86,27 @@ Judge.prototype.run = function(sourceFile) {
     	});    		
     	
     	// add message with compilation error (student version)
-    	this.feedback.addMessage(new Message({
-			description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">compilation error</span>",
-			format: "html"
-		}));
-    	this.feedback.addMessage(new Message({
-    		description: utils.displayError(e, true),
-        	format: "code"
-    	}));
+    	this.feedback
+    		.addMessage(new Message({
+				description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">compilation error</span>",
+				format: "html"
+			}))
+    		.addMessage(new Message({
+	    		description: utils.displayError(e, true),
+	        	format: "code"
+	    	}));
     	
     	// add message with compilation error (staff version)
-    	this.feedback.addMessage(new Message({
-			description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">compilation error (staff version)</span>",
-			format: "html"
-		}));
-    	this.feedback.addMessage(new Message({
-    		description: utils.displayError(e, false),
-    		permission: "staff",
-    		format: "code"
-    	}));
+    	this.feedback
+    		.addMessage(new Message({
+				description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">compilation error (staff version)</span>",
+				format: "html"
+			})).
+    		.addMessage(new Message({
+	    		description: utils.displayError(e, false),
+	    		permission: "staff",
+	    		format: "code"
+	    	}));
     	
     }
     
