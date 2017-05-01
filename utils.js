@@ -87,7 +87,7 @@ function displayError(e, cleanup) {
         			// always include lines that report errors in submitted code
         			line.search("<code>:") !== -1 || 
         			// always include lines that report errors in tests
-        			line.search("<code>:") !== -1 || 
+        			line.search("<test>:") !== -1
         		) {
         			
             		message.push(line);        			
