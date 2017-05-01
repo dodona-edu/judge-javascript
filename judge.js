@@ -199,15 +199,14 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 	// process spurious output on other channels
 	for (let channel of ["return", "stdout", "stderr"]) {
 
-		if (channel in generated) {
-			
+		if (
+			channel in generated &&
 			// skip "empty" channels
-			if (
+			!(
 				generated.channel === undefined ||
 				(channel !== "return" && generated.channel === "")
-			) {
-				continue;
-			}
+			)
+		) {
 			
 			// update status to runtime error
 			testgroup.update({ status: "wrong answer" });
