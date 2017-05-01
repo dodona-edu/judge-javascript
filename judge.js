@@ -100,6 +100,7 @@ Judge.prototype.run = function(sourceFile) {
     	this.feedback
     		.addMessage(new Message({
 				description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">compilation error (staff version)</span>",
+	    		permission: "staff",
 				format: "html"
 			}))
     		.addMessage(new Message({
@@ -196,6 +197,7 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 			testgroup
 				.addMessage(new Message({
 					description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">exception (staff version)</span>",
+					permission: 'staff',
 					format: "html"
 				}))
 				.addMessage(new Message({
