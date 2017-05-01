@@ -315,6 +315,7 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
                 )
             });
             
+            /*
             // hide expected and generated return values if both are undefined 
             // (fixes #18)
             // TODO: we might remove the test altogether
@@ -323,6 +324,7 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
             		.deleteProperty("expected")
             		.deleteProperty("generated");
             }
+            */
             
         } else {
             
@@ -502,7 +504,7 @@ Judge.prototype.toString = function() {
 	var badgeCount;
 	var timings = [0.0, 0.0, 0.0];
 	
-    for (var tab of this.feedback) {
+    for (let tab of this.feedback) {
 
     	// initialize badge count of tab
     	badgeCount = 0;
@@ -510,12 +512,12 @@ Judge.prototype.toString = function() {
     	// initialize timing of tab
     	timings[1] = 0.0;
     	
-        for (var context of tab) {
+        for (let context of tab) {
         	
         	// initialize timing of tab
         	timings[2] = 0.0;
         	
-            for (var testcase of context) {
+            for (let testcase of context) {
 
             	// wrap testcase description in Dodona message (if string)
             	if (
@@ -534,15 +536,6 @@ Judge.prototype.toString = function() {
             	// increment badge counts of tab
             	badgeCount += testcase.getProperty('accepted') === false;
 
-            	for (var test of testcase) {
-            		
-                	// remove evaluation sections from tests            		
-            		if (test.hasProperty("data")) {
-            			delete test.getProperty("data")["evaluation"];
-            		}
-            		
-            	}
-            	
             	// increment timings
             	try {
             		let wall_time = testcase.getProperty("runtime_metrics").wall_time;
@@ -553,6 +546,49 @@ Judge.prototype.toString = function() {
                 	}            		
             	} catch(e) {
             		// no timings available
+            	}
+            	
+            	// remember which tests show be removed
+            	let removeTests = [];
+            	let index = 0;
+            	
+            	for (let test of testcase) {
+            		
+            		if (test.hasProperty("data")) {
+
+                    	// remove evaluation sections from tests            		
+            			delete test.getProperty("data").evaluation;
+            			
+                    	// add description to test
+            			if (test.getProperty("data").channel !== undefined) {
+            				let label = test.getProperty("accepted") ? "label-success" : "label-danger";
+                			test.update({
+                				description: new Message({
+                					description: "<span class=\"label " + label + "\" style=\"display: block;text-align:left;\">" + test.getProperty("data").channel + "</span>",
+                					format: "html"
+                				})
+                			});            				
+            			}
+            			
+            			// delete tests with both return values undefined
+            			if (
+            				test.getProperty("data").channel === "return" &&
+            				test.getProperty("expected") === "undefined" &&
+            				test.getProperty("generated") === "undefined"
+            			) {
+            				removeTests.push(index);
+            			}
+
+            		}
+            		
+            		index += 1;
+
+            	}
+            	
+            	// remove tests that have been marked as such
+            	removeTests.sort(function(a, b) { return b - a; });
+            	for (index of removeTests) {
+            		delete testcase.getTests().splice(index, 1);
             	}
             	
             }

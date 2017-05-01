@@ -415,18 +415,18 @@ TestGroup.prototype.getGroups = function() {
         throw new TestError("no groups");
     }
     
-    return this.getPropery("groups");
+    return this.getProperty("groups");
 
 };
 
 TestGroup.prototype.getTests = function() {
     
     // add groups property if not present
-    if (!this.hasProperty("tests")) {
+    if (!this.getProperty("tests")) {
         throw new TestError("no tests");
     }
     
-    return this.getPropery("tests");
+    return this.getProperty("tests");
 
 };
 
