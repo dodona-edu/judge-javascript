@@ -556,7 +556,10 @@ Judge.prototype.toString = function() {
                     	// add description to test
             			if (test.getProperty("data").channel !== undefined) {
                 			test.update({
-                				description: test.getProperty("data").channel
+                				description: new Message({
+                					description: "<div class=\"alert alert-success\" role=\"alert\"><h6>" + test.getProperty("data").channel + "</h6></div>"
+                					format: "html"
+                				})
                 			});            				
             			}
 
