@@ -19,6 +19,7 @@ const Sandbox = function() {
 Sandbox.prototype.execute = function(statements, options) {
 	
 	var start,
+		output,
 		channels = {};
 
 	// create output buffers to capture stdout and stderr of submitted code
@@ -44,11 +45,17 @@ Sandbox.prototype.execute = function(statements, options) {
 	
 	// capture stdout
 	stdoutBuffer.release();
-	channels["stdout"] = stdoutBuffer.getOutput();
+	output = stdoutBuffer.getOutput();
+	if (output.length > 0) {
+		channels["stdout"] = output;
+	}
 
 	// capture stderr
 	stderrBuffer.release();
-	channels["stderr"] = stderrBuffer.getOutput();
+	output = stderrBuffer.getOutput();
+	if (output.length > 0) {
+		channels["stderr"] = output;
+	}
 	
 	return channels;
 
