@@ -203,8 +203,8 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 			channel in generated &&
 			// skip "empty" channels
 			!(
-				generated.channel === undefined ||
-				(channel !== "return" && generated.channel === "")
+				generated[channel] === undefined ||
+				(channel !== "return" && generated[channel] === "")
 			)
 		) {
 			
@@ -219,7 +219,7 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 					format: "html"
 				}));
 				testgroup.addMessage(new Message({
-					description: utils.display(generated.channel), // channel === "return" ? utils.display(generated.channel) : generated.channel,
+					description: channel === "return" ? utils.display(generated[channel]) : generated[channel],
 			    	format: 'code'
 				}));
 				
