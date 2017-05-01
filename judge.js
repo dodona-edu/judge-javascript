@@ -211,7 +211,10 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 	}
 	
 	// process spurious output on other channels
-	for (var channel of ["return", "stdout", "stderr"]) {
+	// NOTE: return channels is not checks; after all, if the last statement is
+	//       an assignment (e.g. a function assignment), the assigned expression
+	//       is returned
+	for (var channel of ["stdout", "stderr"]) {
 
 		if (
 			channel in generated &&
