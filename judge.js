@@ -423,14 +423,6 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
                 status: correct ? "correct answer" : "wrong answer"
             });
         	
-        	// add message about unexpected output on channel
-        	expected[channel].addMessage(new Message({
-        		description: "Error: unexpected output on " + channel,
-        		permission: "student",
-            	format: "code"        		
-        	}));
-        	
-        	
         }
         
     }
