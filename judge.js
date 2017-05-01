@@ -153,6 +153,13 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 	// NOTE: update timeout based on remaining time for judging
 	options.timeout = Math.max(this.timeRemaining(), 1);
 	const generated = sandbox.execute(code, options);
+	
+	// determine if code execution does not happen in silent mode
+	let report = (
+		!options || 
+		!("silent" in options) || 
+		options.silent === false
+	)
 
 	// update testgroup if exception was generated
 	if ("exception" in generated) {
@@ -162,15 +169,23 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 			status: utils.statusError(generated["exception"])
 		});
 		
-		if (!options || !("silent" in options) || options.silent === false) {
+		if (report) {
 			
 			// add message containing runtime error (student version)
+			testgroup.addMessage(new Message({
+				description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">" + utils.statusError(generated["exception"]) + "</span>",
+				format: "html"
+			}));
 			testgroup.addMessage(new Message({
 				description: utils.displayError(generated["exception"], true),
 		    	format: 'code'
 			}));
 			
 			// add message containing runtime error (staff version)
+			testgroup.addMessage(new Message({
+				description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">" + utils.statusError(generated["exception"]) + " (staff version)</span>",
+				format: "html"
+			}));
 			testgroup.addMessage(new Message({
 				description: utils.displayError(generated["exception"], false),
 				permission: 'staff',
@@ -181,8 +196,39 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 		
 	}
 	
-	// TODO: consider what should be done if other channels are available
-	//       (return value, stdout, stderr)
+	// process spurious output on other channels
+	for (let channel of ["return", "stdout", "stderr"]) {
+
+		if (channel in generated) {
+			
+			// skip "empty" channels
+			if (
+				(channel === "return" && generated.channel === undefined) ||
+				(channel !== "return" && generated.channel === "")
+			) {
+				continue;
+			}
+			
+			// update status to runtime error
+			testgroup.update({ status: "wrong answer" });
+			
+			if (report) {
+				
+				// add message containing runtime error (student version)
+				testgroup.addMessage(new Message({
+					description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">" + utils.statusError(generated["exception"]) + "</span>",
+					format: "html"
+				}));
+				testgroup.addMessage(new Message({
+					description: utils.displayError(generated["exception"], true),
+			    	format: 'code'
+				}));
+				
+			}
+			
+		}
+		
+	}
 	
 	// return generated channels
 	return generated;
