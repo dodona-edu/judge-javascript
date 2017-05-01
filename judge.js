@@ -558,7 +558,7 @@ Judge.prototype.toString = function() {
             				let label = test.getProperty("accepted") ? "label-success" : "label-danger";
                 			test.update({
                 				description: new Message({
-                					description: "<h6><span class=\"label " + label + "\">" + test.getProperty("data").channel + "</span></h6>",
+                					description: "<span class=\"label " + label + "\">" + test.getProperty("data").channel + "</span>",
                 					format: "html"
                 				})
                 			});            				
