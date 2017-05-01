@@ -588,7 +588,7 @@ Judge.prototype.toString = function() {
             	// remove tests that have been marked as such
             	removeTests.sort(function(a, b) { return b - a; });
             	for (index of removeTests) {
-            		delete testcase.getTests()[index];
+            		delete testcase.getTests().splice(index, 1);
             	}
             	
             }
