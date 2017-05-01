@@ -220,7 +220,7 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 					format: "html"
 				}));
 				testgroup.addMessage(new Message({
-					description: "test", // channel === "return" ? utils.display(generated.channel) : generated.channel,
+					description: utils.display(generated.channel), // channel === "return" ? utils.display(generated.channel) : generated.channel,
 			    	format: 'code'
 				}));
 				
