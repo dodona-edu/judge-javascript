@@ -57,6 +57,11 @@ Sandbox.prototype.execute = function(statements, options) {
 		channels["stderr"] = output;
 	}
 	
+	// capture global scope
+	// NOTE: we might make a copy of the global scope in order to prevent
+	//       changes to the scope from the outside
+	channels["scope"] = this.scope
+	
 	return channels;
 
 };
