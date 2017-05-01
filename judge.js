@@ -87,12 +87,19 @@ Judge.prototype.run = function(sourceFile) {
     	
     	// add message with compilation error (student version)
     	this.feedback.addMessage(new Message({
+			description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">compilation error</span>",
+			format: "html"
+		}));
+    	this.feedback.addMessage(new Message({
     		description: utils.displayError(e, true),
-    		permission: "student",
         	format: "code"
     	}));
     	
     	// add message with compilation error (staff version)
+    	this.feedback.addMessage(new Message({
+			description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">compilation error (staff version)</span>",
+			format: "html"
+		}));
     	this.feedback.addMessage(new Message({
     		description: utils.displayError(e, false),
     		permission: "staff",
@@ -160,7 +167,6 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 			// add message containing runtime error (student version)
 			testgroup.addMessage(new Message({
 				description: utils.displayError(generated["exception"], true),
-				permission: 'student',
 		    	format: 'code'
 			}));
 			
