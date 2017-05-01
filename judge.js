@@ -115,6 +115,7 @@ Judge.prototype.run = function(sourceFile) {
 	this.evaluateCode(script, options, this.feedback);
     
     // evaluate each context of each tab
+    // NOTE: this is done only when code was correctly compiled and executed
     for (var tab of this.feedback) {
         for (var context of tab) {
         	options.timeout = Math.max(this.timeRemaining(), 1);
@@ -133,10 +134,12 @@ Judge.prototype.run = function(sourceFile) {
 
 Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 	
-	// testgroup remains unprocessed if severe error occurred
+	// check if testgroup needs processing
 	var status = this.feedback.getProperty("status");
 	if (
+		// skip if submission has messages (corresponding to channels)
 		this.feedback.hasMessages() ||
+		// skip if critical errors occurred
 		this.criticalErrors.indexOf(status) > -1
 	) {
 		
@@ -153,10 +156,11 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 		sandbox = new Sandbox();		
 	}
 	
-	// execute submitted code in sandbox
+	// update filename to source code
 	options.filename = "<code>";
-	// NOTE: update timeout based on remaining time for judging
+	// update timeout based on remaining time for judging
 	options.timeout = Math.max(this.timeRemaining(), 1);
+	// execute submitted code in sandbox
 	const generated = sandbox.execute(code, options);
 	
 	// determine if code execution does not happen in silent mode
@@ -164,12 +168,13 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 		!options || 
 		!("silent" in options) || 
 		options.silent === false
-	)
+	);
 
 	// update testgroup if exception was generated
 	if ("exception" in generated) {
 		
 		// update status to runtime error
+		// NOTE: may be more specific type of error (e.g. time limit exceeded)
 		testgroup.update({
 			status: utils.statusError(generated["exception"])
 		});
@@ -177,25 +182,27 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 		if (report) {
 			
 			// add message containing runtime error (student version)
-			testgroup.addMessage(new Message({
-				description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">exception</span>",
-				format: "html"
-			}));
-			testgroup.addMessage(new Message({
-				description: utils.displayError(generated["exception"], true),
-		    	format: 'code'
-			}));
+			testgroup
+				.addMessage(new Message({
+					description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">exception</span>",
+					format: "html"
+				}))
+				.addMessage(new Message({
+					description: utils.displayError(generated["exception"], true),
+			    	format: 'code'
+				}));
 			
 			// add message containing runtime error (staff version)
-			testgroup.addMessage(new Message({
-				description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">exception (staff version)</span>",
-				format: "html"
-			}));
-			testgroup.addMessage(new Message({
-				description: utils.displayError(generated["exception"], false),
-				permission: 'staff',
-				format: 'code'
-			}));
+			testgroup
+				.addMessage(new Message({
+					description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">exception (staff version)</span>",
+					format: "html"
+				}))
+				.addMessage(new Message({
+					description: utils.displayError(generated["exception"], false),
+					permission: 'staff',
+					format: 'code'
+				}));
 
 		}
 		
@@ -255,7 +262,7 @@ Judge.prototype.evaluateContext = function(script, options, context) {
 		options.silent = silent;
 	}
 
-	// execute all test cases of the context in the same sandbox
+	// execute all test cases of context in the same sandbox
 	for (var testcase of context) {
 		this.evaluateTestcase(testcase, options, sandbox);
 	}
@@ -264,10 +271,12 @@ Judge.prototype.evaluateContext = function(script, options, context) {
     
 Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
 	
-	// testgroup remains unprocessed if severe error occurred
+	// check if testcase needs processing
 	var status = this.feedback.getProperty("status");
 	if (
+		// skip if submission has messages (corresponding to channels)
 		this.feedback.hasMessages() ||
+		// skip if critical errors occurred
 		this.criticalErrors.indexOf(status) > -1
 	) {
 		
@@ -280,7 +289,7 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
 			// update status
 			test.update({ status: status });
 			
-			// convert return value to string
+			// convert return value to string representation
 			if (test.getProperty("data").channel === "return") {
 				const expected_result = test.getProperty("expected");
 				test.update({
@@ -313,10 +322,11 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
     var comparison = test.getProperty("data").evaluation.comparison || deepEqual;
     var comparisonArguments = test.getProperty("data").evaluation.arguments;
     
-	// execute testcase statements in sandbox
+	// update filename to source code
 	options.filename = "<test>";
-	// NOTE: update timeout based on remaining time for judging
+	// update timeout based on remaining time for judging
 	options.timeout = Math.max(this.timeRemaining(), 1);
+	// execute submitted code in sandbox
 	const generated = sandbox.execute(statements, options);
 
 	// evaluate testcase statements
@@ -442,7 +452,11 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
     // process expected and generated output channels
     for (var channel of ["stdout", "stderr"]) {
     	
-    	expected_result = channel in expected ? expected[channel].getProperty("expected") : "";
+    	expected_result = (
+    		channel in expected ? 
+    		expected[channel].getProperty("expected") : 
+    		""
+    	);
     	generated_result = channel in generated ? generated[channel] : "";
     	
         if (channel in expected || generated_result !== "") {
@@ -462,7 +476,8 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
         	}
         	
         	// compare expected and generated output channels
-            args = [expected_result, generated_result].concat(comparisonArguments);
+            args = [expected_result, generated_result]
+            	.concat(comparisonArguments);
             correct = comparison.apply(comparison, args);
         	expected[channel].update({
                 status: correct ? "correct answer" : "wrong answer"
