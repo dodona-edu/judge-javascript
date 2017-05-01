@@ -160,6 +160,7 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 	
 	// execute submitted code in sandbox
 	// NOTE: update timeout based on remaining time for judging
+	options.filename = "<code>";
 	options.timeout = Math.max(this.timeRemaining(), 1);
 	const generated = sandbox.execute(code, options);
 
@@ -275,6 +276,7 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
     
 	// execute testcase statements in sandbox
 	// NOTE: update timeout based on remaining time for judging
+	options.filename = "<test>";
 	options.timeout = Math.max(this.timeRemaining(), 1);
 	const generated = sandbox.execute(statements, options);
 
