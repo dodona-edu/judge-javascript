@@ -159,8 +159,8 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 	}
 	
 	// execute submitted code in sandbox
-	// NOTE: update timeout based on remaining time for judging
 	options.filename = "<code>";
+	// NOTE: update timeout based on remaining time for judging
 	options.timeout = Math.max(this.timeRemaining(), 1);
 	const generated = sandbox.execute(code, options);
 
@@ -275,8 +275,8 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
     var comparisonArguments = test.getProperty("data").evaluation.arguments;
     
 	// execute testcase statements in sandbox
-	// NOTE: update timeout based on remaining time for judging
 	options.filename = "<test>";
+	// NOTE: update timeout based on remaining time for judging
 	options.timeout = Math.max(this.timeRemaining(), 1);
 	const generated = sandbox.execute(statements, options);
 
@@ -286,6 +286,7 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
         args,
         correct;
     
+    // process return and exception channels
     if ("return" in generated) {
         
     	// fetch expected return value
@@ -408,7 +409,7 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
         
     }
 
-    // compare expected and generated output channels
+    // process expected and generated output channels
     for (var channel of ["stdout", "stderr"]) {
     	
     	expected_result = channel in expected ? expected[channel].getProperty("expected") : "";
@@ -447,6 +448,13 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
         	
         }
         
+    }
+    
+    // add elapsed time to testcase
+    if ("wall_time" in generated) {
+    	testcase.update({
+    		runtime_metrics: { wall_time: generated.wall_time }
+    	});
     }
 
 };
@@ -492,12 +500,20 @@ Judge.prototype.lint = function(code) {
 Judge.prototype.toString = function() {
 	
 	var badgeCount;
+	var timings = [0.0, 0.0, 0.0];
+	
     for (var tab of this.feedback) {
 
     	// initialize badge count of tab
     	badgeCount = 0;
     	
+    	// initialize timing of tab
+    	timings[1] = 0.0;
+    	
         for (var context of tab) {
+        	
+        	// initialize timing of tab
+        	timings[2] = 0.0;
         	
             for (var testcase of context) {
 
@@ -527,11 +543,42 @@ Judge.prototype.toString = function() {
             		
             	}
             	
+            	// increment timings
+            	try {
+                	if (testcase.runtime_metrics.wall_time !== undefined) {
+                		timings[0] += testcase.runtime_metrics.wall_time;
+                		timings[1] += testcase.runtime_metrics.wall_time;
+                		timings[2] += testcase.runtime_metrics.wall_time;
+                	}            		
+            	} catch(e) {
+            		// no timings available
+            	}
+            	
             }
+            
+            // augment context
+            // NOTE: should only be done if context has been processed
+            context.update({
+            	runtime_metrics: { wall_time: timings[2] },
+            });
+
         }
-        tab.setProperty('badgeCount', badgeCount);
+
+        // augment tab
+        // NOTE: should only be done if context has been processed
+        tab.update({
+        	badgeCount: badgeCount,
+        	runtime_metrics: { wall_time: timings[1] },
+        });
+
     }
     
+    // augment submission
+    // NOTE: should only be done if feedback has been processed
+    this.feedback.update({
+    	runtime_metrics: { wall_time: timings[0] },
+    });
+
     // return string representation of feedback
     return this.feedback.toString();
 
