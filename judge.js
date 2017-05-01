@@ -87,12 +87,19 @@ Judge.prototype.run = function(sourceFile) {
     	
     	// add message with compilation error (student version)
     	this.feedback.addMessage(new Message({
+			description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">compilation error</span>",
+			format: "html"
+		}));
+    	this.feedback.addMessage(new Message({
     		description: utils.displayError(e, true),
-    		permission: "student",
         	format: "code"
     	}));
     	
     	// add message with compilation error (staff version)
+    	this.feedback.addMessage(new Message({
+			description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">compilation error (staff version)</span>",
+			format: "html"
+		}));
     	this.feedback.addMessage(new Message({
     		description: utils.displayError(e, false),
     		permission: "staff",
@@ -146,6 +153,13 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 	// NOTE: update timeout based on remaining time for judging
 	options.timeout = Math.max(this.timeRemaining(), 1);
 	const generated = sandbox.execute(code, options);
+	
+	// determine if code execution does not happen in silent mode
+	let report = (
+		!options || 
+		!("silent" in options) || 
+		options.silent === false
+	)
 
 	// update testgroup if exception was generated
 	if ("exception" in generated) {
@@ -155,16 +169,23 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 			status: utils.statusError(generated["exception"])
 		});
 		
-		if (!options || !("silent" in options) || options.silent === false) {
+		if (report) {
 			
 			// add message containing runtime error (student version)
 			testgroup.addMessage(new Message({
+				description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">exception</span>",
+				format: "html"
+			}));
+			testgroup.addMessage(new Message({
 				description: utils.displayError(generated["exception"], true),
-				permission: 'student',
 		    	format: 'code'
 			}));
 			
 			// add message containing runtime error (staff version)
+			testgroup.addMessage(new Message({
+				description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">exception (staff version)</span>",
+				format: "html"
+			}));
 			testgroup.addMessage(new Message({
 				description: utils.displayError(generated["exception"], false),
 				permission: 'staff',
@@ -175,11 +196,38 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 		
 	}
 	
-	// TODO: consider what should be done if other channels are available
-	//       (return value, stdout, stderr)
-	
-	// return generated channels
-	return generated;
+	// process spurious output on other channels
+	for (var channel of ["return", "stdout", "stderr"]) {
+
+		if (
+			channel in generated &&
+			// skip "empty" channels
+			!(
+				generated[channel] === undefined ||
+				(channel !== "return" && generated[channel] === "")
+			)
+		) {
+			
+			// update status to runtime error
+			testgroup.update({ status: "wrong answer" });
+			
+			if (report) {
+				
+				// add message containing wrong answer (student version)
+				testgroup.addMessage(new Message({
+					description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">" + channel + "</span>",
+					format: "html"
+				}));
+				testgroup.addMessage(new Message({
+					description: channel === "return" ? utils.display(generated[channel]) : generated[channel],
+			    	format: 'code'
+				}));
+				
+			}
+			
+		}
+		
+	}
 	
 };
 
@@ -298,17 +346,6 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
                 )
             });
             
-            /*
-            // hide expected and generated return values if both are undefined 
-            // (fixes #18)
-            // TODO: we might remove the test altogether
-            if (expected_result === undefined && generated_result === undefined) {
-            	expected["return"]
-            		.deleteProperty("expected")
-            		.deleteProperty("generated");
-            }
-            */
-            
         } else {
             
             // add test for generated return value
@@ -422,14 +459,6 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
         	expected[channel].update({
                 status: correct ? "correct answer" : "wrong answer"
             });
-        	
-        	// add message about unexpected output on channel
-        	expected[channel].addMessage(new Message({
-        		description: "Error: unexpected output on " + channel,
-        		permission: "student",
-            	format: "code"        		
-        	}));
-        	
         	
         }
         
