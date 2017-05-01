@@ -18,7 +18,8 @@ const Sandbox = function() {
 
 Sandbox.prototype.execute = function(statements, options) {
 	
-	var channels = {};
+	var start,
+		channels = {};
 
 	// create output buffers to capture stdout and stderr of submitted code
 	// NOTE: maximal buffer size is fixed to 10kb
@@ -27,6 +28,7 @@ Sandbox.prototype.execute = function(statements, options) {
 	const stderrBuffer = new OutputBuffer(process.stderr, {maxBufferSize: 10 * 1024});
 
 	// execute statements in sandbox
+	start = new Date();
 	try {
 		if (typeof statements === "string") {
 			// compile and run the statements
@@ -38,6 +40,7 @@ Sandbox.prototype.execute = function(statements, options) {
 	} catch(e) {
 		channels["exception"] = e;
 	}
+	channels["wall_time"] = (new Date() - start) / 1000;
 	
 	// capture stdout
 	stdoutBuffer.release();
