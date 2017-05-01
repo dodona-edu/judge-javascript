@@ -214,13 +214,13 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 			
 			if (report) {
 				
-				// add message containing runtime error (student version)
+				// add message containing wrong answer (student version)
 				testgroup.addMessage(new Message({
-					description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">" + utils.statusError(generated["exception"]) + "</span>",
+					description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">wrong answer</span>",
 					format: "html"
 				}));
 				testgroup.addMessage(new Message({
-					description: utils.displayError(generated["exception"], true),
+					description: channel === "return" ? utils.display(generated.channel) : generated.channel,
 			    	format: 'code'
 				}));
 				
