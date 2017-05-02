@@ -509,6 +509,25 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
                 status: correct ? "correct answer" : "wrong answer"
             });
         	
+            // report on spurious or missing newlines in multiline case
+        	if (
+        		expected_result.endsWith("\n") &&
+        		expected_result.slice(0, -1) === generated_result
+        	) {
+        		expected[channel].addMessage(new Message({
+        			description: "Error: " + channel + " misses trailing newline",
+        			format: "code"
+        		}));
+        	} else if (
+        		generated_result.endsWith("\n") &&
+        		generated_result.slice(0, -1) === expected_result
+        	) {
+        		expected[channel].addMessage(new Message({
+        			description: "Error: " + channel + " has spurious trailing newline",
+        			format: "code"
+        		}));
+        	}
+            
         }
         
     }
