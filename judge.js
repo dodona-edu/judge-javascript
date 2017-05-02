@@ -716,7 +716,8 @@ Judge.prototype.toString = function() {
 		// add extra information to feedback header
 		if (message) {
 			this.feedback.addMessage(new Message({
-				description: message
+				description: message,
+				format: "html"
 			}));
 		}
 		
