@@ -541,7 +541,7 @@ Judge.prototype.toString = function() {
 	
 	var badgeCount;
 	var timings = [0.0, 0.0, 0.0];
-	var hasTimings = [False, False, False];
+	var hasTimings = [false, false, false];
 	
     for (let tab of this.feedback) {
 
