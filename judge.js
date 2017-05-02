@@ -492,11 +492,9 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
         
     }
     
-    // add elapsed time to testcase
-    if ("wall_time" in generated) {
-    	testcase.update({
-    		runtime_metrics: { wall_time: generated.wall_time }
-    	});
+    // add runtime metrics to testcase
+    if ("runtime_metrics" in generated) {
+    	testcase.update({ runtime_metrics: generated.runtime_metrics });
     }
 
 };

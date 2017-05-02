@@ -31,6 +31,8 @@ Sandbox.prototype.execute = function(statements, options) {
 	// execute statements in sandbox
 	start = new Date();
 	try {
+		
+		// capture return value
 		if (typeof statements === "string") {
 			// compile and run the statements
 			channels["return"] = vm.runInContext(statements, this.sandbox, options);			
@@ -38,10 +40,18 @@ Sandbox.prototype.execute = function(statements, options) {
 			// run the pre-compiled statements
 			channels["return"] = statements.runInContext(this.sandbox, options);
 		}
+		
+		// capture runtime metrics
+		channels["runtime_metrics"] = {
+			wall_time: (new Date() - start) / 1000
+		};
+		
 	} catch(e) {
+		
+		// capture exception
 		channels["exception"] = e;
 	}
-	channels["wall_time"] = (new Date() - start) / 1000;
+	
 	
 	// capture stdout
 	stdoutBuffer.release();
