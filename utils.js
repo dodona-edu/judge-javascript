@@ -8,8 +8,7 @@ function display(obj) {
 			e.name === "RangeError" && 
 			e.message === "Maximum call stack size exceeded"
 		) {
-			return "[Object containing circular references]"
-			// return obj.toString();
+			return obj.toString();
 		} else {
 			throw e;
 		}
