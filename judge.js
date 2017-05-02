@@ -612,7 +612,7 @@ Judge.prototype.toString = function() {
             		testcase.setProperty(
             			"description", 
             			new Message({
-                			description: "<span class=\"glyphicon glyphicon-forward\" aria-hidden=\"true\"></span>" + testcase.getProperty("description"),
+                			description: testcase.getProperty("description"),
                 			format: "code"
                 		})
                 	);
@@ -649,7 +649,7 @@ Judge.prototype.toString = function() {
             				let label = test.getProperty("accepted") ? "label-success" : "label-danger";
                 			test.update({
                 				description: new Message({
-                					description: "<span class=\"label " + label + "\" style=\"display: block;text-align:left;\">&nbsp;" + test.getProperty("data").channel + "</span>",
+                					description: "<span class=\"label " + label + "\" style=\"display: block;text-align:left;\">" + test.getProperty("data").channel + "</span>",
                 					format: "html"
                 				})
                 			});            				
