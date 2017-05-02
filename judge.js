@@ -541,6 +541,7 @@ Judge.prototype.toString = function() {
 	
 	var badgeCount;
 	var timings = [0.0, 0.0, 0.0];
+	var hasTimings = [False, False, False];
 	
     for (let tab of this.feedback) {
 
@@ -549,11 +550,13 @@ Judge.prototype.toString = function() {
     	
     	// initialize timing of tab
     	timings[1] = 0.0;
+    	hasTimings[1] = False;
     	
         for (let context of tab) {
         	
         	// initialize timing of tab
         	timings[2] = 0.0;
+        	hasTimings[2] = False;
         	
             for (let testcase of context) {
 
@@ -581,6 +584,9 @@ Judge.prototype.toString = function() {
                 		timings[0] += wall_time;
                 		timings[1] += wall_time;
                 		timings[2] += wall_time;
+                		hasTimings[0] = true;
+                		hasTimings[1] = true;
+                		hasTimings[2] = true;
                 	}            		
             	} catch(e) {
             		// no timings available
@@ -641,26 +647,32 @@ Judge.prototype.toString = function() {
             
             // augment context
             // NOTE: should only be done if context has been processed
-            context.update({
-            	runtime_metrics: { wall_time: timings[2] },
-            });
+            if (hasTimings[2]) {
+                context.update({
+                	runtime_metrics: { wall_time: timings[2] },
+                });            	
+            }
 
         }
 
         // augment tab
         // NOTE: should only be done if context has been processed
-        tab.update({
-        	badgeCount: badgeCount,
-        	runtime_metrics: { wall_time: timings[1] },
-        });
+        if (hasTimings[1]) {
+	        tab.update({
+	        	badgeCount: badgeCount,
+	        	runtime_metrics: { wall_time: timings[1] },
+	        });
+        }
 
     }
     
     // augment submission
     // NOTE: should only be done if feedback has been processed
-    this.feedback.update({
-    	runtime_metrics: { wall_time: timings[0] },
-    });
+    if (hasTimings[0]) {
+	    this.feedback.update({
+	    	runtime_metrics: { wall_time: timings[0] },
+	    });
+    }
 
     // return string representation of feedback
     return this.feedback.toString();
