@@ -1,10 +1,29 @@
 // helper function for pretty printing values
 function display(obj) {
 	
+	try {
+		return recursiveDisplay(obj);
+	} catch(e) {
+		if (
+			e.name === "RangeError" && 
+			e.message === "Maximum call stack size exceeded"
+		) {
+			return "[Object containing circular references]"
+			// return obj.toString();
+		} else {
+			throw e;
+		}
+	}
+	
+}
+
+//helper function for pretty printing values
+function recursiveDisplay(obj) {
+	
     var str = "",
-        keys = [],
-        key, 
-        i;
+    keys = [],
+    key, 
+    i;
 
     if (obj === undefined) {
     	
@@ -52,7 +71,7 @@ function display(obj) {
         return obj.toString();
         
     }
-        
+		
 }
 
 // helper function for converting Error objects to string

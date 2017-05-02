@@ -226,6 +226,17 @@ Test.prototype.toString = function() {
     return JSON.stringify(this.toJson(), null, 4);
 };
 
+Test.prototype.hasMessages = function() {
+
+    // add groups property if not present
+    if (!this.hasProperty("messages")) {
+        return false;
+    }
+    
+    return this.getProperty("messages").length !== 0;
+
+};
+
 Test.prototype.addMessage = function(message) {
 	
     // add message property if not present
@@ -235,6 +246,9 @@ Test.prototype.addMessage = function(message) {
 	
 	// add message to list of messages
 	this.getProperty("messages").push(message);
+	
+    // return object for chaining purposes
+	return this;
 	
 }
     
@@ -323,6 +337,7 @@ TestGroup.prototype.addGroup = function(group) {
         this.setAccepted(group.getProperty("accepted"));
     }
     
+    // return object for chaining purposes
     return this;
 
 };
@@ -377,6 +392,7 @@ TestGroup.prototype.addTest = function(test) {
         this.setAccepted(test.getProperty("accepted"));
     }
     
+    // return object for chaining purposes
     return this;
 
 };
@@ -492,6 +508,7 @@ Context.prototype.constructor = Context;
 
 Context.prototype.addTestCase = function(testcase) {
     
+    // return object for chaining purposes
     return this.addGroup(testcase);
     
 };
@@ -506,6 +523,7 @@ Context.prototype.addTest = function(test) {
     // add test to last group (contest)
     this.getLastGroup().addTest(test);
     
+    // return object for chaining purposes
     return this;
     
 };
@@ -525,6 +543,7 @@ Tab.prototype.constructor = Tab;
 
 Tab.prototype.addContext = function(context) {
     
+    // return object for chaining purposes
     return this.addGroup(context);
     
 };
@@ -539,6 +558,7 @@ Tab.prototype.addTestCase = function(testcase) {
     // add context to last group (tab)
     this.getLastGroup().addGroup(testcase);
     
+    // return object for chaining purposes
     return this;
     
 };
@@ -553,6 +573,7 @@ Tab.prototype.addTest = function(test) {
     // add test to last group (contest)
     this.getLastGroup().addTest(test);
     
+    // return object for chaining purposes
     return this;
     
 };
@@ -571,11 +592,8 @@ Submission.prototype = Object.create(TestGroup.prototype);
 Submission.prototype.constructor = Submission;
 
 Submission.prototype.addTab = function(tab) {
-    this["groups"].push(tab)
-};
-
-Submission.prototype.addTab = function(tab) {
     
+    // return object for chaining purposes
     return this.addGroup(tab);
     
 };
@@ -590,6 +608,7 @@ Submission.prototype.addContext = function(context) {
     // add context to last group (tab)
     this.getLastGroup().addGroup(context);
     
+    // return object for chaining purposes
     return this;
     
 };
@@ -604,6 +623,7 @@ Submission.prototype.addTestCase = function(testcase) {
     // add context to last group (tab)
     this.getLastGroup().addTestCase(testcase);
     
+    // return object for chaining purposes
     return this;
     
 };
