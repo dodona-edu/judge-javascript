@@ -550,13 +550,13 @@ Judge.prototype.toString = function() {
     	
     	// initialize timing of tab
     	timings[1] = 0.0;
-    	hasTimings[1] = False;
+    	hasTimings[1] = false;
     	
         for (let context of tab) {
         	
         	// initialize timing of tab
         	timings[2] = 0.0;
-        	hasTimings[2] = False;
+        	hasTimings[2] = false;
         	
             for (let testcase of context) {
 
