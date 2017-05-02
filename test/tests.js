@@ -1,213 +1,103 @@
-judge.config('auto-switch-context', false);
-judge.config('switch-tab', 'Machine');
+// testgevallen voor functie lineup
 
-judge.test("var machine01 = new Machine().nieuweBel('1', 0).nieuweBel('2', 3).nieuweBel('3', 0).nieuweKnop('A', ['1', '3'], ['1', '2']).nieuweKnop('B', ['2'], ['3']).nieuweKnop('C', ['3'], ['1']);");
-judge.test("machine01.toString();", "1: 0\n2: 3\n3: 0");
-judge.test("machine01.druk('B').toString();", "1: 0\n2: 2\n3: 1");
-judge.test("machine01.druk('B').toString();", "1: 0\n2: 1\n3: 2");
-judge.test("machine01.druk('C').toString();", "1: 1\n2: 1\n3: 1");
-judge.test("machine01.druk('A').toString();", "1: 1\n2: 2\n3: 0");
-judge.test("machine01.druk('B').toString();", "1: 1\n2: 1\n3: 1");
-judge.test("machine01.druk('A').toString();", "1: 1\n2: 2\n3: 0");
-judge.test("machine01.nieuweBel('1', 3);", "exception:AssertionError: bel bestaat reeds");
-judge.test("machine01.nieuweKnop('A', ['2', '3'], ['1', '3']);", "exception:AssertionError: knop bestaat reeds");
-judge.test("machine01.nieuweKnop('X', ['1', '2'], ['3', '4']);", "exception:AssertionError: onbekende bel");
-judge.test("machine01.druk('Z').toString();", "exception:AssertionError: onbekende knop");
+judge.config('switch-tab', 'lineup');
 
-judge.config('switch-context');
-judge.test("var machine02 = new Machine().nieuweBel('1', 0).nieuweBel('2', 3).nieuweBel('3', 0).nieuweKnop('A', ['1', '3'], ['1', '2']).nieuweKnop('B', ['2'], ['3']).nieuweKnop('C', ['3'], ['1']);");
-judge.test("machine02.toString();", "1: 0\n2: 3\n3: 0");
-judge.test("machine02.druk('B').toString();", "1: 0\n2: 2\n3: 1");
-judge.test("machine02.druk('C').toString();", "1: 1\n2: 2\n3: 0");
-judge.test("machine02.druk('B').toString();", "1: 1\n2: 1\n3: 1");
-judge.test("machine02.druk('C').toString();", "1: 2\n2: 1\n3: 0");
-judge.test("machine02.druk('B').toString();", "1: 2\n2: 0\n3: 1");
-judge.test("machine02.druk('A').toString();", "1: 2\n2: 1\n3: 0");
+judge.test('lineup([{naam: "Alice", kleur: "R"}, {naam: "Bob", kleur: "B"}, {naam: "Claire", kleur: "R"}, {naam: "Dave", kleur: "R"}, {naam: "Elsa", kleur: "B"}]);', ['Alice', 'Claire', 'Dave', 'Elsa', 'Bob']);
 
-judge.config('switch-context');
-judge.test("var machine03 = new Machine().nieuweBel('1', 0).nieuweBel('2', 3).nieuweBel('3', 0).nieuweKnop('A', ['1', '3'], ['1', '2']).nieuweKnop('B', ['2'], ['3']).nieuweKnop('C', ['3'], ['1']);");
-judge.test("machine03.toString();", "1: 0\n2: 3\n3: 0");
-judge.test("machine03.druk('B').toString();", "1: 0\n2: 2\n3: 1");
-judge.test("machine03.druk('B').toString();", "1: 0\n2: 1\n3: 2");
-judge.test("machine03.druk('C').toString();", "1: 1\n2: 1\n3: 1");
-judge.test("machine03.druk('B').toString();", "1: 1\n2: 0\n3: 2");
-judge.test("machine03.druk('C').toString();", "1: 2\n2: 0\n3: 1");
-judge.test("machine03.druk('C').toString();", "1: 3\n2: 0\n3: 0");
+judge.test('lineup([{naam: "Sparkle", kleur: "R"}, {naam: "Rolf", kleur: "R"}, {naam: "Eileen", kleur: "R"}, {naam: "Madie", kleur: "R"}]);', ['Sparkle', 'Rolf', 'Eileen', 'Madie']);
 
-judge.config('switch-context');
-judge.test("var machine04 = new Machine().nieuweBel('1', 0).nieuweBel('2', 3).nieuweBel('3', 0).nieuweKnop('A', ['1', '3'], ['1', '2']).nieuweKnop('B', ['2'], ['3']).nieuweKnop('C', ['3'], ['1']);");
-judge.test("machine04.toString();", "1: 0\n2: 3\n3: 0");
-judge.test("machine04.druk('B').toString();", "1: 0\n2: 2\n3: 1");
-judge.test("machine04.druk('C').toString();", "1: 1\n2: 2\n3: 0");
-judge.test("machine04.druk('B').toString();", "1: 1\n2: 1\n3: 1");
-judge.test("machine04.druk('B').toString();", "1: 1\n2: 0\n3: 2");
-judge.test("machine04.druk('A').toString();", "1: 1\n2: 1\n3: 1");
-judge.test("machine04.druk('A').toString();", "1: 1\n2: 2\n3: 0");
+judge.test('lineup([{naam: "Brian", kleur: "B"}, {naam: "Margot", kleur: "B"}, {naam: "Hans", kleur: "B"}, {naam: "Lucinda", kleur: "B"}]);', ['Lucinda', 'Hans', 'Margot', 'Brian']);
 
-judge.config('switch-context');
-judge.test("var machine05 = new Machine().nieuweBel('3', 0).nieuweBel('4', 4).nieuweBel('2', 4).nieuweBel('5', 0).nieuweBel('1', 3).nieuweBel('6', 2).nieuweBel('2', 3).nieuweKnop('C', ['3', '1', '4', '2', '5', '6'], ['6', '2', '5', '1', '3']).nieuweKnop('A', ['3', '6', '4', '1', '5', '2'], ['2', '5', '6', '4']).nieuweKnop('B', ['1', '2', '6', '4', '5'], ['3', '2', '6', '1', '4']);", "exception:AssertionError: bel bestaat reeds");
+judge.test('lineup([{naam: "Joaquin", kleur: "B"}, {naam: "Jules", kleur: "B"}, {naam: "Zora", kleur: "R"}, {naam: "Cherise", kleur: "B"}, {naam: "Adell", kleur: "R"}, {naam: "Pandora", kleur: "B"}, {naam: "Aimee", kleur: "B"}, {naam: "Teresa", kleur: "R"}, {naam: "Leanne", kleur: "B"}]);', ['Zora', 'Adell', 'Teresa', 'Leanne', 'Aimee', 'Pandora', 'Cherise', 'Jules', 'Joaquin']);
 
-judge.config('switch-context');
-judge.test("var machine06 = new Machine().nieuweBel('2', 0).nieuweBel('4', 3).nieuweBel('3', 5).nieuweBel('1', 1).nieuweKnop('F', ['3', '4'], ['4', '3', '2', '1']).nieuweKnop('E', ['1'], ['3', '4', '2', '1']).nieuweKnop('D', ['2', '4', '1', '3'], ['2', '3', '1', '4']).nieuweKnop('B', ['3', '2', '1'], ['4', '2']).nieuweKnop('C', ['3', '2'], ['2', '3']).nieuweKnop('A', ['2'], ['4', '3', '1']);");
-judge.test("machine06.druk(['K', 'F', 'E', 'A']).toString();", "exception:AssertionError: onbekende knop");
+judge.test('lineup([{naam: "Casandra", kleur: "R"}, {naam: "Omar", kleur: "R"}, {naam: "Louisa", kleur: "R"}, {naam: "Lauren", kleur: "B"}, {naam: "Eileen", kleur: "B"}, {naam: "Katrina", kleur: "B"}, {naam: "Linda", kleur: "R"}, {naam: "Lena", kleur: "B"}]);', ['Casandra', 'Omar', 'Louisa', 'Linda', 'Lena', 'Katrina', 'Eileen', 'Lauren']);
 
-judge.config('switch-context');
-judge.test("var machine07 = new Machine().nieuweBel('1', 0).nieuweBel('2', 0).nieuweBel('1', 0).nieuweBel('5', 3).nieuweBel('4', 1).nieuweBel('3', 1).nieuweKnop('A', ['4', '2'], ['5', '1', '2', '3', '4']).nieuweKnop('E', ['1', '4', '5', '2'], ['5', '1']).nieuweKnop('D', ['2', '3'], ['4', '3']).nieuweKnop('B', ['5'], ['4', '1', '2']).nieuweKnop('F', ['1', '5', '3', '2', '4'], ['2']).nieuweKnop('C', ['2', '1'], ['1', '2', '3', '5', '4']);", "exception:AssertionError: bel bestaat reeds");
+judge.test('lineup([{naam: "Dustin", kleur: "R"}, {naam: "Cornell", kleur: "R"}, {naam: "Rey", kleur: "R"}, {naam: "Vickie", kleur: "R"}]);', ['Dustin', 'Cornell', 'Rey', 'Vickie']);
 
-judge.config('switch-context');
-judge.test("var machine08 = new Machine().nieuweBel('5', 3).nieuweBel('3', 5).nieuweBel('4', 5).nieuweBel('1', 0).nieuweBel('6', 2).nieuweBel('2', 3).nieuweKnop('A', ['5', '4', '2', '3', '1'], ['3']).nieuweKnop('B', ['2'], ['5', '1', '4', '2', '3', '6']).nieuweKnop('C', ['5', '8'], ['5', '4', '3', '2', '6']);", "exception:AssertionError: onbekende bel");
+judge.test('lineup([{naam: "Tifany", kleur: "B"}, {naam: "Gayla", kleur: "B"}, {naam: "Lindsey", kleur: "R"}, {naam: "Sherryl", kleur: "R"}, {naam: "Jeffrey", kleur: "R"}, {naam: "Zachery", kleur: "R"}, {naam: "Gaston", kleur: "R"}, {naam: "Delfina", kleur: "R"}, {naam: "Madie", kleur: "B"}, {naam: "Linda", kleur: "B"}]);', ['Lindsey', 'Sherryl', 'Jeffrey', 'Zachery', 'Gaston', 'Delfina', 'Linda', 'Madie', 'Gayla', 'Tifany']);
 
-judge.config('switch-context');
-judge.test("var machine09 = new Machine().nieuweBel('2', 4).nieuweBel('5', 4).nieuweBel('3', 5).nieuweBel('4', 2).nieuweBel('1', 5).nieuweKnop('D', ['3', '2', '4'], ['4', '5', '3']).nieuweKnop('B', ['3'], ['4']).nieuweKnop('A', ['4', '3', '2', '1'], ['5']).nieuweKnop('C', ['2'], ['3']);");
-judge.test("machine09.druk('C').toString();", "1: 5\n2: 3\n3: 6\n4: 2\n5: 4");
+judge.test('lineup([{naam: "Iona", kleur: "R"}, {naam: "Cherise", kleur: "R"}, {naam: "Joaquin", kleur: "R"}, {naam: "Eileen", kleur: "R"}, {naam: "Pedro", kleur: "R"}, {naam: "Katrina", kleur: "B"}, {naam: "Zachery", kleur: "B"}, {naam: "Ricky", kleur: "R"}, {naam: "Aileen", kleur: "R"}]);', ['Iona', 'Cherise', 'Joaquin', 'Eileen', 'Pedro', 'Ricky', 'Aileen', 'Zachery', 'Katrina']);
 
-judge.config('switch-context');
-judge.test("var machine10 = new Machine().nieuweBel('1', 3).nieuweBel('4', 2).nieuweBel('3', 1).nieuweBel('2', 5).nieuweBel('5', 3).nieuweKnop('E', ['4'], ['2', '3']).nieuweKnop('B', ['5', '2', '4', '1'], ['1', '5', '2', '4', '3']).nieuweKnop('D', ['4', '1'], ['4', '2']).nieuweKnop('B', ['4', '1', '3'], ['4']).nieuweKnop('C', ['1', '4', '5', '2'], ['1']).nieuweKnop('A', ['3', '4', '2'], ['4', '1', '5', '2', '3']);", "exception:AssertionError: knop bestaat reeds");
+judge.test('lineup([{naam: "Dorie", kleur: "R"}, {naam: "Katrina", kleur: "R"}, {naam: "Delphine", kleur: "R"}, {naam: "Mason", kleur: "B"}, {naam: "Nicolette", kleur: "R"}, {naam: "Rolf", kleur: "B"}, {naam: "Johnny", kleur: "R"}, {naam: "Margarette", kleur: "B"}]);', ['Dorie', 'Katrina', 'Delphine', 'Nicolette', 'Johnny', 'Margarette', 'Rolf', 'Mason']);
 
-judge.config('switch-context');
-judge.test("var machine11 = new Machine().nieuweBel('1', 2).nieuweBel('2', 2).nieuweBel('3', 0).nieuweKnop('E', ['2', '1', '3'], ['1', '3', '2']).nieuweKnop('C', ['2', '4', '3'], ['1']).nieuweKnop('D', ['3'], ['1', '3', '2']).nieuweKnop('A', ['3', '1', '2'], ['2']).nieuweKnop('F', ['2'], ['1', '2', '3']).nieuweKnop('B', ['1', '2'], ['3', '1', '2']);", "exception:AssertionError: onbekende bel");
+judge.test('lineup([{naam: "Aileen", kleur: "B"}, {naam: "Lissa", kleur: "B"}, {naam: "Marco", kleur: "B"}, {naam: "Ashly", kleur: "R"}, {naam: "Allan", kleur: "B"}]);', ['Ashly', 'Allan', 'Marco', 'Lissa', 'Aileen']);
 
-judge.config('switch-context');
-judge.test("var machine12 = new Machine().nieuweBel('2', 1).nieuweBel('3', 3).nieuweBel('5', 2).nieuweBel('1', 2).nieuweBel('4', 5).nieuweBel('6', 1).nieuweKnop('D', ['4', '2', '3', '5'], ['5', '1', '6', '3', '2', '4']).nieuweKnop('F', ['5', '2', '6', '1'], ['5', '6', '3', '2', '1', '4']).nieuweKnop('E', ['2', '1', '5', '4', '3'], ['3', '2', '1', '5']).nieuweKnop('C', ['1', '3', '4', '6', '5', '2'], ['4', '5', '3', '6', '1', '2']).nieuweKnop('B', ['2', '3', '4', '8'], ['5', '4', '1', '2', '6']).nieuweKnop('A', ['6'], ['6', '5', '1', '3', '4', '2']);", "exception:AssertionError: onbekende bel");
+judge.test('lineup([{naam: "Matthew", kleur: "R"}, {naam: "Margarette", kleur: "B"}, {naam: "Eryn", kleur: "B"}, {naam: "Mina", kleur: "B"}, {naam: "Aimee", kleur: "R"}, {naam: "Janette", kleur: "R"}, {naam: "Iona", kleur: "B"}, {naam: "Darron", kleur: "B"}]);', ['Matthew', 'Aimee', 'Janette', 'Darron', 'Iona', 'Mina', 'Eryn', 'Margarette']);
 
-judge.config('switch-context');
-judge.test("var machine13 = new Machine().nieuweBel('5', 5).nieuweBel('1', 5).nieuweBel('4', 0).nieuweBel('3', 5).nieuweBel('6', 3).nieuweBel('2', 4).nieuweKnop('D', ['1', '2'], ['6']).nieuweKnop('B', ['2', '6', '4', '3', '1', '5'], ['2', '3', '6', '4']).nieuweKnop('C', ['3', '2'], ['2', '3']).nieuweKnop('A', ['6', '3', '2', '4', '1'], ['5']);");
-judge.test("machine13.druk('A').toString();", "1: 5\n2: 4\n3: 5\n4: 0\n5: 5\n6: 3");
+judge.test('lineup([{naam: "Rey", kleur: "R"}, {naam: "Lindsey", kleur: "R"}, {naam: "May", kleur: "R"}, {naam: "Jeffrey", kleur: "R"}, {naam: "Delphine", kleur: "R"}, {naam: "Walter", kleur: "R"}]);', ['Rey', 'Lindsey', 'May', 'Jeffrey', 'Delphine', 'Walter']);
 
-judge.config('switch-context');
-judge.test("var machine14 = new Machine().nieuweBel('1', 1).nieuweBel('4', 0).nieuweBel('2', 2).nieuweBel('3', 3).nieuweKnop('D', ['2', '3', '4'], ['3', '2', '1', '4']).nieuweKnop('C', ['3'], ['4', '2', '1']).nieuweKnop('A', ['3'], ['3', '1', '2']).nieuweKnop('B', ['3', '4'], ['4', '1', '3', '2']);");
-judge.test("machine14.druk(['A', 'B', 'A']).toString();", "1: 3\n2: 4\n3: 3\n4: 0");
+judge.test('lineup([{naam: "Sparkle", kleur: "R"}, {naam: "Cornell", kleur: "B"}, {naam: "Leanne", kleur: "R"}, {naam: "Gayla", kleur: "R"}, {naam: "Ingrid", kleur: "R"}, {naam: "Pricilla", kleur: "R"}]);', ['Sparkle', 'Leanne', 'Gayla', 'Ingrid', 'Pricilla', 'Cornell']);
 
-judge.config('switch-context');
-judge.test("var machine15 = new Machine().nieuweBel('4', 5).nieuweBel('2', 5).nieuweBel('3', 0).nieuweBel('1', 5).nieuweKnop('A', ['4', '2', '1'], ['2', '4']).nieuweKnop('F', ['4', '2'], ['3']).nieuweKnop('C', ['4'], ['4']).nieuweKnop('B', ['1'], ['4', '3']).nieuweKnop('D', ['4', '2', '1', '3'], ['1', '2', '4', '3']).nieuweKnop('E', ['2'], ['4', '3', '2']);");
-judge.test("machine15.druk(['C', 'C', 'B']).toString();", "1: 4\n2: 5\n3: 1\n4: 6");
+judge.test('lineup([{naam: "Pricilla", kleur: "B"}, {naam: "Leanne", kleur: "R"}, {naam: "Delfina", kleur: "R"}, {naam: "Darron", kleur: "B"}, {naam: "Nicolette", kleur: "B"}, {naam: "Delphine", kleur: "B"}]);', ['Leanne', 'Delfina', 'Delphine', 'Nicolette', 'Darron', 'Pricilla']);
 
-judge.config('switch-context');
-judge.test("var machine16 = new Machine().nieuweBel('5', 2).nieuweBel('2', 2).nieuweBel('4', 4).nieuweBel('3', 1).nieuweBel('1', 1).nieuweKnop('A', ['1'], ['5']).nieuweKnop('B', ['1', '2', '5', '4'], ['5']).nieuweKnop('C', ['4', '5', '3', '2'], ['3', '2', '5', '4', '1']).nieuweKnop('D', ['5', '2', '3'], ['3']).nieuweKnop('E', ['2', '1', '3', '4'], ['3', '1', '5', '2']);");
-judge.test("machine16.druk(['E', 'C', 'A', 'E', 'E']).toString();", "1: 1\n2: 2\n3: 1\n4: 1\n5: 6");
+judge.test('lineup([{naam: "Pedro", kleur: "B"}, {naam: "Zachery", kleur: "B"}, {naam: "Lucius", kleur: "B"}, {naam: "Gaston", kleur: "B"}, {naam: "Grady", kleur: "B"}, {naam: "Britt", kleur: "B"}, {naam: "Omar", kleur: "B"}, {naam: "Julieta", kleur: "B"}, {naam: "Ingrid", kleur: "B"}]);', ['Ingrid', 'Julieta', 'Omar', 'Britt', 'Grady', 'Gaston', 'Lucius', 'Zachery', 'Pedro']);
 
-judge.config('switch-context');
-judge.test("var machine17 = new Machine().nieuweBel('1', 3).nieuweBel('4', 5).nieuweBel('3', 1).nieuweBel('2', 1).nieuweKnop('C', ['4', '2', '3'], ['2', '3']).nieuweKnop('B', ['2', '4', '1'], ['1', '2', '3', '4']).nieuweKnop('A', ['1', '3', '2'], ['1', '3', '2']);");
-judge.test("machine17.druk(['B', 'B', 'A', 'C', 'A', 'F', 'C']).toString();", "exception:AssertionError: onbekende knop");
+judge.test('lineup([{naam: "Rick", kleur: "B"}, {naam: "Jeri", kleur: "B"}, {naam: "Walter", kleur: "B"}, {naam: "Gertha", kleur: "R"}, {naam: "Lindsey", kleur: "B"}, {naam: "Gayla", kleur: "B"}, {naam: "Teresa", kleur: "R"}, {naam: "Pedro", kleur: "R"}, {naam: "Grady", kleur: "R"}, {naam: "Gaston", kleur: "B"}]);', ['Gertha', 'Teresa', 'Pedro', 'Grady', 'Gaston', 'Gayla', 'Lindsey', 'Walter', 'Jeri', 'Rick']);
 
-judge.config('switch-context');
-judge.test("var machine18 = new Machine().nieuweBel('3', 5).nieuweBel('1', 5).nieuweBel('2', 1).nieuweKnop('B', ['2', '1'], ['2']).nieuweKnop('A', ['2', '3', '1', '10'], ['1']).nieuweKnop('C', ['1', '3'], ['1']).nieuweKnop('D', ['1', '3', '2'], ['1']);", "exception:AssertionError: onbekende bel");
+judge.test('lineup([{naam: "Stephane", kleur: "B"}, {naam: "Brian", kleur: "B"}, {naam: "Ricky", kleur: "B"}, {naam: "Mason", kleur: "B"}]);', ['Mason', 'Ricky', 'Brian', 'Stephane']);
 
-judge.config('switch-context');
-judge.test("var machine19 = new Machine().nieuweBel('2', 5).nieuweBel('4', 3).nieuweBel('5', 1).nieuweBel('1', 3).nieuweBel('3', 5).nieuweKnop('B', ['4', '1', '3'], ['5']).nieuweKnop('D', ['4', '3'], ['1', '3', '2', '5', '4']).nieuweKnop('C', ['4'], ['2']).nieuweKnop('A', ['2'], ['1', '3']).nieuweKnop('E', ['2', '3'], ['3', '4', '2']);");
-judge.test("machine19.druk(['B', 'C']).toString();", "1: 2\n2: 6\n3: 4\n4: 1\n5: 2");
+judge.test('lineup([{naam: "Marco", kleur: "R"}, {naam: "Allan", kleur: "B"}, {naam: "Stephane", kleur: "B"}, {naam: "Sparkle", kleur: "R"}]);', ['Marco', 'Sparkle', 'Stephane', 'Allan']);
 
-judge.config('switch-context');
-judge.test("var machine20 = new Machine().nieuweBel('1', 4).nieuweBel('4', 4).nieuweBel('2', 4).nieuweBel('3', 5).nieuweBel('5', 3).nieuweKnop('A', ['3'], ['5']).nieuweKnop('B', ['1', '3', '5'], ['3', '1']).nieuweKnop('C', ['4', '3', '1', '2'], ['5', '1', '2']);");
-judge.test("machine20.druk('P').toString();", "exception:AssertionError: onbekende knop");
+judge.test('lineup([{naam: "Jules", kleur: "R"}, {naam: "Karissa", kleur: "R"}, {naam: "Edgardo", kleur: "R"}, {naam: "Sherryl", kleur: "R"}]);', ['Jules', 'Karissa', 'Edgardo', 'Sherryl']);
 
-judge.config('switch-context');
-judge.test("var machine21 = new Machine().nieuweBel('6', 0).nieuweBel('5', 3).nieuweBel('1', 1).nieuweBel('4', 0).nieuweBel('2', 1).nieuweBel('2', 4).nieuweBel('3', 1).nieuweKnop('E', ['5', '1', '4'], ['4', '2', '6', '5', '1']).nieuweKnop('D', ['4', '6', '3', '5'], ['6', '4', '3', '1']).nieuweKnop('C', ['5', '1', '3', '4'], ['6', '2', '5', '4']).nieuweKnop('A', ['3'], ['2', '4', '3', '6']).nieuweKnop('B', ['4', '6', '5', '3', '2', '1'], ['6', '1', '4']).nieuweKnop('F', ['2', '6', '1', '5'], ['5', '4']);", "exception:AssertionError: bel bestaat reeds");
+judge.test('lineup([{naam: "Nicolette", kleur: "R"}, {naam: "Casandra", kleur: "R"}, {naam: "Vickie", kleur: "R"}, {naam: "Sidney", kleur: "B"}, {naam: "Allan", kleur: "R"}]);', ['Nicolette', 'Casandra', 'Vickie', 'Allan', 'Sidney']);
 
-judge.config('switch-context');
-judge.test("var machine22 = new Machine().nieuweBel('5', 2).nieuweBel('6', 1).nieuweBel('4', 3).nieuweBel('1', 2).nieuweBel('2', 2).nieuweBel('3', 4).nieuweKnop('D', ['6'], ['5', '1', '2', '6']).nieuweKnop('C', ['5'], ['5', '4', '2']).nieuweKnop('B', ['4', '3', '2'], ['4', '3', '6']).nieuweKnop('A', ['6'], ['2', '5', '1', '6']).nieuweKnop('E', ['5'], ['4', '6']);");
-judge.test("machine22.druk(['D', 'E']).toString();", "1: 3\n2: 3\n3: 4\n4: 4\n5: 2\n6: 2");
+judge.test('lineup([{naam: "Gaston", kleur: "B"}, {naam: "Toby", kleur: "B"}, {naam: "Joelle", kleur: "B"}, {naam: "Lucinda", kleur: "B"}, {naam: "Zora", kleur: "B"}, {naam: "Eleni", kleur: "B"}]);', ['Eleni', 'Zora', 'Lucinda', 'Joelle', 'Toby', 'Gaston']);
 
-judge.config('switch-context');
-judge.test("var machine23 = new Machine().nieuweBel('3', 1).nieuweBel('1', 0).nieuweBel('2', 2).nieuweBel('4', 0).nieuweKnop('D', ['2'], ['2', '4', '1', '3']).nieuweKnop('B', ['4', '3', '1'], ['4', '2', '3', '1']).nieuweKnop('E', ['1'], ['6', '2']).nieuweKnop('F', ['1', '3', '4'], ['4', '2', '1']).nieuweKnop('A', ['4', '2'], ['4', '1']).nieuweKnop('C', ['2', '1', '3', '4'], ['1', '4', '2', '3']);", "exception:AssertionError: onbekende bel");
+judge.test('lineup([{naam: "Allan", kleur: "R"}, {naam: "Jules", kleur: "R"}, {naam: "Juno", kleur: "R"}, {naam: "Zachery", kleur: "R"}, {naam: "Leo", kleur: "R"}, {naam: "Stewart", kleur: "R"}]);', ['Allan', 'Jules', 'Juno', 'Zachery', 'Leo', 'Stewart']);
 
-judge.config('switch-context');
-judge.test("var machine24 = new Machine().nieuweBel('1', 1).nieuweBel('3', 2).nieuweBel('5', 3).nieuweBel('4', 5).nieuweBel('2', 1).nieuweBel('6', 5).nieuweKnop('D', ['6'], ['5', '4', '1', '3', '2', '6']).nieuweKnop('C', ['5', '3', '2', '4'], ['3', '2', '5', '1']).nieuweKnop('A', ['3', '4', '1', '5', '2'], ['1', '3', '6', '5', '4', '2']).nieuweKnop('B', ['3', '4', '2', '6', '1', '5'], ['5', '4', '6', '2', '1', '3']).nieuweKnop('B', ['5', '2', '1'], ['4', '2', '5', '3', '6']);", "exception:AssertionError: knop bestaat reeds");
+judge.test('lineup([{naam: "Ingrid", kleur: "B"}, {naam: "Walter", kleur: "R"}, {naam: "Dorie", kleur: "R"}, {naam: "Jeri", kleur: "R"}, {naam: "Stephane", kleur: "R"}, {naam: "Ricky", kleur: "B"}, {naam: "Brian", kleur: "R"}, {naam: "Gayla", kleur: "B"}, {naam: "Rich", kleur: "B"}, {naam: "Zachery", kleur: "R"}]);', ['Walter', 'Dorie', 'Jeri', 'Stephane', 'Brian', 'Zachery', 'Rich', 'Gayla', 'Ricky', 'Ingrid']);
 
-judge.config('switch-context');
-judge.test("var machine25 = new Machine().nieuweBel('4', 1).nieuweBel('1', 3).nieuweBel('2', 0).nieuweBel('3', 2).nieuweBel('6', 0).nieuweBel('5', 4).nieuweKnop('A', ['3'], ['6', '3', '2']).nieuweKnop('C', ['5'], ['4']).nieuweKnop('B', ['3', '4', '5', '1'], ['3', '5', '6', '2', '4']);");
-judge.test("machine25.druk(['A', 'A', 'C', 'A', 'A']).toString();", "1: 3\n2: 4\n3: 2\n4: 2\n5: 3\n6: 4");
+judge.test('lineup([{naam: "Karissa", kleur: "B"}, {naam: "Lucinda", kleur: "R"}, {naam: "Delfina", kleur: "R"}, {naam: "Madie", kleur: "B"}, {naam: "Ingrid", kleur: "R"}, {naam: "Ashly", kleur: "B"}]);', ['Lucinda', 'Delfina', 'Ingrid', 'Ashly', 'Madie', 'Karissa']);
 
-judge.config('switch-context');
-judge.test("var machine26 = new Machine().nieuweBel('1', 1).nieuweBel('6', 4).nieuweBel('2', 1).nieuweBel('3', 5).nieuweBel('5', 2).nieuweBel('4', 4).nieuweKnop('B', ['3', '5', '1', '2', '6', '4'], ['2', '4', '1']).nieuweKnop('A', ['2', '4'], ['4', '1']).nieuweKnop('C', ['6', '3', '2', '1'], ['4', '1', '6']);");
-judge.test("machine26.druk(['B', 'A', 'T', 'A', 'B', 'B', 'A']).toString();", "exception:AssertionError: onbekende knop");
+judge.test('lineup([{naam: "Zachery", kleur: "B"}, {naam: "Jeri", kleur: "R"}, {naam: "Matthew", kleur: "B"}, {naam: "Katrina", kleur: "B"}, {naam: "Brian", kleur: "R"}, {naam: "Cathrine", kleur: "B"}, {naam: "Stewart", kleur: "R"}]);', ['Jeri', 'Brian', 'Stewart', 'Cathrine', 'Katrina', 'Matthew', 'Zachery']);
 
-judge.config('switch-context');
-judge.test("var machine27 = new Machine().nieuweBel('1', 1).nieuweBel('4', 5).nieuweBel('3', 0).nieuweBel('2', 1).nieuweKnop('B', ['1', '3'], ['2', '1', '4', '3']).nieuweKnop('D', ['2'], ['4', '1', '2', '3']).nieuweKnop('A', ['3', '2', '1', '4'], ['2']).nieuweKnop('C', ['4'], ['4']);");
-judge.test("machine27.druk('D').toString();", "1: 2\n2: 1\n3: 1\n4: 6");
+judge.test('lineup([{naam: "Iona", kleur: "B"}, {naam: "Manda", kleur: "B"}, {naam: "Vickie", kleur: "R"}, {naam: "Lucinda", kleur: "R"}, {naam: "Toby", kleur: "B"}, {naam: "Darron", kleur: "R"}, {naam: "Dick", kleur: "R"}, {naam: "Lissa", kleur: "B"}, {naam: "Madie", kleur: "B"}, {naam: "Rich", kleur: "B"}]);', ['Vickie', 'Lucinda', 'Darron', 'Dick', 'Rich', 'Madie', 'Lissa', 'Toby', 'Manda', 'Iona']);
 
-judge.config('switch-context');
-judge.test("var machine28 = new Machine().nieuweBel('4', 5).nieuweBel('3', 3).nieuweBel('1', 5).nieuweBel('2', 2).nieuweKnop('C', ['4', '2', '3', '1'], ['1', '3', '2', '4']).nieuweKnop('F', ['1', '3', '4', '2'], ['1']).nieuweKnop('A', ['3'], ['4', '2']).nieuweKnop('D', ['1', '2'], ['3', '1', '2', '4']).nieuweKnop('E', ['4', '1'], ['4']).nieuweKnop('B', ['8', '2', '3', '1', '4'], ['3', '2', '4', '1']);", "exception:AssertionError: onbekende bel");
+judge.test('lineup([{naam: "Lena", kleur: "B"}, {naam: "Pandora", kleur: "B"}, {naam: "Margot", kleur: "R"}, {naam: "Cherise", kleur: "R"}, {naam: "Hertha", kleur: "B"}, {naam: "Sidney", kleur: "R"}, {naam: "Dick", kleur: "R"}]);', ['Margot', 'Cherise', 'Sidney', 'Dick', 'Hertha', 'Pandora', 'Lena']);
 
-judge.config('switch-context');
-judge.test("var machine29 = new Machine().nieuweBel('2', 0).nieuweBel('4', 4).nieuweBel('1', 2).nieuweBel('3', 1).nieuweKnop('A', ['1'], ['1', '4', '2', '3']).nieuweKnop('C', ['4', '2', '1', '3'], ['3', '1', '2', '4']).nieuweKnop('D', ['3', '4', '1', '2'], ['3', '1', '4']).nieuweKnop('B', ['2', '1'], ['3', '1']);");
-judge.test("machine29.druk(['A', 'D', 'B', 'A', 'A', 'D']).toString();", "1: 2\n2: 1\n3: 4\n4: 7");
+judge.test('lineup([{naam: "Casandra", kleur: "B"}, {naam: "Leo", kleur: "B"}, {naam: "Sparkle", kleur: "B"}, {naam: "Rey", kleur: "B"}, {naam: "Tifany", kleur: "B"}, {naam: "Sherryl", kleur: "B"}, {naam: "Graham", kleur: "B"}, {naam: "Aimee", kleur: "B"}]);', ['Aimee', 'Graham', 'Sherryl', 'Tifany', 'Rey', 'Sparkle', 'Leo', 'Casandra']);
 
-judge.config('switch-context');
-judge.test("var machine30 = new Machine().nieuweBel('5', 0).nieuweBel('1', 1).nieuweBel('4', 1).nieuweBel('3', 4).nieuweBel('2', 0).nieuweKnop('C', ['4', '1', '3'], ['5', '1', '3', '4']).nieuweKnop('A', ['4', '2'], ['1', '3', '4', '5', '2']).nieuweKnop('B', ['4', '2', '3'], ['2', '3', '1', '5']);");
-judge.test("machine30.druk(['C', 'A', 'C', 'A', 'A', 'A']).toString();", "1: 1\n2: 0\n3: 4\n4: 1\n5: 2");
+judge.test('lineup([{naam: "Johnny", kleur: "B"}, {naam: "Zachery", kleur: "R"}, {naam: "Mallory", kleur: "R"}, {naam: "Zora", kleur: "B"}, {naam: "Eryn", kleur: "B"}]);', ['Zachery', 'Mallory', 'Eryn', 'Zora', 'Johnny']);
 
-judge.config('switch-context');
-judge.test("var machine31 = new Machine().nieuweBel('3', 5).nieuweBel('1', 2).nieuweBel('2', 1).nieuweKnop('B', ['3'], ['2']).nieuweKnop('A', ['3', '2', '1'], ['1', '3']).nieuweKnop('D', ['3', '2', '1'], ['3', '2', '1']).nieuweKnop('C', ['1', '3', '2'], ['1', '2', '3']);");
-judge.test("machine31.druk(['T', 'D', 'B', 'N', 'A', 'B', 'C', 'A']).toString();", "exception:AssertionError: onbekende knop");
+judge.test('lineup([{naam: "Graham", kleur: "B"}, {naam: "Brian", kleur: "B"}, {naam: "Lena", kleur: "B"}, {naam: "Gertha", kleur: "R"}, {naam: "Janette", kleur: "B"}, {naam: "Sherryl", kleur: "B"}, {naam: "Stewart", kleur: "R"}]);', ['Gertha', 'Stewart', 'Sherryl', 'Janette', 'Lena', 'Brian', 'Graham']);
 
-judge.config('switch-context');
-judge.test("var machine32 = new Machine().nieuweBel('2', 5).nieuweBel('4', 3).nieuweBel('5', 3).nieuweBel('3', 3).nieuweBel('1', 3).nieuweKnop('A', ['1', '3', '4', '5'], ['5', '2', '3']).nieuweKnop('B', ['5'], ['5', '1', '4', '3']).nieuweKnop('C', ['3', '5'], ['3', '1', '2', '5', '4']);");
-judge.test("machine32.druk(['J', 'B', 'B', 'B', 'E']).toString();", "exception:AssertionError: onbekende knop");
+judge.test('lineup([{naam: "Mason", kleur: "R"}, {naam: "Janette", kleur: "R"}, {naam: "Allan", kleur: "B"}, {naam: "Mariana", kleur: "R"}]);', ['Mason', 'Janette', 'Mariana', 'Allan']);
 
-judge.config('switch-context');
-judge.test("var machine33 = new Machine().nieuweBel('5', 2).nieuweBel('2', 0).nieuweBel('4', 2).nieuweBel('3', 1).nieuweBel('1', 4).nieuweBel('6', 5).nieuweKnop('E', ['1', '5', '2', '4', '6', '3'], ['4', '2']).nieuweKnop('C', ['1', '6', '4', '3', '5', '2'], ['6', '5', '3', '1', '4', '2']).nieuweKnop('D', ['3'], ['2', '4', '3']).nieuweKnop('A', ['6', '1', '3', '5', '2', '4'], ['2', '5', '1', '4']).nieuweKnop('F', ['3', '6', '1'], ['1', '6', '2']).nieuweKnop('B', ['2', '4', '1'], ['5', '6', '1', '2', '3']);");
-judge.test("machine33.druk(['C', 'A', 'A', 'B', 'Z', 'B', 'F', 'H']).toString();", "exception:AssertionError: onbekende knop");
+judge.test('lineup([{naam: "Mason", kleur: "R"}, {naam: "Julieta", kleur: "R"}, {naam: "Stewart", kleur: "R"}, {naam: "Pandora", kleur: "R"}, {naam: "Ingrid", kleur: "R"}, {naam: "Zachery", kleur: "R"}, {naam: "Johnny", kleur: "R"}, {naam: "Rich", kleur: "R"}, {naam: "Dorie", kleur: "R"}]);', ['Mason', 'Julieta', 'Stewart', 'Pandora', 'Ingrid', 'Zachery', 'Johnny', 'Rich', 'Dorie']);
 
-judge.config('switch-context');
-judge.test("var machine34 = new Machine().nieuweBel('3', 0).nieuweBel('1', 5).nieuweBel('2', 1).nieuweKnop('B', ['2', '1'], ['1', '2', '3']).nieuweKnop('A', ['2', '3', '1'], ['1']).nieuweKnop('C', ['3', '2', '1'], ['3', '1', '2']).nieuweKnop('D', ['3', '1'], ['2', '3', '1']).nieuweKnop('D', ['1'], ['1', '3']);", "exception:AssertionError: knop bestaat reeds");
+judge.test('lineup([{naam: "Lauren", kleur: "B"}, {naam: "Toby", kleur: "B"}, {naam: "Juno", kleur: "B"}, {naam: "Coleen", kleur: "R"}, {naam: "Pedro", kleur: "R"}, {naam: "Delfina", kleur: "R"}, {naam: "Sidney", kleur: "B"}, {naam: "Teresa", kleur: "R"}, {naam: "Christi", kleur: "B"}, {naam: "Lindsey", kleur: "R"}]);', ['Coleen', 'Pedro', 'Delfina', 'Teresa', 'Lindsey', 'Christi', 'Sidney', 'Juno', 'Toby', 'Lauren']);
 
-judge.config('switch-context');
-judge.test("var machine35 = new Machine().nieuweBel('2', 3).nieuweBel('3', 1).nieuweBel('4', 1).nieuweBel('5', 2).nieuweBel('1', 2).nieuweBel('6', 4).nieuweKnop('A', ['1', '6'], ['6', '3', '2', '5']).nieuweKnop('C', ['6', '4', '3', '2', '5'], ['2', '3', '6', '4', '1', '5']).nieuweKnop('B', ['4', '5', '1', '3', '6', '2'], ['6']);");
-judge.test("machine35.druk(['A', 'C', 'B', 'B', 'B', 'B', 'B', 'A']).toString();", "1: 0\n2: 4\n3: 2\n4: 0\n5: 3\n6: 4");
+judge.test('lineup([{naam: "Gayla", kleur: "B"}, {naam: "Linda", kleur: "B"}, {naam: "Matthew", kleur: "B"}, {naam: "Bethel", kleur: "B"}, {naam: "Ingrid", kleur: "B"}, {naam: "Coleen", kleur: "B"}, {naam: "Sidney", kleur: "B"}, {naam: "Mason", kleur: "B"}, {naam: "May", kleur: "B"}, {naam: "Rich", kleur: "B"}]);', ['Rich', 'May', 'Mason', 'Sidney', 'Coleen', 'Ingrid', 'Bethel', 'Matthew', 'Linda', 'Gayla']);
 
-judge.config('switch-context');
-judge.test("var machine36 = new Machine().nieuweBel('5', 0).nieuweBel('3', 1).nieuweBel('1', 5).nieuweBel('4', 0).nieuweBel('2', 0).nieuweKnop('E', ['5', '4', '1', '3', '2'], ['5', '1']).nieuweKnop('B', ['4', '2', '3', '5', '1'], ['2']).nieuweKnop('D', ['2', '1', '3'], ['3', '1']).nieuweKnop('F', ['2', '5', '1'], ['1']).nieuweKnop('A', ['5', '4', '3', '1', '2'], ['1', '5', '3', '2', '4']).nieuweKnop('C', ['1'], ['3', '5', '4', '2']);");
-judge.test("machine36.druk(['B', 'F', 'B', 'C', 'C']).toString();", "1: 3\n2: 2\n3: 3\n4: 2\n5: 2");
+judge.test('lineup([{naam: "Dorie", kleur: "B"}, {naam: "Sparkle", kleur: "B"}, {naam: "Gertha", kleur: "R"}, {naam: "Adell", kleur: "R"}]);', ['Gertha', 'Adell', 'Sparkle', 'Dorie']);
 
-judge.config('switch-context');
-judge.test("var machine37 = new Machine().nieuweBel('3', 2).nieuweBel('1', 0).nieuweBel('2', 5).nieuweBel('4', 4).nieuweKnop('B', ['3', '4', '2'], ['2', '1', '4', '3']).nieuweKnop('D', ['2', '1', '4'], ['3', '2', '1', '4']).nieuweKnop('C', ['4'], ['4', '2', '1']).nieuweKnop('A', ['1'], ['1', '2', '8']);", "exception:AssertionError: onbekende bel");
+judge.test('lineup([{naam: "Jules", kleur: "B"}, {naam: "Allan", kleur: "R"}, {naam: "Graham", kleur: "B"}, {naam: "Jolynn", kleur: "B"}, {naam: "Marco", kleur: "B"}, {naam: "Casandra", kleur: "B"}, {naam: "Gaston", kleur: "B"}, {naam: "Sherryl", kleur: "B"}, {naam: "Eileen", kleur: "R"}]);', ['Allan', 'Eileen', 'Sherryl', 'Gaston', 'Casandra', 'Marco', 'Jolynn', 'Graham', 'Jules']);
 
-judge.config('switch-context');
-judge.test("var machine38 = new Machine().nieuweBel('1', 2).nieuweBel('4', 4).nieuweBel('3', 1).nieuweBel('2', 4).nieuweKnop('F', ['1'], ['4']).nieuweKnop('A', ['4', '1', '3', '2'], ['1', '3', '2']).nieuweKnop('D', ['2', '3'], ['3']).nieuweKnop('C', ['2', '4', '3'], ['1', '2']).nieuweKnop('E', ['4'], ['4', '3', '1', '2']).nieuweKnop('B', ['1', '3', '2', '4'], ['4', '1', '3', '2']);");
-judge.test("machine38.druk(['B', 'C']).toString();", "1: 3\n2: 4\n3: 0\n4: 3");
+judge.test('lineup([{naam: "Leo", kleur: "R"}, {naam: "Jacklyn", kleur: "R"}, {naam: "Vickie", kleur: "B"}, {naam: "Ingrid", kleur: "R"}, {naam: "Pandora", kleur: "R"}]);', ['Leo', 'Jacklyn', 'Ingrid', 'Pandora', 'Vickie']);
 
-judge.config('switch-context');
-judge.test("var machine39 = new Machine().nieuweBel('5', 1).nieuweBel('1', 3).nieuweBel('4', 5).nieuweBel('2', 2).nieuweBel('3', 1).nieuweKnop('C', ['4', '1', '3', '5', '2'], ['3', '4', '1', '5']).nieuweKnop('A', ['4'], ['3']).nieuweKnop('D', ['4'], ['3', '4', '1', '5', '2']).nieuweKnop('B', ['5', '3'], ['4', '2']).nieuweKnop('E', ['3', '1', '5'], ['2', '3', '1', '5']);");
-judge.test("machine39.druk(['B', 'W', 'M', 'A']).toString();", "exception:AssertionError: onbekende knop");
+judge.test('lineup([{naam: "Cathrine", kleur: "R"}, {naam: "Stewart", kleur: "R"}, {naam: "Eileen", kleur: "R"}, {naam: "Lucinda", kleur: "R"}, {naam: "Hans", kleur: "B"}, {naam: "Louisa", kleur: "B"}, {naam: "Johnny", kleur: "R"}, {naam: "Lena", kleur: "R"}]);', ['Cathrine', 'Stewart', 'Eileen', 'Lucinda', 'Johnny', 'Lena', 'Louisa', 'Hans']);
 
-judge.config('switch-context');
-judge.test("var machine40 = new Machine().nieuweBel('3', 2).nieuweBel('1', 0).nieuweBel('1', 1).nieuweBel('2', 0).nieuweKnop('A', ['1', '3'], ['3', '1']).nieuweKnop('E', ['3'], ['3', '2']).nieuweKnop('B', ['2', '1'], ['1']).nieuweKnop('D', ['3', '1'], ['2', '1', '3']).nieuweKnop('C', ['3', '2'], ['2', '1']);", "exception:AssertionError: bel bestaat reeds");
+judge.test('lineup([{naam: "Lindsey", kleur: "B"}, {naam: "Nicolette", kleur: "R"}, {naam: "Adell", kleur: "B"}, {naam: "Dorie", kleur: "R"}, {naam: "Mina", kleur: "R"}, {naam: "Coleen", kleur: "B"}, {naam: "Margot", kleur: "B"}]);', ['Nicolette', 'Dorie', 'Mina', 'Margot', 'Coleen', 'Adell', 'Lindsey']);
 
-judge.config('switch-context');
-judge.test("var machine41 = new Machine().nieuweBel('2', 4).nieuweBel('1', 0).nieuweBel('3', 4).nieuweKnop('B', ['2'], ['1', '2', '3']).nieuweKnop('E', ['3'], ['3', '1']).nieuweKnop('E', ['2', '3', '1'], ['3']).nieuweKnop('A', ['3', '1', '2'], ['3', '2', '1']).nieuweKnop('D', ['1', '3'], ['3', '1']).nieuweKnop('C', ['1', '2', '3'], ['3', '1']);", "exception:AssertionError: knop bestaat reeds");
+judge.test('lineup([{naam: "Mason", kleur: "R"}, {naam: "Cornell", kleur: "R"}, {naam: "Janette", kleur: "R"}, {naam: "Margot", kleur: "R"}, {naam: "Britt", kleur: "R"}, {naam: "Matthew", kleur: "R"}, {naam: "Zora", kleur: "R"}, {naam: "Nicolette", kleur: "R"}, {naam: "Gayla", kleur: "R"}, {naam: "Darron", kleur: "R"}]);', ['Mason', 'Cornell', 'Janette', 'Margot', 'Britt', 'Matthew', 'Zora', 'Nicolette', 'Gayla', 'Darron']);
 
-judge.config('switch-context');
-judge.test("var machine42 = new Machine().nieuweBel('1', 3).nieuweBel('2', 2).nieuweBel('3', 4).nieuweKnop('D', ['2', '3'], ['3', '1', '2']).nieuweKnop('A', ['2', '3'], ['2', '1']).nieuweKnop('C', ['3', '2', '1'], ['3']).nieuweKnop('B', ['3'], ['3']);");
-judge.test("machine42.druk(['B', 'B', 'B', 'C', 'B']).toString();", "1: 2\n2: 1\n3: 4");
+judge.test('lineup([{naam: "Edgardo", kleur: "B"}, {naam: "Leanne", kleur: "B"}, {naam: "Grady", kleur: "R"}, {naam: "Pandora", kleur: "B"}, {naam: "Vickie", kleur: "R"}, {naam: "Stewart", kleur: "B"}, {naam: "Rolf", kleur: "B"}, {naam: "Christi", kleur: "R"}, {naam: "Margarette", kleur: "R"}]);', ['Grady', 'Vickie', 'Christi', 'Margarette', 'Rolf', 'Stewart', 'Pandora', 'Leanne', 'Edgardo']);
 
-judge.config('switch-context');
-judge.test("var machine43 = new Machine().nieuweBel('4', 0).nieuweBel('3', 1).nieuweBel('2', 2).nieuweBel('2', 0).nieuweBel('1', 2).nieuweKnop('C', ['2', '4', '3'], ['3']).nieuweKnop('D', ['1', '3', '4', '2'], ['2', '4', '3', '1']).nieuweKnop('B', ['4'], ['4', '2', '1']).nieuweKnop('A', ['4', '1'], ['2', '4', '1', '3']).nieuweKnop('E', ['1', '4', '3', '2'], ['3', '4']).nieuweKnop('F', ['3'], ['4', '3', '1', '2']);", "exception:AssertionError: bel bestaat reeds");
+judge.test('lineup([{naam: "Dustin", kleur: "R"}, {naam: "Aimee", kleur: "R"}, {naam: "Iona", kleur: "B"}, {naam: "Dick", kleur: "R"}]);', ['Dustin', 'Aimee', 'Dick', 'Iona']);
 
-judge.config('switch-context');
-judge.test("var machine44 = new Machine().nieuweBel('1', 3).nieuweBel('4', 4).nieuweBel('2', 4).nieuweBel('3', 4).nieuweKnop('D', ['4', '1', '3'], ['3', '2', '1']).nieuweKnop('B', ['3', '4', '1'], ['1']).nieuweKnop('E', ['3', '2', '1'], ['3', '4']).nieuweKnop('F', ['3', '4', '1', '2'], ['4', '1', '3', '2']).nieuweKnop('C', ['3', '2'], ['4', '2', '1']).nieuweKnop('A', ['2', '1', '4'], ['4', '2', '3']);");
-judge.test("machine44.druk(['B', 'D', 'F', 'I', 'E']).toString();", "exception:AssertionError: onbekende knop");
+judge.test('lineup([{naam: "Cornell", kleur: "R"}, {naam: "Mallory", kleur: "R"}, {naam: "Mariana", kleur: "R"}, {naam: "Toby", kleur: "R"}, {naam: "Rolf", kleur: "R"}, {naam: "Leo", kleur: "B"}]);', ['Cornell', 'Mallory', 'Mariana', 'Toby', 'Rolf', 'Leo']);
 
-judge.config('switch-context');
-judge.test("var machine45 = new Machine().nieuweBel('2', 3).nieuweBel('1', 5).nieuweBel('3', 3).nieuweKnop('D', ['1', '3', '2'], ['3', '2', '1']).nieuweKnop('C', ['3', '1', '2'], ['2', '3']).nieuweKnop('A', ['1', '3', '2'], ['3']).nieuweKnop('B', ['1'], ['2', '3']);");
-judge.test("machine45.druk(['B', 'A', 'B', 'B']).toString();", "1: 1\n2: 5\n3: 6");
+judge.test('lineup([{naam: "Rich", kleur: "R"}, {naam: "Lindsey", kleur: "R"}, {naam: "Louisa", kleur: "R"}, {naam: "Mallory", kleur: "R"}, {naam: "Pandora", kleur: "R"}, {naam: "Pedro", kleur: "R"}, {naam: "Coleen", kleur: "R"}]);', ['Rich', 'Lindsey', 'Louisa', 'Mallory', 'Pandora', 'Pedro', 'Coleen']);
 
-judge.config('switch-context');
-judge.test("var machine46 = new Machine().nieuweBel('4', 1).nieuweBel('3', 5).nieuweBel('2', 4).nieuweBel('1', 3).nieuweKnop('A', ['1', '4', '3', '2'], ['2', '1', '4', '3']).nieuweKnop('B', ['3', '1', '4'], ['2', '1', '4', '3']).nieuweKnop('F', ['3', '1', '4', '2'], ['3', '2', '4', '1']).nieuweKnop('C', ['3', '1'], ['1', '2', '3', '4']).nieuweKnop('E', ['4', '3'], ['4', '1']).nieuweKnop('D', ['2', '1', '3', '4'], ['2', '3', '1']);");
-judge.test("machine46.druk(['B', 'C', 'A', 'D', 'F', 'B', 'H', 'A']).toString();", "exception:AssertionError: onbekende knop");
+judge.test('lineup([{naam: "Delfina", kleur: "R"}, {naam: "Teresa", kleur: "R"}, {naam: "Eileen", kleur: "R"}, {naam: "Tifany", kleur: "R"}, {naam: "Allan", kleur: "R"}, {naam: "Mallory", kleur: "R"}, {naam: "Leo", kleur: "R"}, {naam: "Eleni", kleur: "R"}]);', ['Delfina', 'Teresa', 'Eileen', 'Tifany', 'Allan', 'Mallory', 'Leo', 'Eleni']);
 
-judge.config('switch-context');
-judge.test("var machine47 = new Machine().nieuweBel('1', 1).nieuweBel('3', 5).nieuweBel('2', 2).nieuweBel('4', 1).nieuweKnop('A', ['3', '4', '2'], ['4', '3', '2']).nieuweKnop('B', ['2', '3', '1', '4'], ['4', '1']).nieuweKnop('C', ['4', '2', '3', '1'], ['3', '1']);");
-judge.test("machine47.druk(['B', 'C', 'C', 'A', 'C', 'A', 'B']).toString();", "1: 1\n2: 0\n3: 4\n4: 0");
+judge.test('lineup([{naam: "Dorie", kleur: "R"}, {naam: "Sherryl", kleur: "B"}, {naam: "Ingrid", kleur: "B"}, {naam: "Grady", kleur: "R"}]);', ['Dorie', 'Grady', 'Ingrid', 'Sherryl']);
 
-judge.config('switch-context');
-judge.test("var machine48 = new Machine().nieuweBel('3', 4).nieuweBel('1', 5).nieuweBel('2', 3).nieuweBel('4', 5).nieuweBel('5', 5).nieuweKnop('E', ['5', '3', '1', '4', '2'], ['5', '4']).nieuweKnop('D', ['2'], ['2', '5', '1', '3', '4']).nieuweKnop('A', ['2', '1', '4', '3', '5'], ['4', '5']).nieuweKnop('B', ['3', '1'], ['5', '3', '2']).nieuweKnop('C', ['5', '1', '2', '3', '4'], ['3', '2', '1', '5']);");
-judge.test("machine48.druk(['C', 'A', 'C', 'E']).toString();", "1: 3\n2: 1\n3: 2\n4: 3\n5: 5");
+judge.test('lineup([{naam: "Lissa", kleur: "R"}, {naam: "Cornell", kleur: "R"}, {naam: "Joaquin", kleur: "R"}, {naam: "Gayla", kleur: "R"}, {naam: "Brian", kleur: "R"}, {naam: "Leo", kleur: "R"}, {naam: "Jacklyn", kleur: "R"}, {naam: "Jose", kleur: "R"}, {naam: "Rey", kleur: "R"}]);', ['Lissa', 'Cornell', 'Joaquin', 'Gayla', 'Brian', 'Leo', 'Jacklyn', 'Jose', 'Rey']);
 
-judge.config('switch-context');
-judge.test("var machine49 = new Machine().nieuweBel('2', 1).nieuweBel('3', 5).nieuweBel('1', 3).nieuweKnop('A', ['1', '2'], ['1', '2', '3']).nieuweKnop('B', ['3', '2'], ['1']).nieuweKnop('E', ['1', '2'], ['3', '1']).nieuweKnop('C', ['2', '3'], ['1', '3']).nieuweKnop('D', ['2', '3'], ['2']).nieuweKnop('F', ['2'], ['3']);");
-judge.test("machine49.druk(['F', 'E', 'B']).toString();", "1: 3\n2: 0\n3: 6");
+judge.test('lineup([{naam: "Dick", kleur: "R"}, {naam: "Madie", kleur: "B"}, {naam: "Pedro", kleur: "B"}, {naam: "Iona", kleur: "B"}]);', ['Dick', 'Iona', 'Pedro', 'Madie']);
 
-judge.config('switch-context');
-judge.test("var machine50 = new Machine().nieuweBel('1', 2).nieuweBel('4', 3).nieuweBel('3', 3).nieuweBel('2', 1).nieuweKnop('B', ['3', '2', '4'], ['1', '3', '4', '2']).nieuweKnop('D', ['4'], ['1', '2']).nieuweKnop('A', ['4', '3'], ['1']).nieuweKnop('C', ['4', '1', '2'], ['2', '3']);");
-judge.test("machine50.druk(['A', 'A', 'B', 'C', 'B', 'C', 'C', 'B']).toString();", "1: 4\n2: 1\n3: 2\n4: 0");
+judge.test('lineup([{naam: "Cornell", kleur: "R"}, {naam: "Leanne", kleur: "B"}, {naam: "Linda", kleur: "B"}, {naam: "Manda", kleur: "B"}, {naam: "Joaquin", kleur: "R"}, {naam: "Walter", kleur: "B"}, {naam: "Delfina", kleur: "B"}, {naam: "Matthew", kleur: "B"}, {naam: "Christi", kleur: "R"}, {naam: "Louisa", kleur: "R"}]);', ['Cornell', 'Joaquin', 'Christi', 'Louisa', 'Matthew', 'Delfina', 'Walter', 'Manda', 'Linda', 'Leanne']);
+
+judge.test('lineup([{naam: "Dustin", kleur: "R"}, {naam: "Casandra", kleur: "R"}, {naam: "Hans", kleur: "R"}, {naam: "Jacklyn", kleur: "R"}, {naam: "Rich", kleur: "R"}]);', ['Dustin', 'Casandra', 'Hans', 'Jacklyn', 'Rich']);

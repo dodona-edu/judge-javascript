@@ -543,6 +543,7 @@ Judge.prototype.toString = function() {
 	var timings = [0.0, 0.0, 0.0];
 	var hasTimings = [false, false, false];
 	
+	// single-pass to update/complete some of the information
     for (let tab of this.feedback) {
 
     	// initialize badge count of tab
@@ -674,6 +675,53 @@ Judge.prototype.toString = function() {
 	    });
     }
 
+    // update feedback header with additional information
+	if (
+		// no additional information if header already contains other messages
+		!this.feedback.hasMessages() && 
+		// no additional information if critical errors were observed
+		this.criticalErrors.indexOf(this.feedback.getProperty("status")) === -1
+	) {
+		
+		let message = "";
+		
+		// add runtime metrics
+		if (this.feedback.hasProperty("runtime_metrics")) {
+			
+			// fetch runtime metrics
+			let metrics = this.feedback.getProperty("runtime_metrics");
+			
+			// add runtime metrics
+			for (let metric in metrics) {
+				
+				// value: proper formatting 
+				let value;
+				if (metric === "wall_time") {
+					value = metrics[metric].toFixed(3) + "s";
+				} else {
+					value = utils.display(metrics[metric]);
+				}
+				
+				// key: replace underscores by spaces and capitalize
+				metric = metric
+					.replace("_", " ")
+					.replace(/^./, function(s) {return s.toUpperCase(); });
+				
+				// add message line
+				message += "<b>" + metric + ":</b> " + value + "<br>";
+				
+			}
+		}
+		
+		// add extra information to feedback header
+		if (message) {
+			this.feedback.addMessage(new Message({
+				description: message
+			}));
+		}
+		
+	}
+    
     // return string representation of feedback
     return this.feedback.toString();
 
