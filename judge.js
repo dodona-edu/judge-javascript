@@ -358,16 +358,37 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
             expected["return"].update({
                 status: correct ? 'correct answer' : 'wrong answer',
                 expected: (
-                	multiline(expected_result) ? 
+                	multiline(expected_result) && multiline(generated_result)? 
                 	expected_result : 
                 	utils.display(expected_result)
                 ),
                 generated: (
-                	multiline(generated_result) ? 
+                	multiline(expected_result) && multiline(generated_result) ? 
                 	generated_result : 
                 	utils.display(generated_result)
                 )
             });
+            
+            // report on spurious or missing newlines in multiline case
+            if (multiline(expected_result) && multiline(generated_result)) {
+            	if (
+            		expected_result.endswith("\n") &&
+            		expected_result.slice(0, -1) === generated_result
+            	) {
+            		expected["return"].addMessage(new Message({
+            			description: "Error: returned string misses trailing newline",
+            			format: "code"
+            		}));
+            	} else if (
+            		generated_result.endswith("\n") &&
+            		generated_result.slice(0, -1) === expected_result
+            	) {
+            		expected["return"].addMessage(new Message({
+            			description: "Error: returned string has spurious trailing newline",
+            			format: "code"
+            		}));
+            	}
+            }
             
         } else {
             
