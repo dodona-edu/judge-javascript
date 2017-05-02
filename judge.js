@@ -561,6 +561,9 @@ Judge.prototype.toString = function() {
         	
             for (let testcase of context) {
 
+            	// increment badge counts of tab
+            	badgeCount += testcase.getProperty('accepted') === false;
+
             	// wrap testcase description in Dodona message (if string)
             	if (
             		testcase.hasProperty("description") && 
@@ -574,9 +577,6 @@ Judge.prototype.toString = function() {
                 		})
                 	);
             	}        
-
-            	// increment badge counts of tab
-            	badgeCount += testcase.getProperty('accepted') === false;
 
             	// increment timings
             	try {
@@ -658,9 +658,9 @@ Judge.prototype.toString = function() {
 
         // augment tab
         // NOTE: should only be done if context has been processed
+        tab.update({ badgeCount: badgeCount});
         if (hasTimings[1]) {
 	        tab.update({
-	        	badgeCount: badgeCount,
 	        	runtime_metrics: { wall_time: timings[1] },
 	        });
         }
