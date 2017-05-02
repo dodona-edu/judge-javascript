@@ -372,7 +372,7 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
             // report on spurious or missing newlines in multiline case
             if (multiline(expected_result) && multiline(generated_result)) {
             	if (
-            		expected_result.endswith("\n") &&
+            		expected_result.endsWith("\n") &&
             		expected_result.slice(0, -1) === generated_result
             	) {
             		expected["return"].addMessage(new Message({
@@ -380,7 +380,7 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
             			format: "code"
             		}));
             	} else if (
-            		generated_result.endswith("\n") &&
+            		generated_result.endsWith("\n") &&
             		generated_result.slice(0, -1) === expected_result
             	) {
             		expected["return"].addMessage(new Message({
