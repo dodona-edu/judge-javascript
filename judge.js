@@ -403,12 +403,12 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
             expected["return"].update({
                 status: correct ? "correct answer" : "wrong answer",
                 expected: (
-                	multiline(expected_result) || multiline(generated_result)? 
+                	multiline(expected_result) && multiline(generated_result)? 
                 	expected_result : 
                 	utils.display(expected_result)
                 ),
                 generated: (
-                	multiline(expected_result) || multiline(generated_result) ? 
+                	multiline(expected_result) && multiline(generated_result) ? 
                 	generated_result : 
                 	utils.display(generated_result)
                 )
@@ -420,6 +420,8 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
             		expected_result.endsWith("\n") &&
             		expected_result.slice(0, -1) === generated_result
             	) {
+            		
+            		// add message to highlight missing newline
             		expected["return"]
 	        			.addMessage(
 	        				labeledMessage(
@@ -428,10 +430,17 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
 	        					"danger"
 	        				)
 	        			);
+            		
+            		// NOTE: add spurious newline due to bug in diff
+            		expected["return"].generated += "\n";
+            		
+            		
             	} else if (
             		generated_result.endsWith("\n") &&
             		generated_result.slice(0, -1) === expected_result
             	) {
+            		
+            		// add message to highlight spurious newline
             		expected["return"]
 	        			.addMessage(
 	        				labeledMessage(
@@ -440,6 +449,10 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
 	        					"danger"
 	        				)
 	        			);
+
+            		// NOTE: add extra newline due to bug in diff
+            		expected["return"].generated += "\n";
+            		
             	}
             }
             
