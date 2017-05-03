@@ -17,9 +17,12 @@ const Sandbox = require("./sandbox.js");
 const {Message, Submission, Tab, Context, TestCase, Test} = require("./dodona.js"); 
 
 //
-//
+// new message types
+// TODO: these types should get Dodona-support
 //
 
+// display message as a banner (crossing the entire width of the feedback table)
+// NOTE: banner gets color coded based on the status (success, danger, ...)
 function bannerMessage(description, status="success", options={}) {
 	
 	return new Message(
@@ -35,6 +38,8 @@ function bannerMessage(description, status="success", options={}) {
 	
 }
 
+// display message with a label and a description
+// NOTE: label gets color coded based on the status (success, danger, ...)
 function labeledMessage(label, description, status="success", options={}) {
 	
 	return new Message(
@@ -62,13 +67,6 @@ const Judge = function(testFile, options) {
 	// extract options
 	this.time_limit = options ? options.time_limit || 10000 : 10000;
 	
-    // errors that stop further processing
-    this.criticalErrors = [
-        "memory limit exceeded",
-        "time limit exceeded",
-        "compilation error",
-    ];
-
     // setup data structure to which all test results will be added
 	const parser = new TestParser();
     this.feedback = parser.parse(
@@ -171,19 +169,32 @@ Judge.prototype.run = function(sourceFile) {
     
 };
 
+Judge.prototype.stoppedProcessing = function() {
+	
+    // determine top-level status
+	const status = this.feedback.getProperty("status");
+	
+    // define errors that stop further processing
+    const criticalErrors = [
+        "memory limit exceeded",
+        "time limit exceeded",
+        "compilation error",
+    ];
+
+	// determine whether or not processing of test cases has stopped
+	return (
+		// stop if critical errors occurred
+		criticalErrors.includes(status) ||
+		// stop if submission has messages (corresponding to spurious channels)
+		this.feedback.hasMessages()
+	);
+	
+}
+
 Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 	
 	// check if testgroup needs processing
-	var status = this.feedback.getProperty("status");
-	if (
-		// skip if submission has messages (corresponding to channels)
-		this.feedback.hasMessages() ||
-		// skip if critical errors occurred
-		this.criticalErrors.indexOf(status) > -1
-	) {
-		
-		// copy status of parent if parent observed a severe error
-		testgroup.update({ status: status });
+	if (this.stoppedProcessing()) {
 		
 		// no further processing of testgroup
 		return;
@@ -322,24 +333,13 @@ Judge.prototype.evaluateContext = function(script, options, context) {
 Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
 	
 	// check if testcase needs processing
-	var status = this.feedback.getProperty("status");
-	if (
-		// skip if submission has messages (corresponding to channels)
-		this.feedback.hasMessages() ||
-		// skip if critical errors occurred
-		this.criticalErrors.indexOf(status) > -1
-	) {
-		
-		// update testcase
-		testcase.update({ status: status });
-		
+	if (this.stoppedProcessing()) {
+				
 		// update all tests of testcase
 		for (var test of testcase) {
 			
-			// update status
-			test.update({ status: status });
-			
 			// convert return value to string representation
+			// TODO: this could be done at the end for all unprocessed tests
 			if (test.getProperty("data").channel === "return") {
 				const expected_result = test.getProperty("expected");
 				test.update({
@@ -403,12 +403,12 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
             expected["return"].update({
                 status: correct ? "correct answer" : "wrong answer",
                 expected: (
-                	multiline(expected_result) || multiline(generated_result)? 
+                	multiline(expected_result) && multiline(generated_result)? 
                 	expected_result : 
                 	utils.display(expected_result)
                 ),
                 generated: (
-                	multiline(expected_result) || multiline(generated_result) ? 
+                	multiline(expected_result) && multiline(generated_result) ? 
                 	generated_result : 
                 	utils.display(generated_result)
                 )
@@ -420,6 +420,8 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
             		expected_result.endsWith("\n") &&
             		expected_result.slice(0, -1) === generated_result
             	) {
+            		
+            		// add message to highlight missing newline
             		expected["return"]
 	        			.addMessage(
 	        				labeledMessage(
@@ -428,10 +430,14 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
 	        					"danger"
 	        				)
 	        			);
+            		
+            		
             	} else if (
             		generated_result.endsWith("\n") &&
             		generated_result.slice(0, -1) === expected_result
             	) {
+            		
+            		// add message to highlight spurious newline
             		expected["return"]
 	        			.addMessage(
 	        				labeledMessage(
@@ -440,6 +446,7 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
 	        					"danger"
 	        				)
 	        			);
+            		
             	}
             }
             
@@ -482,8 +489,8 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
             correct = comparison.apply(comparison, args);
             
             // update test of exceptions
-            // NOTE: the entire cleaned up stack trace is shown to help the 
-            //       user find where the exception was raised
+            // NOTE: the entire cleaned up stack trace is shown to help the user 
+            //       find where the exception was raised
             expected.exception.update({
                 status: (
                 	correct ? 
@@ -701,35 +708,69 @@ Judge.prototype.toString = function() {
             	for (let test of testcase) {
             		
             		if (test.hasProperty("data")) {
+            			
+            			// check if test is processed
+            			const isProcessed = test.getProperty("status") !== "unprocessed";
 
-                    	// remove evaluation sections from tests            		
+                    	// remove evaluation sections from test
             			delete test.getProperty("data").evaluation;
             			
                     	// add description to test
             			if (test.getProperty("data").channel !== undefined) {
-                			test.update(
-                				bannerMessage(
-                					test.getProperty("data").channel, 
-                					test.getProperty("accepted") ? "success" : "danger"
-                				)
-                			);
+            				if (isProcessed) {
+                    			test.update({
+                    				description: bannerMessage(
+                    					test.getProperty("data").channel, 
+                    					test.getProperty("accepted") ? "success" : "danger"
+                    				)
+                				});            					
+            				} else {
+                    			test.update({
+                    				description: bannerMessage(
+                    					test.getProperty("data").channel + " (unprocessed)", 
+                    					"default"
+                    				)
+                				});            					            					
+            				}
             			}
             			
-            			// delete tests with both return values undefined
-            			if (
-            				test.getProperty("data").channel === "return"
-            				&&
-            				(
-                				!test.hasProperty("expected") ||
-                				test.getProperty("expected") === "undefined"
-            				)
-            				&&
-            				(
-                				!test.hasProperty("generated") ||
-                				test.getProperty("generated") === "undefined"
-            				)
-            			) {
-            				removeTests.push(index);
+            			if (test.getProperty("data").channel === "return") {
+            				
+                			// convert return value to string representation
+                			if (!isProcessed) {
+                				
+                				const expected_result = test.getProperty("expected");
+                				test.update({
+                					// unprocessed test cases are not accepted
+                					accepted: false,
+                					// unprocessed test cases inherit status from top-level
+                					// TODO: drop this if Dodona supports status "unprocessed"
+                					status: this.feedback.getProperty("status"),
+                					// convert return value to string representation
+                	                expected: (
+                	                	multiline(expected_result) ? 
+                	                	expected_result : 
+                	                	utils.display(expected_result)
+                	                )
+                				});
+                				
+                			}
+            				
+                			// delete tests with both return values undefined
+                			if (
+                				(
+                    				!test.hasProperty("expected") ||
+                    				test.getProperty("expected") === "undefined"
+                				)
+                				&&
+                				(
+                    				!test.hasProperty("generated") ||
+                    				test.getProperty("generated") === "undefined"
+                				)
+                			) {
+                				removeTests.push(index);
+                			}
+                			
             			}
 
             		}
@@ -742,6 +783,11 @@ Judge.prototype.toString = function() {
             	removeTests.sort(function(a, b) { return b - a; });
             	for (index of removeTests) {
             		delete testcase.getTests().splice(index, 1);
+            	}
+            	
+            	// remove tests property is not tests are left
+            	if (testcase.getTests().length === 0) {
+            		testcase.deleteProperty("tests");
             	}
             	
             }
@@ -776,12 +822,8 @@ Judge.prototype.toString = function() {
     }
 
     // update feedback header with additional information
-	if (
-		// no additional information if header already contains other messages
-		!this.feedback.hasMessages() && 
-		// no additional information if critical errors were observed
-		this.criticalErrors.indexOf(this.feedback.getProperty("status")) === -1
-	) {
+    // NOTE: only when all testcases have been processed
+	if (!this.stoppedProcessing()) {
 		
 		let message = "";
 		
@@ -830,7 +872,7 @@ Judge.prototype.toString = function() {
 
 // define helper function to determine if object is multiline string
 function multiline(s) {
-	return typeof s === "string" && s.indexOf("\n") > -1;
+	return typeof s === "string" && s.includes("\n");
 }
 
 module.exports = {

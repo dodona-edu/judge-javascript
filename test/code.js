@@ -1,3 +1,5 @@
+console.log("spam");
+
 class Bel{
     constructor(label, bonen){
         this.label = label;

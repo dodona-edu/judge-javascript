@@ -67,7 +67,7 @@ function recursiveDisplay(obj) {
     	// simplify string representation: if string contains only double quotes
     	// and not single quote, then use single quotes as delimiter such that
     	// no escaping is neeeded
-    	if (s.indexOf("\\\"") >= 0 && s.indexOf("'") === -1) {
+    	if (s.includes("\\\"") && !s.includes("'")) {
     		s = "'" + s.slice(1, -1).replace(/\\"/g, "\"") + "'";
     	}
     	
