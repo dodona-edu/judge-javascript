@@ -17,6 +17,26 @@ const Sandbox = require("./sandbox.js");
 const {Message, Submission, Tab, Context, TestCase, Test} = require("./dodona.js"); 
 
 //
+//
+//
+
+function labeledMessage(label, description, status, options) {
+	
+}
+
+function bannerMessage(description, status="danger", options={}) {
+	return new Message(
+		Object.assign(
+			options,
+			{
+				description: "<span class=\"label label-" + status + "\" style=\"display:block;text-align:left;\">" + description + "</span>",
+				format: "html"
+			}
+		)
+	);	
+}
+
+//
 // Judge
 //
 
@@ -87,10 +107,12 @@ Judge.prototype.run = function(sourceFile) {
     	
     	// add message with compilation error (student version)
     	this.feedback
-    		.addMessage(new Message({
-				description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">compilation error</span>",
-				format: "html"
-			}))
+    		.addMessage(
+				bannerMessage(
+					"compilation error", 
+					"danger"
+				)
+			)
     		.addMessage(new Message({
 	    		description: utils.displayError(e, true),
 	        	format: "code"
@@ -98,11 +120,13 @@ Judge.prototype.run = function(sourceFile) {
     	
     	// add message with compilation error (staff version)
     	this.feedback
-    		.addMessage(new Message({
-				description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">compilation error (staff version)</span>",
-	    		permission: "staff",
-				format: "html"
-			}))
+			.addMessage(
+				bannerMessage(
+					"compilation error (staff version)", 
+					"danger", 
+					{ permission: "staff"}
+				)
+			)
     		.addMessage(new Message({
 	    		description: utils.displayError(e, false),
 	    		permission: "staff",
@@ -184,26 +208,30 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 			
 			// add message containing runtime error (student version)
 			testgroup
-				.addMessage(new Message({
-					description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">exception</span>",
-					format: "html"
-				}))
+    			.addMessage(
+    				bannerMessage(
+    					"exception", 
+    					"danger"
+    				)
+    			)
 				.addMessage(new Message({
 					description: utils.displayError(generated["exception"], true),
-			    	format: 'code'
+			    	format: "code"
 				}));
 			
 			// add message containing runtime error (staff version)
 			testgroup
-				.addMessage(new Message({
-					description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">exception (staff version)</span>",
-					permission: 'staff',
-					format: "html"
-				}))
+				.addMessage(
+    				bannerMessage(
+    					"exception", 
+    					"danger",
+    					{ permission: "staff" }
+    				)
+    			)
 				.addMessage(new Message({
 					description: utils.displayError(generated["exception"], false),
-					permission: 'staff',
-					format: 'code'
+					permission: "staff",
+					format: "code"
 				}));
 
 		}
@@ -211,7 +239,7 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 	}
 	
 	// process spurious output on other channels
-	// NOTE: return channels is not checks; after all, if the last statement is
+	// NOTE: return channel is not checked; after all, if the last statement is
 	//       an assignment (e.g. a function assignment), the assigned expression
 	//       is returned
 	for (var channel of ["stdout", "stderr"]) {
@@ -231,14 +259,17 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 			if (report) {
 				
 				// add message containing wrong answer (student version)
-				testgroup.addMessage(new Message({
-					description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">" + channel + "</span>",
-					format: "html"
-				}));
-				testgroup.addMessage(new Message({
-					description: channel === "return" ? utils.display(generated[channel]) : generated[channel],
-			    	format: 'code'
-				}));
+				testgroup.addMessage(bannerMessage(channel, "danger"));
+				testgroup.addMessage(
+					new Message({
+						description: (
+							channel === "return" ? 
+							utils.display(generated[channel]) : 
+							generated[channel]
+						),
+				    	format: "code"
+					})
+				);
 				
 			}
 			
@@ -356,7 +387,7 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
             
             // update test of return values
             expected["return"].update({
-                status: correct ? 'correct answer' : 'wrong answer',
+                status: correct ? "correct answer" : "wrong answer",
                 expected: (
                 	multiline(expected_result) && multiline(generated_result)? 
                 	expected_result : 
@@ -602,7 +633,7 @@ Judge.prototype.toString = function() {
             for (let testcase of context) {
 
             	// increment badge counts of tab
-            	badgeCount += testcase.getProperty('accepted') === false;
+            	badgeCount += testcase.getProperty("accepted") === false;
 
             	// wrap testcase description in Dodona message (if string)
             	if (
