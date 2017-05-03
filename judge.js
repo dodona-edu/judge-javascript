@@ -431,9 +431,6 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
 	        				)
 	        			);
             		
-            		// NOTE: add spurious newline due to bug in diff
-            		expected["return"].generated += "\n";
-            		
             		
             	} else if (
             		generated_result.endsWith("\n") &&
@@ -449,9 +446,6 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
 	        					"danger"
 	        				)
 	        			);
-
-            		// NOTE: add extra newline due to bug in diff
-            		expected["return"].expected += "\n";
             		
             	}
             }
@@ -720,11 +714,11 @@ Judge.prototype.toString = function() {
             			
                     	// add description to test
             			if (test.getProperty("data").channel !== undefined) {
-                			test.update(
-                				bannerMessage(
+                			test.update({
+                				description: bannerMessage(
                 					test.getProperty("data").channel, 
                 					test.getProperty("accepted") ? "success" : "danger"
-                				)
+                				})
                 			);
             			}
             			
