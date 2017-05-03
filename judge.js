@@ -151,7 +151,6 @@ Judge.prototype.run = function(sourceFile) {
     // NOTE: this is done only when code was correctly compiled and executed
     for (var tab of this.feedback) {
         for (var context of tab) {
-            options.timeout = Math.max(this.timeRemaining(), 1);
             this.evaluateContext(script, options, context);
         }
     }        
