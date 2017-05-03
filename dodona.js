@@ -45,15 +45,15 @@ var Test = function(properties, parent) {
 
     // object properties
     this.parent = parent || null;
-    this.properties = {};
-    this.update(
-    	Object.assign(
-		    // default status
-			{ status: "unprocessed" },
-		    // overwrite or add given properties
-			properties
-		)
-    );
+    this.properties = Object.assign(
+	    // default properties
+		{	
+			accepted: false,
+			status: "unprocessed" 
+		},
+	    // set given properties
+		properties
+	)
     
 };
 
@@ -78,9 +78,7 @@ Test.prototype.getProperty = function(name) {
 Test.prototype.setAccepted = function(value) {
 
     // set acceptance of current object
-    if (!this.hasProperty("accepted") || value === false) {
-        this.properties["accepted"] = value;
-    }
+    this.properties["accepted"] = value;
     
     // recursively call function on parent
     if (this.parent !== null) {
@@ -121,9 +119,7 @@ Test.prototype.setStatus = function(value) {
     }
     
     // update object acceptance according to status
-    this.setAccepted(
-    	["unprocessed", "correct answer"].includes(this.getProperty("status"))
-    );
+    this.setAccepted(this.getProperty("status") === "correct answer");
     
     // recursively call function on parent
     if (this.parent !== null) {
