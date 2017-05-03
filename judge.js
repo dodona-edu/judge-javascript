@@ -718,8 +718,8 @@ Judge.prototype.toString = function() {
                 				description: bannerMessage(
                 					test.getProperty("data").channel, 
                 					test.getProperty("accepted") ? "success" : "danger"
-                				)})
-                			);
+                				)
+            				});
             			}
             			
             			// delete tests with both return values undefined
