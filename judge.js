@@ -126,7 +126,7 @@ Judge.prototype.run = function(sourceFile) {
             .addMessage(new Message({
                 description: utils.displayError(e, true),
                 format: "code"
-            }));
+            }))
             // add message with compilation error (staff version)
             .addMessage(
                 bannerMessage(
