@@ -718,7 +718,7 @@ Judge.prototype.toString = function() {
                 				description: bannerMessage(
                 					test.getProperty("data").channel, 
                 					test.getProperty("accepted") ? "success" : "danger"
-                				})
+                				)})
                 			);
             			}
             			
