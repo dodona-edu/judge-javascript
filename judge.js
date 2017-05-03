@@ -179,9 +179,9 @@ Judge.prototype.stoppedProcessing = function() {
 	// determine whether or not processing of test cases has stopped
 	return (
 		// stop if critical errors occurred
-		criticalErrors.includes(status)
+		criticalErrors.includes(status) ||
 		// stop if submission has messages (corresponding to spurious channels)
-		this.feedback.hasMessages() ||
+		this.feedback.hasMessages()
 	);
 	
 }
