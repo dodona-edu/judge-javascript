@@ -3,23 +3,23 @@
 //
 
 var Message = function(properties) {
-	
-	this.properties = Object.assign(
-		// set default values
-		{
-			description: "",
-			format: "text"
-		},
-		// overwrite with specific values
-		properties
-	);
-	
+
+this.properties = Object.assign(
+// set default values
+{
+description: "",
+format: "text"
+},
+// overwrite with specific values
+properties
+);
+
 };
 
 Message.prototype.toJson = function() {
-	
-	return this.properties;
-	
+
+return this.properties;
+
 };
 
 //
@@ -46,32 +46,32 @@ var Test = function(properties, parent) {
     // object properties
     this.parent = parent || null;
     this.properties = Object.assign(
-	    // default properties
-		{	
-			accepted: false,
-			status: "unprocessed" 
-		},
-	    // set given properties
-		properties
-	)
+    // default properties
+{
+accepted: false,
+status: "unprocessed" 
+},
+    // set given properties
+properties
+)
     
 };
 
 Test.prototype.hasProperty = function(name) {
-	
-	// check if object has a property with the given name
+
+// check if object has a property with the given name
     return this.properties.hasOwnProperty(name);
     
 };
 
 Test.prototype.getProperty = function(name) {
     
-	// check if object has a property with the given name
+// check if object has a property with the given name
     if (this.properties.hasOwnProperty(name)) {
         return this.properties[name];        
     }
   
-	// report that object has no property with the given name
+// report that object has no property with the given name
     throw new Error("unknown property \"" + name + "\"");
 };
 
@@ -93,16 +93,16 @@ Test.prototype.setStatus = function(value) {
 
     // define the order of severity of status codes
     const statusCodes = [
-	    "unprocessed",
-	    "correct answer",
-	    "wrong answer",
-	    "runtime error",
-	    "segmentation error",
-	    "unexpected end of line",
-	    "memory limit exceeded",
-	    "time limit exceeded",
-	    "compilation error",
-	];
+    "unprocessed",
+    "correct answer",
+    "wrong answer",
+    "runtime error",
+    "segmentation error",
+    "unexpected end of line",
+    "memory limit exceeded",
+    "time limit exceeded",
+    "compilation error",
+];
     
     // update object status
     index1 = statusCodes.indexOf(value);
@@ -151,34 +151,36 @@ Test.prototype.update = function(properties) {
         } else {
             this.setProperty(property, properties[property]);
         }
-    }        
+    }
+    
+    return this;
     
 }
 
 Test.prototype.deleteProperty = function(name) {
-	
-	if (this.hasProperty(name)) {
-	    delete this.properties[name];		
-	}
-	
+
+if (this.hasProperty(name)) {
+    delete this.properties[name];
+}
+
     return this;
     
 };
     
 Test.prototype.hasParent = function() {
-	
+
     return this.parent !== null;
 
 };
     
 Test.prototype.getParent = function() {
-	
+
     return this.parent;
 
 };
     
 Test.prototype.setParent = function(parent) {
-	
+
     this.parent = parent;
     return this;
     
@@ -197,16 +199,16 @@ Test.prototype.toJson = function() {
                     }
                 );
             } else if (property === "messages") {
-            	json[property] = this.getProperty(property).map(
-            		function(element) { return element.toJson(); }
-            	);
+            json[property] = this.getProperty(property).map(
+            function(element) { return element.toJson(); }
+            );
             } else if (
-            	property === "description" &&
-            	typeof this.getProperty(property) === "object"
+            property === "description" &&
+            typeof this.getProperty(property) === "object"
             ) {
-            	json[property] = this.getProperty(property).toJson();
+            json[property] = this.getProperty(property).toJson();
             } else {
-                json[property] = this.getProperty(property);            		
+                json[property] = this.getProperty(property);            
             }
         }
     }
@@ -230,18 +232,18 @@ Test.prototype.hasMessages = function() {
 };
 
 Test.prototype.addMessage = function(message) {
-	
+
     // add message property if not present
-	if (!this.hasProperty("messages")) {
-		this.setProperty("messages", []);
-	}
-	
-	// add message to list of messages
-	this.getProperty("messages").push(message);
-	
+if (!this.hasProperty("messages")) {
+this.setProperty("messages", []);
+}
+
+// add message to list of messages
+this.getProperty("messages").push(message);
+
     // return object for chaining purposes
-	return this;
-	
+return this;
+
 }
     
 //
@@ -335,9 +337,9 @@ TestGroup.prototype.addGroup = function(group) {
 };
 
 TestGroup.prototype.clearGroups = function(group) {
-	
+
     if (this.hasProperty("groups")) {
-    	this.getProperty("groups").length = 0;
+    this.getProperty("groups").length = 0;
     }
     
 }
@@ -390,9 +392,9 @@ TestGroup.prototype.addTest = function(test) {
 };
 
 TestGroup.prototype.clearTests = function(group) {
-	
+
     if (this.hasProperty("tests")) {
-    	this.getProperty("tests").length = 0;
+    this.getProperty("tests").length = 0;
     }
     
 }
@@ -460,7 +462,7 @@ TestGroup.prototype[Symbol.iterator] = function() {
 //
 
 var TestCase = function(properties, parent) {
-	
+
     // call super constructor
     TestGroup.call(this, properties, parent);
     
