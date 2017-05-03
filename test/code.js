@@ -1,26 +1,56 @@
-function lineup(personen) {
-    
-    // start met een lege wachtrij    
-    var wachtrij = [];
-
-    // breekpunt initialiseren (dit is de positie waar de volgende persoon zal
-    // gaan staan; het breekpunt geeft de positie aan tussen personen met rode 
-    // hoeden en personen met blauwe hoeden, en correspondeert met het aantal 
-    // personen met een rode hoed die voor het breekpunt staan)
-    var breekpunt = 0;
-    
-    // plaats telkens volgende persoon op positie van het breekpunt en verplaats
-    // het breekpunt naar rechts als die persoon een rode hoed opheeft (één 
-    // extra persoon met een rode hoed vóór het breekpunt) 
-    for (var persoon of personen) {
-        wachtrij.splice(breekpunt, 0, persoon.naam);
-        if (persoon.kleur === 'R') {
-            breekpunt += 1;
-        }
+class Bel{
+    constructor(label, bonen){
+        this.label = label;
+        this.bonen = bonen;
     }
-    
-    // namen van personen teruggeven in volgorde waarin ze staan in de finale 
-    // rij
-    return wachtrij;
+}
 
+class Knop{
+    constructor(label, bron, bestem){
+        this.label = label;
+        this.bron = bron;
+        this.bestem = bestem;
+    }
+}
+
+class Machine{
+    constructor(){
+        this.bells = [];
+        this.buttons = [];
+    }
+
+    nieuweBel(label, bonen){
+        var add = true;
+        for(var b in this.bells){
+            if(this.bells[b].label === label){
+                add = false;
+                throw "AssertionError: bel bestaat reeds";
+            }
+        }
+        if(add === true){
+            this.bells.push(new Bel(label, bonen));
+        }
+        return this;
+    }
+
+    nieuweKnop(label, bronnen, bestemmingen){
+        var add = true;
+        for(var b in this.buttons){
+            if(this.buttons[b].label === label){
+                add = false;
+                throw "AssertionError: knop bestaat reeds";
+            }
+        }
+        if(add === true){
+            this.buttons.push(new Knop(label, bronnen, bestemmingen));
+        }
+        return this;
+    }
+    toString(){
+        var out = "";
+        for(var i in this.bells){
+            out += `${this.bells[i].label}: ${this.bells[i].bonen}\n`;
+        }
+        return out;
+    }
 }

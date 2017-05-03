@@ -17,6 +17,40 @@ const Sandbox = require("./sandbox.js");
 const {Message, Submission, Tab, Context, TestCase, Test} = require("./dodona.js"); 
 
 //
+//
+//
+
+function bannerMessage(description, status="success", options={}) {
+	
+	return new Message(
+		Object.assign(
+			options,
+			{
+				// TODO: description requires HTML encoding
+				description: "<span class=\"label label-" + status + "\" style=\"display:block;text-align:left;\">" + description + "</span>",
+				format: "html"
+			}
+		)
+	);
+	
+}
+
+function labeledMessage(label, description, status="success", options={}) {
+	
+	return new Message(
+		Object.assign(
+			options,
+			{
+				// TODO: label and description require HTML encoding
+				description: "<span class=\"label label-" + status + "\">" + label + "</span>&nbsp;" + description,
+				format: "html"
+			}
+		)
+	);
+	
+}
+
+//
 // Judge
 //
 
@@ -87,10 +121,12 @@ Judge.prototype.run = function(sourceFile) {
     	
     	// add message with compilation error (student version)
     	this.feedback
-    		.addMessage(new Message({
-				description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">compilation error</span>",
-				format: "html"
-			}))
+    		.addMessage(
+				bannerMessage(
+					"compilation error", 
+					"danger"
+				)
+			)
     		.addMessage(new Message({
 	    		description: utils.displayError(e, true),
 	        	format: "code"
@@ -98,11 +134,13 @@ Judge.prototype.run = function(sourceFile) {
     	
     	// add message with compilation error (staff version)
     	this.feedback
-    		.addMessage(new Message({
-				description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">compilation error (staff version)</span>",
-	    		permission: "staff",
-				format: "html"
-			}))
+			.addMessage(
+				bannerMessage(
+					"compilation error (staff version)", 
+					"danger", 
+					{ permission: "staff"}
+				)
+			)
     		.addMessage(new Message({
 	    		description: utils.displayError(e, false),
 	    		permission: "staff",
@@ -184,26 +222,30 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 			
 			// add message containing runtime error (student version)
 			testgroup
-				.addMessage(new Message({
-					description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">exception</span>",
-					format: "html"
-				}))
+    			.addMessage(
+    				bannerMessage(
+    					"exception", 
+    					"danger"
+    				)
+    			)
 				.addMessage(new Message({
 					description: utils.displayError(generated["exception"], true),
-			    	format: 'code'
+			    	format: "code"
 				}));
 			
 			// add message containing runtime error (staff version)
 			testgroup
-				.addMessage(new Message({
-					description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">exception (staff version)</span>",
-					permission: 'staff',
-					format: "html"
-				}))
+				.addMessage(
+    				bannerMessage(
+    					"exception", 
+    					"danger",
+    					{ permission: "staff" }
+    				)
+    			)
 				.addMessage(new Message({
 					description: utils.displayError(generated["exception"], false),
-					permission: 'staff',
-					format: 'code'
+					permission: "staff",
+					format: "code"
 				}));
 
 		}
@@ -211,7 +253,7 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 	}
 	
 	// process spurious output on other channels
-	// NOTE: return channels is not checks; after all, if the last statement is
+	// NOTE: return channel is not checked; after all, if the last statement is
 	//       an assignment (e.g. a function assignment), the assigned expression
 	//       is returned
 	for (var channel of ["stdout", "stderr"]) {
@@ -231,14 +273,17 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 			if (report) {
 				
 				// add message containing wrong answer (student version)
-				testgroup.addMessage(new Message({
-					description: "<span class=\"label label-danger\" style=\"display: block;text-align:left;\">" + channel + "</span>",
-					format: "html"
-				}));
-				testgroup.addMessage(new Message({
-					description: channel === "return" ? utils.display(generated[channel]) : generated[channel],
-			    	format: 'code'
-				}));
+				testgroup.addMessage(bannerMessage(channel, "danger"));
+				testgroup.addMessage(
+					new Message({
+						description: (
+							channel === "return" ? 
+							utils.display(generated[channel]) : 
+							generated[channel]
+						),
+				    	format: "code"
+					})
+				);
 				
 			}
 			
@@ -356,18 +401,47 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
             
             // update test of return values
             expected["return"].update({
-                status: correct ? 'correct answer' : 'wrong answer',
+                status: correct ? "correct answer" : "wrong answer",
                 expected: (
-                	multiline(expected_result) ? 
+                	multiline(expected_result) || multiline(generated_result)? 
                 	expected_result : 
                 	utils.display(expected_result)
                 ),
                 generated: (
-                	multiline(generated_result) ? 
+                	multiline(expected_result) || multiline(generated_result) ? 
                 	generated_result : 
                 	utils.display(generated_result)
                 )
             });
+            
+            // report on spurious or missing newlines in multiline case
+            if (multiline(expected_result) && multiline(generated_result)) {
+            	if (
+            		expected_result.endsWith("\n") &&
+            		expected_result.slice(0, -1) === generated_result
+            	) {
+            		expected["return"]
+	        			.addMessage(
+	        				labeledMessage(
+	        					"error", 
+	        					"returned string misses trailing newline",
+	        					"danger"
+	        				)
+	        			);
+            	} else if (
+            		generated_result.endsWith("\n") &&
+            		generated_result.slice(0, -1) === expected_result
+            	) {
+            		expected["return"]
+	        			.addMessage(
+	        				labeledMessage(
+	        					"error", 
+	        					"returned string has spurious trailing newline",
+	        					"danger"
+	        				)
+	        			);
+            	}
+            }
             
         } else {
             
@@ -488,6 +562,33 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
                 status: correct ? "correct answer" : "wrong answer"
             });
         	
+            // report on spurious or missing newlines in multiline case
+        	if (
+        		expected_result.endsWith("\n") &&
+        		expected_result.slice(0, -1) === generated_result
+        	) {
+        		expected[channel]
+        			.addMessage(
+        				labeledMessage(
+        					"error", 
+        					channel + " misses trailing newline",
+        					"danger"
+        				)
+        			);
+        	} else if (
+        		generated_result.endsWith("\n") &&
+        		generated_result.slice(0, -1) === expected_result
+        	) {
+        		expected[channel]
+	    			.addMessage(
+	    				labeledMessage(
+	    					"error", 
+	    					channel + " has spurious trailing newline",
+	    					"danger"
+	    				)
+	    			);
+        	}
+            
         }
         
     }
@@ -561,6 +662,9 @@ Judge.prototype.toString = function() {
         	
             for (let testcase of context) {
 
+            	// increment badge counts of tab
+            	badgeCount += testcase.getProperty("accepted") === false;
+
             	// wrap testcase description in Dodona message (if string)
             	if (
             		testcase.hasProperty("description") && 
@@ -574,9 +678,6 @@ Judge.prototype.toString = function() {
                 		})
                 	);
             	}        
-
-            	// increment badge counts of tab
-            	badgeCount += testcase.getProperty('accepted') === false;
 
             	// increment timings
             	try {
@@ -606,13 +707,12 @@ Judge.prototype.toString = function() {
             			
                     	// add description to test
             			if (test.getProperty("data").channel !== undefined) {
-            				let label = test.getProperty("accepted") ? "label-success" : "label-danger";
-                			test.update({
-                				description: new Message({
-                					description: "<span class=\"label " + label + "\" style=\"display: block;text-align:left;\">" + test.getProperty("data").channel + "</span>",
-                					format: "html"
-                				})
-                			});            				
+                			test.update(
+                				bannerMessage(
+                					test.getProperty("data").channel, 
+                					test.getProperty("accepted") ? "success" : "danger"
+                				)
+                			);
             			}
             			
             			// delete tests with both return values undefined
@@ -658,9 +758,9 @@ Judge.prototype.toString = function() {
 
         // augment tab
         // NOTE: should only be done if context has been processed
+        tab.update({ badgeCount: badgeCount});
         if (hasTimings[1]) {
 	        tab.update({
-	        	badgeCount: badgeCount,
 	        	runtime_metrics: { wall_time: timings[1] },
 	        });
         }
@@ -716,7 +816,8 @@ Judge.prototype.toString = function() {
 		// add extra information to feedback header
 		if (message) {
 			this.feedback.addMessage(new Message({
-				description: message
+				description: message,
+				format: "html"
 			}));
 		}
 		
