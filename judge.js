@@ -179,7 +179,7 @@ Judge.prototype.evaluateCode = function(code, options, testgroup, sandbox) {
 		// skip if submission has messages (corresponding to channels)
 		this.feedback.hasMessages() ||
 		// skip if critical errors occurred
-		this.criticalErrors.indexOf(status) > -1
+		this.criticalErrors.includes(status)
 	) {
 		
 		// copy status of parent if parent observed a severe error
@@ -327,7 +327,7 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
 		// skip if submission has messages (corresponding to channels)
 		this.feedback.hasMessages() ||
 		// skip if critical errors occurred
-		this.criticalErrors.indexOf(status) > -1
+		this.criticalErrors.includes(status)
 	) {
 		
 		// update testcase
@@ -787,7 +787,7 @@ Judge.prototype.toString = function() {
 		// no additional information if header already contains other messages
 		!this.feedback.hasMessages() && 
 		// no additional information if critical errors were observed
-		this.criticalErrors.indexOf(this.feedback.getProperty("status")) === -1
+		!this.criticalErrors.includes(this.feedback.getProperty("status"))
 	) {
 		
 		let message = "";
@@ -837,7 +837,7 @@ Judge.prototype.toString = function() {
 
 // define helper function to determine if object is multiline string
 function multiline(s) {
-	return typeof s === "string" && s.indexOf("\n") > -1;
+	return typeof s === "string" && s.includes("\n");
 }
 
 module.exports = {
