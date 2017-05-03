@@ -432,7 +432,6 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
 	        			);
             		
             		// NOTE: add spurious newline due to bug in diff
-            		expected["return"].expected += "\n";
             		expected["return"].generated += "\n";
             		
             		
@@ -453,7 +452,6 @@ Judge.prototype.evaluateTestcase = function(testcase, options, sandbox) {
 
             		// NOTE: add extra newline due to bug in diff
             		expected["return"].expected += "\n";
-            		expected["return"].generated += "\n";
             		
             	}
             }
