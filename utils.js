@@ -1,29 +1,35 @@
-// helper function for pretty printing values
+// function for pretty printing values
 function display(obj) {
     
     try {
+        
+        // custom string conversion of object
         return recursiveDisplay(obj);
+        
     } catch(e) {
+        
         if (
             e.name === "RangeError" && 
             e.message === "Maximum call stack size exceeded"
         ) {
+            
+            // native string conversion if object has circular references
             return obj.toString();
+            
         } else {
+        
+            // re-throw error if not due to circular references
             throw e;
+            
         }
+        
     }
     
 }
 
-//helper function for pretty printing values
+// helper function for pretty printing values
 function recursiveDisplay(obj) {
     
-    var str = "",
-    keys = [],
-    key, 
-    i;
-
     if (obj === undefined) {
         
         // represent undefined as undefined
@@ -37,28 +43,43 @@ function recursiveDisplay(obj) {
     } else if (Array.isArray(obj)) {
         
         // recursively convert array element to string
-        return "[" + obj.map(function(element){ return display(element); }).join(", ") + "]";
+        return "[" + obj.map(element => display(element)).join(", ") + "]";
         
     } else if (typeof obj === "object") {
         
-        // put all object keys in array
-        if (obj.hasOwnProperty !== undefined && typeof obj.hasOwnProperty === "function") {
-            for (key in obj) {
+        let keys = [];
+        
+        // capture all object keys in an array
+        if (
+            obj.hasOwnProperty !== undefined && 
+            typeof obj.hasOwnProperty === "function"
+        ) {
+            
+            for (let key in obj) {
                 if (obj.hasOwnProperty(key)) {
                     keys.push(key);
                 }
             }
+            
         } else {
-            for (key in obj) {
+            
+            for (let key in obj) {
                 keys.push(key);
             }
+            
         }
         
-        // sort array of keys lexicographically
-        keys.sort();
-
         // recursively convert object key/value pairs to string
-        return "{" + keys.map(function(element){ return display(element) + ": " + display(obj[element]); }).join(", ") + "}";
+        // NOTE: keys are sorted lexicographically
+        return (
+            "{" + 
+            keys.sort().map(element => (
+                display(element) + 
+                ": " + 
+                display(obj[element])).join(", ")
+            ) + 
+            "}"
+        );
         
     } else if (typeof obj === "string") {
         
@@ -75,7 +96,7 @@ function recursiveDisplay(obj) {
         
     } else {
             
-        // pretty print general object
+        // native string conversion if not one of the above types
         return obj.toString();
         
     }
@@ -84,9 +105,6 @@ function recursiveDisplay(obj) {
 
 // helper function for converting Error objects to string
 function displayError(e, cleanup) {
-    
-    var line,
-        message;
     
     // cleanup error message by default
     if (cleanup === undefined) {
@@ -97,12 +115,16 @@ function displayError(e, cleanup) {
         
         if (typeof e === "string") {
             
+            // error message was already converted to string representation
             return e;
             
         } else if (e.stack !== undefined) {
             
-            message = [];
-            for (line of e.stack.split("\n")) {
+            // initialize array to capture lines of the stack trace
+            let message = [];
+            
+            // filter lines of the stack trace
+            for (let line of e.stack.split("\n")) {
                 
                 if (
                     // include all lines if no cleanup is needed
@@ -123,15 +145,18 @@ function displayError(e, cleanup) {
                             
             }
                 
+            // reconstruct stack trace based on filtered lines
             return message.join("\n");
             
         } else {
             
+            let message;
+            
             // format message
             if (e.name !== undefined && e.message !== undefined) {
                 
-                // add line number if available
                 message = e.name;
+                // add line number if available
                 if (e.lineNumber !== undefined) {
                     message += " (line " + e.lineNumber + ")";
                 }
@@ -161,13 +186,13 @@ function displayError(e, cleanup) {
 
 function lineError(e) {
     
-    var last = "";
+    let last = "";
     
     if (typeof e !== "string") {
         e = displayError(e);
     }
     
-    for (var line of e.split("\n")) {
+    for (let line of e.split("\n")) {
         if (!line.startsWith(" ")) {
             last = line;
         }
