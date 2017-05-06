@@ -478,7 +478,7 @@ class Judge {
                     .addMessage(new Message({
                         description: utils.displayError(generated.exception, false),
                         format: "code",
-                        { permission: "staff"}
+                        permission: "staff"
                     }));
                 
                 // fetch information from expected return
