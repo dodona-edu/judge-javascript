@@ -491,7 +491,7 @@ class Judge {
         for (let channel of ["stdout", "stderr"]) {
             
             // fetch generated result on channel
-            generated_result = channel in generated ? generated[channel] : "";
+            const generated_result = channel in generated ? generated[channel] : "";
             
             if (generated_result !== "" && !(channel in expected)) {
                 
