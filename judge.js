@@ -469,6 +469,18 @@ class Judge {
                     data: { channel: "exception" }
                 }));
                 
+                testcase
+                    .addMessage(bannerMessage(
+                        "exception (staff version)", 
+                        "danger",
+                        { permission: "staff"}
+                    ))
+                    .addMessage(new Message({
+                        description: utils.displayError(generated.exception, false),
+                        format: "code",
+                        { permission: "staff"}
+                    }));
+                
                 // fetch information from expected return
                 const test = expected["return"];
                 const expected_result = test.getProperty("expected");
