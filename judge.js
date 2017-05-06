@@ -320,8 +320,7 @@ class Judge {
         }
         
         // map channels to corresponding tests
-        
-expected = {};
+        let expected = {};
         for (let test of testcase) {
             expected[test.getProperty("data").channel] = test;
         }
