@@ -470,7 +470,7 @@ class Judge {
                         "correct answer" : 
                         utils.statusError(generated.exception)
                     ),
-                    generated: errorMessage(generated_result)
+                    generated: generated_result
                 });
                 
             } else {
@@ -478,7 +478,7 @@ class Judge {
                 // add test for generated exception
                 testcase.addTest(new Test({
                     status: utils.statusError(generated.exception),
-                    generated: errorMessage(generated_result),
+                    generated: generated_result,
                     data: { channel: "exception" }
                 }));
                 
