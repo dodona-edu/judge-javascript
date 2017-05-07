@@ -75,7 +75,7 @@ class Test {
         this._parent = parent;
 
         // return object for chaining purposes
-        // return this;
+        return this;
         
     }
 
