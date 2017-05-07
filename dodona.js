@@ -146,16 +146,16 @@ class Test {
         	
             this._properties.status = value;
             
-            // update object acceptance according to status
-            this.setAccepted(this.getProperty("status") === "correct answer");
-            
-            // recursively call function on parent
-            if (this.hasParent()) {
-                this.parent.setStatus(value);
-            }
-            
         }
 
+        // update object acceptance according to status
+        this.setAccepted(this.getProperty("status") === "correct answer");
+        
+        // recursively call function on parent
+        if (this.hasParent()) {
+            this.parent.setStatus(value);
+        }
+        
         // return object for chaining purposes
         return this;
         
