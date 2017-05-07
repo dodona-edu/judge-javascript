@@ -75,7 +75,7 @@ class Test {
         this._parent = parent;
 
         // return object for chaining purposes
-        // return this;
+        return this;
         
     }
 
@@ -136,24 +136,26 @@ class Test {
         // determine current severity
         let currentSeverity = -1;
         if (this.hasProperty("status")) {
-            currentSeverity = statusCodes.indexOf([this.getProperty("status")]);
+            currentSeverity = statusCodes.indexOf(this.getProperty("status"));
         }
 
         // update object status
         // NOTE: object status is only updated in case it was not set before or 
         // in case it is more severe than the previous status
         if (currentSeverity === -1 || currentSeverity < severity) {
+        	
             this._properties.status = value;
+            
+            // update object acceptance according to status
+            this.setAccepted(this.getProperty("status") === "correct answer");
+            
+            // recursively call function on parent
+            if (this.hasParent()) {
+                this.parent.setStatus(value);
+            }
+            
         }
-        
-        // update object acceptance according to status
-        this.setAccepted(this.getProperty("status") === "correct answer");
-        
-        // recursively call function on parent
-        if (this.hasParent()) {
-            this.parent.setStatus(value);
-        }
-        
+
         // return object for chaining purposes
         return this;
         
