@@ -130,6 +130,7 @@ class Judge {
                 lineOffset: 0,
                 columnOffset: 0,
                 displayErrors: true,
+                filename: "<code>"
             };
             
             // pre-compile submitted source code
