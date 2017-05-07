@@ -134,11 +134,11 @@ function displayError(e, cleanup) {
                     //   - indicate where error occurs
                     !line.startsWith("    at ") ||
                     // always include lines that report errors in submitted code
-                    line.search("<code>:") !== -1 || 
+                    line.includes("<code>:") || 
                     // always include lines that report errors in tests
-                    line.search("<test>:") !== -1
+                    line.includes("<test>:")
                 ) {
-                    
+                	
                     message.push(line);                    
 
                 } 

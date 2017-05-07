@@ -29,16 +29,14 @@ function bannerMessage(description, status="success", options) {
     // options parameter is optional
     options = options || {};
     
-    return new Message(
-        Object.assign(
-            options,
-            {
-                // TODO: description requires HTML encoding
-                description: "<span class=\"label label-" + status + "\" style=\"display:block;text-align:left;\">" + description + "</span>",
-                format: "html"
-            }
-        )
-    );
+    return new Message(Object.assign(
+        options,
+        {
+            // TODO: description requires HTML encoding
+            description: "<span class=\"label label-" + status + "\" style=\"display:block;text-align:left;\">" + description + "</span>",
+            format: "html"
+        }
+    ));
     
 }
 
@@ -49,16 +47,42 @@ function labeledMessage(label, description, status="success", options) {
     // options parameter is optional
     options = options || {};
     
-    return new Message(
-        Object.assign(
-            options,
+    return new Message(Object.assign(
+        options,
+        {
+            // TODO: label and description require HTML encoding
+            description: "<span class=\"label label-" + status + "\">" + label + "</span>&nbsp;" + description,
+            format: "html"
+        }
+    ));
+    
+}
+
+// display message with a exception (possibly including stack trace)
+function errorMessage(description, options) {
+	
+    // options parameter is optional
+    options = options || {};
+    
+    // TODO: description requires HTML encoding
+    description = description
+    	// replace newline by line breaks
+    	.replace(/\n/g, "<br />")
+    	// apply HTML encoding
+    	// TODO: replace this poor man's version by a full encoding
+    	// link source code references
+    	.replace(
+			/<code>:([0-9]+)(:[0-9]+)?/,
+			(match, row) => '<a href="#" class="tab-link" data-tab="code" data-line="' + row + '">' + match + '</a>'
+    	);
+    
+    return new Message(Object.assign(
+        options,
             {
-                // TODO: label and description require HTML encoding
-                description: "<span class=\"label label-" + status + "\">" + label + "</span>&nbsp;" + description,
+                description: '<div class="code">' + description + "</div>",
                 format: "html"
             }
-        )
-    );
+        ));
     
 }
 
@@ -152,20 +176,10 @@ class Judge {
                             
             this.feedback
                 // set feedback status to compilation error
-                .setProperties({
-                    status: "compilation error"
-                })
+                .setStatus("compilation error")
                 // add message with compilation error (student version)
-                .addMessage(
-                    bannerMessage(
-                        "compilation error", 
-                        "danger"
-                    )
-                )
-                .addMessage(new Message({
-                    description: utils.displayError(e, true),
-                    format: "code"
-                }))
+                .addMessage(bannerMessage("compilation error", "danger"))
+                .addMessage(errorMessage(utils.displayError(e, true)))
                 // add message with compilation error (staff version)
                 .addMessage(
                     bannerMessage(
@@ -174,11 +188,12 @@ class Judge {
                         { permission: "staff"}
                     )
                 )
-                .addMessage(new Message({
-                    description: utils.displayError(e, false),
-                    permission: "staff",
-                    format: "code"
-                }));
+                .addMessage(
+                	errorMessage(
+                		utils.displayError(e, false),
+                        { permission: "staff"}
+                	)
+                );
             
         }
         
