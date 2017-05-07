@@ -477,6 +477,8 @@ class Judge {
                     data: { channel: "exception" }
                 }));
                 
+                /*
+                // staff version of exception for debugging purposes
                 testcase
                     .addMessage(bannerMessage(
                         "exception (staff version)", 
@@ -488,6 +490,7 @@ class Judge {
                         format: "code",
                         permission: "staff"
                     }));
+                */
                 
                 // fetch information from expected return
                 const test = expected["return"];
