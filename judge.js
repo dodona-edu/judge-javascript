@@ -84,7 +84,7 @@ function errorMessage(description, options) {
     return new Message(Object.assign(
         options,
             {
-                description: '<div class="code wrong">' + description + "</div>",
+                description: '<div class="code">' + description + "</div>",
                 format: "html"
             }
         ));
