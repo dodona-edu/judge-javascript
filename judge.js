@@ -478,7 +478,7 @@ class Judge {
                 // add test for generated exception
                 testcase.addTest(new Test({
                     status: utils.statusError(generated.exception),
-                    generated: generated_result,
+                    generated: errorMessage(generated_result),
                     data: { channel: "exception" }
                 }));
                 
