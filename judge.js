@@ -60,26 +60,31 @@ function labeledMessage(label, description, status="success", options) {
 
 // display message with a exception (possibly including stack trace)
 function errorMessage(description, options) {
-	
+    
     // options parameter is optional
     options = options || {};
     
     // TODO: description requires HTML encoding
     description = description
-    	// replace newline by line breaks
-    	.replace(/\n/g, "<br />")
-    	// apply HTML encoding
-    	// TODO: replace this poor man's version by a full encoding
-    	// link source code references
-    	.replace(
-			/<code>:([0-9]+)(:[0-9]+)?/,
-			(match, row) => '<a href="#" class="tab-link" data-tab="code" data-line="' + row + '">' + match + '</a>'
-    	);
+        // replace newline by line breaks
+        .replace(/\n/g, "<br />")
+        // apply HTML encoding
+        // TODO: replace this poor man's version by a full encoding
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        // link source code references
+        .replace(
+            /<code>:([0-9]+)(:[0-9]+)?/,
+            (match, row) => '<a href="#" class="tab-link" data-tab="code" data-line="' + row + '">' + match + '</a>'
+        );
     
     return new Message(Object.assign(
         options,
             {
-                description: '<div class="code">' + description + "</div>",
+                description: '<div class="code wrong">' + description + "</div>",
                 format: "html"
             }
         ));
@@ -189,10 +194,10 @@ class Judge {
                     )
                 )
                 .addMessage(
-                	errorMessage(
-                		utils.displayError(e, false),
+                    errorMessage(
+                        utils.displayError(e, false),
                         { permission: "staff"}
-                	)
+                    )
                 );
             
         }

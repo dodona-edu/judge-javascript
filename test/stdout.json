@@ -1417,7 +1417,7 @@
             "format": "html"
         },
         {
-            "description": "<div class=\"code\"><a href=\"#\" class=\"tab-link\" data-tab=\"code\" data-line=\"1\"><code>:1</a><br />sfunction lineup(personen) {<br />          ^^^^^^<br />SyntaxError: Unexpected identifier</div>",
+            "description": "<div class=\"code wrong\">&lt;code&gt;:1&lt;br /&gt;sfunction lineup(personen) {&lt;br /&gt;          ^^^^^^&lt;br /&gt;SyntaxError: Unexpected identifier</div>",
             "format": "html"
         },
         {
@@ -1426,7 +1426,7 @@
             "permission": "staff"
         },
         {
-            "description": "<div class=\"code\"><a href=\"#\" class=\"tab-link\" data-tab=\"code\" data-line=\"1\"><code>:1</a><br />sfunction lineup(personen) {<br />          ^^^^^^<br />SyntaxError: Unexpected identifier<br />    at Judge.run (C:\\Users\\pdawyndt\\Documents\\data\\development\\git\\judge-javascript\\judge.js:161:26)<br />    at Object.<anonymous> (C:\\Users\\pdawyndt\\Documents\\data\\development\\git\\judge-javascript\\test\\test-exercise.js:40:7)<br />    at Module._compile (module.js:570:32)<br />    at Object.Module._extensions..js (module.js:579:10)<br />    at Module.load (module.js:487:32)<br />    at tryModuleLoad (module.js:446:12)<br />    at Function.Module._load (module.js:438:3)<br />    at Module.runMain (module.js:604:10)<br />    at run (bootstrap_node.js:393:7)<br />    at startup (bootstrap_node.js:150:9)</div>",
+            "description": "<div class=\"code wrong\">&lt;code&gt;:1&lt;br /&gt;sfunction lineup(personen) {&lt;br /&gt;          ^^^^^^&lt;br /&gt;SyntaxError: Unexpected identifier&lt;br /&gt;    at Judge.run (C:\\Users\\pdawyndt\\Documents\\data\\development\\git\\judge-javascript\\judge.js:166:26)&lt;br /&gt;    at Object.&lt;anonymous&gt; (C:\\Users\\pdawyndt\\Documents\\data\\development\\git\\judge-javascript\\test\\test-exercise.js:40:7)&lt;br /&gt;    at Module._compile (module.js:570:32)&lt;br /&gt;    at Object.Module._extensions..js (module.js:579:10)&lt;br /&gt;    at Module.load (module.js:487:32)&lt;br /&gt;    at tryModuleLoad (module.js:446:12)&lt;br /&gt;    at Function.Module._load (module.js:438:3)&lt;br /&gt;    at Module.runMain (module.js:604:10)&lt;br /&gt;    at run (bootstrap_node.js:393:7)&lt;br /&gt;    at startup (bootstrap_node.js:150:9)</div>",
             "format": "html",
             "permission": "staff"
         }
