@@ -283,6 +283,10 @@ class Judge {
         
         // options parameter is optional
         options = options || {};
+        // update filename to source code
+        options.filename = "<code>";
+        // update timeout based on remaining time for judging
+        options.timeout = this.timeRemaining;
 
         // setup sandbox for execution of submitted source code and all test 
         // cases in the current context
