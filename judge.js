@@ -186,19 +186,15 @@ class Judge {
                 .addMessage(bannerMessage("compilation error", "danger"))
                 .addMessage(errorMessage(utils.displayError(e, true)))
                 // add message with compilation error (staff version)
-                .addMessage(
-                    bannerMessage(
-                        "compilation error (staff version)", 
-                        "danger", 
-                        { permission: "staff"}
-                    )
-                )
-                .addMessage(
-                    errorMessage(
-                        utils.displayError(e, false),
-                        { permission: "staff"}
-                    )
-                );
+                .addMessage(bannerMessage(
+                    "compilation error (staff version)", 
+                    "danger", 
+                    { permission: "staff"}
+                ))
+                .addMessage(errorMessage(
+                    utils.displayError(e, false),
+                    { permission: "staff"}
+                ));
             
         }
         
@@ -243,28 +239,17 @@ class Judge {
                 testgroup
                     // add message containing runtime error (student version)
                     .addMessage(bannerMessage("exception", "danger"))
-                    .addMessage(new Message({
-                        description: utils.displayError(
-                            generated.exception, 
-                            true
-                        ),
-                        format: "code"
-                    }))
+                    .addMessage(errorMessage(utils.displayError(generated.exception, true)))
                     // add message containing runtime error (staff version)
-                    .addMessage(
-                        bannerMessage(
+                    .addMessage(bannerMessage(
                         "exception", 
                         "danger",
                         { permission: "staff" }
                     ))
-                    .addMessage(new Message({
-                        description: utils.displayError(
-                            generated.exception, 
-                            false
-                        ),
-                        permission: "staff",
-                        format: "code"
-                    }));
+                    .addMessage(errorMessage(
+                        utils.displayError(generated.exception, false),
+                        { permission: "staff" }
+                    ));
 
             }
             
@@ -485,7 +470,7 @@ class Judge {
                         "correct answer" : 
                         utils.statusError(generated.exception)
                     ),
-                    generated: generated_result
+                    generated: errorMessage(generated_result)
                 });
                 
             } else {
@@ -505,11 +490,10 @@ class Judge {
                         "danger",
                         { permission: "staff"}
                     ))
-                    .addMessage(new Message({
-                        description: utils.displayError(generated.exception, false),
-                        format: "code",
-                        permission: "staff"
-                    }));
+                    .addMessage(errorMessage(
+                        utils.displayError(generated.exception, false),
+                        { permission: "staff"}
+                    ));
                 */
                 
                 // fetch information from expected return
