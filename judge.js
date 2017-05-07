@@ -77,7 +77,7 @@ function errorMessage(description, options) {
         .replace(/\n/g, "<br />")
         // link source code references
         .replace(
-            /<code>:([0-9]+)/g,
+            /&lt;code&gt;:([0-9]+)(:[0-9]+)?/g,
             (match, row) => '<a href="#" class="tab-link" data-tab="code" data-line="' + row + '">' + match + '</a>'
         );
     
