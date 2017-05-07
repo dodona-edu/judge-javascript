@@ -75,7 +75,7 @@ class Test {
         this._parent = parent;
 
         // return object for chaining purposes
-        return this;
+        // return this;
         
     }
 
@@ -567,7 +567,7 @@ class Context extends TestGroup {
     addTestCase(testcase) {
         
         // return object for chaining purposes
-        return this.addGroup(testcase || new TestCase({}, this));
+        return this.addGroup(testcase || new TestCase());
         
     }
 
@@ -604,7 +604,7 @@ class Tab extends TestGroup {
     addContext(context) {
         
         // return object for chaining purposes
-        return this.addGroup(context || new Context({}, this));
+        return this.addGroup(context || new Context());
         
     }
 
@@ -656,7 +656,7 @@ class Submission extends TestGroup {
     addTab(tab) {
         
         // return object for chaining purposes
-        return this.addGroup(tab || new Tab({}, this));
+        return this.addGroup(tab || new Tab());
         
     }
 
