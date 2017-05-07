@@ -76,8 +76,8 @@ function recursiveDisplay(obj) {
             keys.sort().map(element => (
                 display(element) + 
                 ": " + 
-                display(obj[element])).join(", ")
-            ) + 
+                display(obj[element])
+            )).join(", ") + 
             "}"
         );
         

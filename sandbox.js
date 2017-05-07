@@ -34,6 +34,9 @@ class Sandbox {
         // initialize object that captures all output channels
         let channels = {};
 
+        // options parameter is optional
+        options = options || {};
+        
         // create output buffers to capture stdout and stderr of submitted code
         const OutputBuffer = require("./output-buffer");
         const stdoutBuffer = new OutputBuffer(

@@ -130,6 +130,7 @@ class Judge {
                 lineOffset: 0,
                 columnOffset: 0,
                 displayErrors: true,
+                filename: "<code>"
             };
             
             // pre-compile submitted source code
@@ -283,6 +284,10 @@ class Judge {
         
         // options parameter is optional
         options = options || {};
+        // update filename to source code
+        options.filename = "<code>";
+        // update timeout based on remaining time for judging
+        options.timeout = this.timeRemaining;
 
         // setup sandbox for execution of submitted source code and all test 
         // cases in the current context
@@ -319,15 +324,14 @@ class Judge {
             return;
         }
         
-        // map channels to corresponding tests
+        // extract information from testcase
+        const statements = testcase.getProperty("description");
         
-expected = {};
+        // map testcase channels to corresponding tests
+        let expected = {};
         for (let test of testcase) {
             expected[test.getProperty("data").channel] = test;
         }
-        
-        // extract information from testcase
-        const statements = testcase.getProperty("description");
         
         // options parameter is optional
         options = options || {};
@@ -336,6 +340,9 @@ expected = {};
         // update timeout based on remaining time for judging
         options.timeout = this.timeRemaining;
 
+        // create new sandbox if none was provided
+        sandbox = sandbox || new Sandbox();        
+        
         // execute submitted code in sandbox
         const generated = sandbox.execute(statements, options);
         
@@ -470,6 +477,18 @@ expected = {};
                     data: { channel: "exception" }
                 }));
                 
+                testcase
+                    .addMessage(bannerMessage(
+                        "exception (staff version)", 
+                        "danger",
+                        { permission: "staff"}
+                    ))
+                    .addMessage(new Message({
+                        description: utils.displayError(generated.exception, false),
+                        format: "code",
+                        permission: "staff"
+                    }));
+                
                 // fetch information from expected return
                 const test = expected["return"];
                 const expected_result = test.getProperty("expected");
@@ -492,7 +511,7 @@ expected = {};
         for (let channel of ["stdout", "stderr"]) {
             
             // fetch generated result on channel
-            generated_result = channel in generated ? generated[channel] : "";
+            const generated_result = channel in generated ? generated[channel] : "";
             
             if (generated_result !== "" && !(channel in expected)) {
                 
