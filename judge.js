@@ -323,14 +323,14 @@ class Judge {
             return;
         }
         
-        // map channels to corresponding tests
+        // extract information from testcase
+        const statements = testcase.getProperty("description");
+        
+        // map testcase channels to corresponding tests
         let expected = {};
         for (let test of testcase) {
             expected[test.getProperty("data").channel] = test;
         }
-        
-        // extract information from testcase
-        const statements = testcase.getProperty("description");
         
         // options parameter is optional
         options = options || {};
@@ -339,6 +339,9 @@ class Judge {
         // update timeout based on remaining time for judging
         options.timeout = this.timeRemaining;
 
+        // create new sandbox if none was provided
+        sandbox = sandbox || new Sandbox();        
+        
         // execute submitted code in sandbox
         const generated = sandbox.execute(statements, options);
         
