@@ -55,7 +55,7 @@ class OutputBuffer {
                 // throw an Error to indicate a buffer overrun
                 throw new Error(`output buffer has exceeded maximal size (${
                 	this.maxBufferSize.toString()
-                } bytes)`;
+                } bytes)`);
                 
             }
                 
