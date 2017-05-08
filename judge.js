@@ -33,7 +33,7 @@ function bannerMessage(description, status="success", options) {
         options,
         {
             // TODO: description requires HTML encoding
-            description: "<span class=\"label label-" + status + "\" style=\"display:block;text-align:left;\">" + description + "</span>",
+            description: `<span class="label label-${status}" style="display:block;text-align:left;">${description}</span>`,
             format: "html"
         }
     ));
@@ -51,7 +51,7 @@ function labeledMessage(label, description, status="success", options) {
         options,
         {
             // TODO: label and description require HTML encoding
-            description: "<span class=\"label label-" + status + "\">" + label + "</span>&nbsp;" + description,
+            description: `<span class="label label-${status}">${label}</span>&nbsp;${description}`,
             format: "html"
         }
     ));
@@ -78,16 +78,16 @@ function errorMessage(description, options) {
         // link source code references
         .replace(
             /&lt;code&gt;:([0-9]+)(:[0-9]+)?/g,
-            (match, row) => '<a href="#" class="tab-link" data-tab="code" data-line="' + row + '">' + match + '</a>'
+            (match, row) => `<a href="#" class="tab-link" data-tab="code" data-line="${row}">${match}</a>`
         );
     
     return new Message(Object.assign(
         options,
-            {
-                description: '<div class="code">' + description + "</div>",
-                format: "html"
-            }
-        ));
+        {
+            description: `<div class="code">${ description}</div>`,
+            format: "html"
+        }
+    ));
     
 }
 
