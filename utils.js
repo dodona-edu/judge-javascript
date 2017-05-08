@@ -43,7 +43,7 @@ function recursiveDisplay(obj) {
     } else if (Array.isArray(obj)) {
         
         // recursively convert array element to string
-        return "[" + obj.map(element => display(element)).join(", ") + "]";
+        return `[${obj.map(element => display(element)).join(", ")}]`;
         
     } else if (typeof obj === "object") {
         
@@ -71,15 +71,11 @@ function recursiveDisplay(obj) {
         
         // recursively convert object key/value pairs to string
         // NOTE: keys are sorted lexicographically
-        return (
-            "{" + 
-            keys.sort().map(element => (
-                display(element) + 
-                ": " + 
-                display(obj[element])
-            )).join(", ") + 
-            "}"
-        );
+        return `{${keys
+        	.sort()
+        	.map(element => `${display(element)}: ${display(obj[element])}`)
+        	.join(", ") 
+        }}`;
         
     } else if (typeof obj === "string") {
         
@@ -89,7 +85,7 @@ function recursiveDisplay(obj) {
         // and not single quote, then use single quotes as delimiter such that
         // no escaping is neeeded
         if (s.includes("\\\"") && !s.includes("'")) {
-            s = "'" + s.slice(1, -1).replace(/\\"/g, "\"") + "'";
+            s = `'${s.slice(1, -1).replace(/\\"/g, "\"")}'`;
         }
         
         return s;
@@ -158,15 +154,15 @@ function displayError(e, cleanup) {
                 message = e.name;
                 // add line number if available
                 if (e.lineNumber !== undefined) {
-                    message += " (line " + e.lineNumber + ")";
+                    message += ` (line ${e.lineNumber})`;
                 }
-                message += ": " + e.message;
+                message += `: ${ e.message}`;
                 
             } else {
                 
                 message = "JudgeError: ill-formed Error";
                 if (display(e) !== "") { 
-                    message += ": " + display(e); 
+                    message += `: ${display(e)}`; 
                 }
                 
             }

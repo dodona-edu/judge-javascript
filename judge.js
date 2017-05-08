@@ -559,7 +559,7 @@ class Judge {
                     // add message to highlight missing trailing newline
                     test.addMessage(labeledMessage(
                         "error", 
-                        channel + " misses trailing newline",
+                        `${channel} misses trailing newline`,
                         "danger"
                     ));
                     
@@ -571,7 +571,7 @@ class Judge {
                     // add message to highlight spurious trailing newline
                     test.addMessage(labeledMessage(
                         "error", 
-                        channel + " has spurious trailing newline",
+                        `${channel} has spurious trailing newline`,
                         "danger"
                     ));
                     
@@ -672,12 +672,10 @@ class Judge {
                         
                         const wall_time = testcase.getProperty("runtime_metrics").wall_time;
                         if (wall_time !== undefined) {
-                            timings[0] += wall_time;
-                            timings[1] += wall_time;
-                            timings[2] += wall_time;
-                            hasTimings[0] = true;
-                            hasTimings[1] = true;
-                            hasTimings[2] = true;
+                        	for (let i = 0; i < 3; i += 1) {
+                                timings[i] += wall_time;
+                                hasTimings[i] = true;                        		
+                        	}
                         }
                         
                     } catch(e) {
@@ -716,7 +714,7 @@ class Judge {
                                     // add banner to unprocessed test
                                     test.setProperties({
                                         description: bannerMessage(
-                                            test.getProperty("data").channel + " (unprocessed)", 
+                                             `${test.getProperty("data").channel} (unprocessed)`, 
                                             "default"
                                         )
                                     });
@@ -834,7 +832,7 @@ class Judge {
                         
                         // print timings with three decimal digits and suffix
                         // that indicates timings in seconds
-                        value = metrics[metric].toFixed(3) + "s";
+                        value = `${metrics[metric].toFixed(3)}s`;
                         
                     } else {
                         
@@ -842,13 +840,12 @@ class Judge {
                         
                     }
                     
-                    // key: replace underscores by spaces and capitalize
-                    metric = metric
-                        .replace("_", " ")
-                        .replace(/^./, s => s.toUpperCase());
-                    
                     // add message line
-                    information.push("<b>" + metric + ":</b> " + value);
+                    // key: replace underscores by spaces and capitalize
+                    information.push(`<b>${metric
+                		.replace("_", " ")
+                		.replace(/^./, s => s.toUpperCase())
+                    }:</b> ${value}`);
                     
                 }
                 

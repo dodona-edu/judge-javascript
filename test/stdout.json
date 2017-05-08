@@ -1,1776 +1,1434 @@
 {
-    "status": "correct answer",
-    "accepted": true,
+    "status": "compilation error",
+    "accepted": false,
     "groups": [
         {
-            "status": "correct answer",
-            "accepted": true,
+            "status": "compilation error",
+            "accepted": false,
             "description": "lineup",
             "groups": [
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Alice\", kleur: \"R\"}, {naam: \"Bob\", kleur: \"B\"}, {naam: \"Claire\", kleur: \"R\"}, {naam: \"Dave\", kleur: \"R\"}, {naam: \"Elsa\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Alice\", \"Claire\", \"Dave\", \"Elsa\", \"Bob\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Alice\", \"Claire\", \"Dave\", \"Elsa\", \"Bob\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Sparkle\", kleur: \"R\"}, {naam: \"Rolf\", kleur: \"R\"}, {naam: \"Eileen\", kleur: \"R\"}, {naam: \"Madie\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Sparkle\", \"Rolf\", \"Eileen\", \"Madie\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Sparkle\", \"Rolf\", \"Eileen\", \"Madie\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Brian\", kleur: \"B\"}, {naam: \"Margot\", kleur: \"B\"}, {naam: \"Hans\", kleur: \"B\"}, {naam: \"Lucinda\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Lucinda\", \"Hans\", \"Margot\", \"Brian\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Lucinda\", \"Hans\", \"Margot\", \"Brian\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Joaquin\", kleur: \"B\"}, {naam: \"Jules\", kleur: \"B\"}, {naam: \"Zora\", kleur: \"R\"}, {naam: \"Cherise\", kleur: \"B\"}, {naam: \"Adell\", kleur: \"R\"}, {naam: \"Pandora\", kleur: \"B\"}, {naam: \"Aimee\", kleur: \"B\"}, {naam: \"Teresa\", kleur: \"R\"}, {naam: \"Leanne\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Zora\", \"Adell\", \"Teresa\", \"Leanne\", \"Aimee\", \"Pandora\", \"Cherise\", \"Jules\", \"Joaquin\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Zora\", \"Adell\", \"Teresa\", \"Leanne\", \"Aimee\", \"Pandora\", \"Cherise\", \"Jules\", \"Joaquin\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Casandra\", kleur: \"R\"}, {naam: \"Omar\", kleur: \"R\"}, {naam: \"Louisa\", kleur: \"R\"}, {naam: \"Lauren\", kleur: \"B\"}, {naam: \"Eileen\", kleur: \"B\"}, {naam: \"Katrina\", kleur: \"B\"}, {naam: \"Linda\", kleur: \"R\"}, {naam: \"Lena\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Casandra\", \"Omar\", \"Louisa\", \"Linda\", \"Lena\", \"Katrina\", \"Eileen\", \"Lauren\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Casandra\", \"Omar\", \"Louisa\", \"Linda\", \"Lena\", \"Katrina\", \"Eileen\", \"Lauren\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Dustin\", kleur: \"R\"}, {naam: \"Cornell\", kleur: \"R\"}, {naam: \"Rey\", kleur: \"R\"}, {naam: \"Vickie\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Dustin\", \"Cornell\", \"Rey\", \"Vickie\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Dustin\", \"Cornell\", \"Rey\", \"Vickie\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Tifany\", kleur: \"B\"}, {naam: \"Gayla\", kleur: \"B\"}, {naam: \"Lindsey\", kleur: \"R\"}, {naam: \"Sherryl\", kleur: \"R\"}, {naam: \"Jeffrey\", kleur: \"R\"}, {naam: \"Zachery\", kleur: \"R\"}, {naam: \"Gaston\", kleur: \"R\"}, {naam: \"Delfina\", kleur: \"R\"}, {naam: \"Madie\", kleur: \"B\"}, {naam: \"Linda\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Lindsey\", \"Sherryl\", \"Jeffrey\", \"Zachery\", \"Gaston\", \"Delfina\", \"Linda\", \"Madie\", \"Gayla\", \"Tifany\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Lindsey\", \"Sherryl\", \"Jeffrey\", \"Zachery\", \"Gaston\", \"Delfina\", \"Linda\", \"Madie\", \"Gayla\", \"Tifany\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Iona\", kleur: \"R\"}, {naam: \"Cherise\", kleur: \"R\"}, {naam: \"Joaquin\", kleur: \"R\"}, {naam: \"Eileen\", kleur: \"R\"}, {naam: \"Pedro\", kleur: \"R\"}, {naam: \"Katrina\", kleur: \"B\"}, {naam: \"Zachery\", kleur: \"B\"}, {naam: \"Ricky\", kleur: \"R\"}, {naam: \"Aileen\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Iona\", \"Cherise\", \"Joaquin\", \"Eileen\", \"Pedro\", \"Ricky\", \"Aileen\", \"Zachery\", \"Katrina\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Iona\", \"Cherise\", \"Joaquin\", \"Eileen\", \"Pedro\", \"Ricky\", \"Aileen\", \"Zachery\", \"Katrina\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Dorie\", kleur: \"R\"}, {naam: \"Katrina\", kleur: \"R\"}, {naam: \"Delphine\", kleur: \"R\"}, {naam: \"Mason\", kleur: \"B\"}, {naam: \"Nicolette\", kleur: \"R\"}, {naam: \"Rolf\", kleur: \"B\"}, {naam: \"Johnny\", kleur: \"R\"}, {naam: \"Margarette\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Dorie\", \"Katrina\", \"Delphine\", \"Nicolette\", \"Johnny\", \"Margarette\", \"Rolf\", \"Mason\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Dorie\", \"Katrina\", \"Delphine\", \"Nicolette\", \"Johnny\", \"Margarette\", \"Rolf\", \"Mason\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Aileen\", kleur: \"B\"}, {naam: \"Lissa\", kleur: \"B\"}, {naam: \"Marco\", kleur: \"B\"}, {naam: \"Ashly\", kleur: \"R\"}, {naam: \"Allan\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Ashly\", \"Allan\", \"Marco\", \"Lissa\", \"Aileen\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Ashly\", \"Allan\", \"Marco\", \"Lissa\", \"Aileen\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Matthew\", kleur: \"R\"}, {naam: \"Margarette\", kleur: \"B\"}, {naam: \"Eryn\", kleur: \"B\"}, {naam: \"Mina\", kleur: \"B\"}, {naam: \"Aimee\", kleur: \"R\"}, {naam: \"Janette\", kleur: \"R\"}, {naam: \"Iona\", kleur: \"B\"}, {naam: \"Darron\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Matthew\", \"Aimee\", \"Janette\", \"Darron\", \"Iona\", \"Mina\", \"Eryn\", \"Margarette\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Matthew\", \"Aimee\", \"Janette\", \"Darron\", \"Iona\", \"Mina\", \"Eryn\", \"Margarette\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Rey\", kleur: \"R\"}, {naam: \"Lindsey\", kleur: \"R\"}, {naam: \"May\", kleur: \"R\"}, {naam: \"Jeffrey\", kleur: \"R\"}, {naam: \"Delphine\", kleur: \"R\"}, {naam: \"Walter\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Rey\", \"Lindsey\", \"May\", \"Jeffrey\", \"Delphine\", \"Walter\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Rey\", \"Lindsey\", \"May\", \"Jeffrey\", \"Delphine\", \"Walter\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Sparkle\", kleur: \"R\"}, {naam: \"Cornell\", kleur: \"B\"}, {naam: \"Leanne\", kleur: \"R\"}, {naam: \"Gayla\", kleur: \"R\"}, {naam: \"Ingrid\", kleur: \"R\"}, {naam: \"Pricilla\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Sparkle\", \"Leanne\", \"Gayla\", \"Ingrid\", \"Pricilla\", \"Cornell\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Sparkle\", \"Leanne\", \"Gayla\", \"Ingrid\", \"Pricilla\", \"Cornell\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Pricilla\", kleur: \"B\"}, {naam: \"Leanne\", kleur: \"R\"}, {naam: \"Delfina\", kleur: \"R\"}, {naam: \"Darron\", kleur: \"B\"}, {naam: \"Nicolette\", kleur: \"B\"}, {naam: \"Delphine\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Leanne\", \"Delfina\", \"Delphine\", \"Nicolette\", \"Darron\", \"Pricilla\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Leanne\", \"Delfina\", \"Delphine\", \"Nicolette\", \"Darron\", \"Pricilla\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Pedro\", kleur: \"B\"}, {naam: \"Zachery\", kleur: \"B\"}, {naam: \"Lucius\", kleur: \"B\"}, {naam: \"Gaston\", kleur: \"B\"}, {naam: \"Grady\", kleur: \"B\"}, {naam: \"Britt\", kleur: \"B\"}, {naam: \"Omar\", kleur: \"B\"}, {naam: \"Julieta\", kleur: \"B\"}, {naam: \"Ingrid\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Ingrid\", \"Julieta\", \"Omar\", \"Britt\", \"Grady\", \"Gaston\", \"Lucius\", \"Zachery\", \"Pedro\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Ingrid\", \"Julieta\", \"Omar\", \"Britt\", \"Grady\", \"Gaston\", \"Lucius\", \"Zachery\", \"Pedro\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Rick\", kleur: \"B\"}, {naam: \"Jeri\", kleur: \"B\"}, {naam: \"Walter\", kleur: \"B\"}, {naam: \"Gertha\", kleur: \"R\"}, {naam: \"Lindsey\", kleur: \"B\"}, {naam: \"Gayla\", kleur: \"B\"}, {naam: \"Teresa\", kleur: \"R\"}, {naam: \"Pedro\", kleur: \"R\"}, {naam: \"Grady\", kleur: \"R\"}, {naam: \"Gaston\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Gertha\", \"Teresa\", \"Pedro\", \"Grady\", \"Gaston\", \"Gayla\", \"Lindsey\", \"Walter\", \"Jeri\", \"Rick\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Gertha\", \"Teresa\", \"Pedro\", \"Grady\", \"Gaston\", \"Gayla\", \"Lindsey\", \"Walter\", \"Jeri\", \"Rick\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Stephane\", kleur: \"B\"}, {naam: \"Brian\", kleur: \"B\"}, {naam: \"Ricky\", kleur: \"B\"}, {naam: \"Mason\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Mason\", \"Ricky\", \"Brian\", \"Stephane\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Mason\", \"Ricky\", \"Brian\", \"Stephane\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Marco\", kleur: \"R\"}, {naam: \"Allan\", kleur: \"B\"}, {naam: \"Stephane\", kleur: \"B\"}, {naam: \"Sparkle\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Marco\", \"Sparkle\", \"Stephane\", \"Allan\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Marco\", \"Sparkle\", \"Stephane\", \"Allan\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Jules\", kleur: \"R\"}, {naam: \"Karissa\", kleur: \"R\"}, {naam: \"Edgardo\", kleur: \"R\"}, {naam: \"Sherryl\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Jules\", \"Karissa\", \"Edgardo\", \"Sherryl\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Jules\", \"Karissa\", \"Edgardo\", \"Sherryl\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Nicolette\", kleur: \"R\"}, {naam: \"Casandra\", kleur: \"R\"}, {naam: \"Vickie\", kleur: \"R\"}, {naam: \"Sidney\", kleur: \"B\"}, {naam: \"Allan\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Nicolette\", \"Casandra\", \"Vickie\", \"Allan\", \"Sidney\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Nicolette\", \"Casandra\", \"Vickie\", \"Allan\", \"Sidney\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Gaston\", kleur: \"B\"}, {naam: \"Toby\", kleur: \"B\"}, {naam: \"Joelle\", kleur: \"B\"}, {naam: \"Lucinda\", kleur: \"B\"}, {naam: \"Zora\", kleur: \"B\"}, {naam: \"Eleni\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Eleni\", \"Zora\", \"Lucinda\", \"Joelle\", \"Toby\", \"Gaston\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Eleni\", \"Zora\", \"Lucinda\", \"Joelle\", \"Toby\", \"Gaston\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Allan\", kleur: \"R\"}, {naam: \"Jules\", kleur: \"R\"}, {naam: \"Juno\", kleur: \"R\"}, {naam: \"Zachery\", kleur: \"R\"}, {naam: \"Leo\", kleur: \"R\"}, {naam: \"Stewart\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Allan\", \"Jules\", \"Juno\", \"Zachery\", \"Leo\", \"Stewart\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Allan\", \"Jules\", \"Juno\", \"Zachery\", \"Leo\", \"Stewart\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Ingrid\", kleur: \"B\"}, {naam: \"Walter\", kleur: \"R\"}, {naam: \"Dorie\", kleur: \"R\"}, {naam: \"Jeri\", kleur: \"R\"}, {naam: \"Stephane\", kleur: \"R\"}, {naam: \"Ricky\", kleur: \"B\"}, {naam: \"Brian\", kleur: \"R\"}, {naam: \"Gayla\", kleur: \"B\"}, {naam: \"Rich\", kleur: \"B\"}, {naam: \"Zachery\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Walter\", \"Dorie\", \"Jeri\", \"Stephane\", \"Brian\", \"Zachery\", \"Rich\", \"Gayla\", \"Ricky\", \"Ingrid\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Walter\", \"Dorie\", \"Jeri\", \"Stephane\", \"Brian\", \"Zachery\", \"Rich\", \"Gayla\", \"Ricky\", \"Ingrid\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Karissa\", kleur: \"B\"}, {naam: \"Lucinda\", kleur: \"R\"}, {naam: \"Delfina\", kleur: \"R\"}, {naam: \"Madie\", kleur: \"B\"}, {naam: \"Ingrid\", kleur: \"R\"}, {naam: \"Ashly\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Lucinda\", \"Delfina\", \"Ingrid\", \"Ashly\", \"Madie\", \"Karissa\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Lucinda\", \"Delfina\", \"Ingrid\", \"Ashly\", \"Madie\", \"Karissa\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Zachery\", kleur: \"B\"}, {naam: \"Jeri\", kleur: \"R\"}, {naam: \"Matthew\", kleur: \"B\"}, {naam: \"Katrina\", kleur: \"B\"}, {naam: \"Brian\", kleur: \"R\"}, {naam: \"Cathrine\", kleur: \"B\"}, {naam: \"Stewart\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Jeri\", \"Brian\", \"Stewart\", \"Cathrine\", \"Katrina\", \"Matthew\", \"Zachery\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Jeri\", \"Brian\", \"Stewart\", \"Cathrine\", \"Katrina\", \"Matthew\", \"Zachery\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Iona\", kleur: \"B\"}, {naam: \"Manda\", kleur: \"B\"}, {naam: \"Vickie\", kleur: \"R\"}, {naam: \"Lucinda\", kleur: \"R\"}, {naam: \"Toby\", kleur: \"B\"}, {naam: \"Darron\", kleur: \"R\"}, {naam: \"Dick\", kleur: \"R\"}, {naam: \"Lissa\", kleur: \"B\"}, {naam: \"Madie\", kleur: \"B\"}, {naam: \"Rich\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Vickie\", \"Lucinda\", \"Darron\", \"Dick\", \"Rich\", \"Madie\", \"Lissa\", \"Toby\", \"Manda\", \"Iona\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Vickie\", \"Lucinda\", \"Darron\", \"Dick\", \"Rich\", \"Madie\", \"Lissa\", \"Toby\", \"Manda\", \"Iona\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Lena\", kleur: \"B\"}, {naam: \"Pandora\", kleur: \"B\"}, {naam: \"Margot\", kleur: \"R\"}, {naam: \"Cherise\", kleur: \"R\"}, {naam: \"Hertha\", kleur: \"B\"}, {naam: \"Sidney\", kleur: \"R\"}, {naam: \"Dick\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Margot\", \"Cherise\", \"Sidney\", \"Dick\", \"Hertha\", \"Pandora\", \"Lena\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Margot\", \"Cherise\", \"Sidney\", \"Dick\", \"Hertha\", \"Pandora\", \"Lena\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Casandra\", kleur: \"B\"}, {naam: \"Leo\", kleur: \"B\"}, {naam: \"Sparkle\", kleur: \"B\"}, {naam: \"Rey\", kleur: \"B\"}, {naam: \"Tifany\", kleur: \"B\"}, {naam: \"Sherryl\", kleur: \"B\"}, {naam: \"Graham\", kleur: \"B\"}, {naam: \"Aimee\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Aimee\", \"Graham\", \"Sherryl\", \"Tifany\", \"Rey\", \"Sparkle\", \"Leo\", \"Casandra\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Aimee\", \"Graham\", \"Sherryl\", \"Tifany\", \"Rey\", \"Sparkle\", \"Leo\", \"Casandra\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Johnny\", kleur: \"B\"}, {naam: \"Zachery\", kleur: \"R\"}, {naam: \"Mallory\", kleur: \"R\"}, {naam: \"Zora\", kleur: \"B\"}, {naam: \"Eryn\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Zachery\", \"Mallory\", \"Eryn\", \"Zora\", \"Johnny\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Zachery\", \"Mallory\", \"Eryn\", \"Zora\", \"Johnny\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Graham\", kleur: \"B\"}, {naam: \"Brian\", kleur: \"B\"}, {naam: \"Lena\", kleur: \"B\"}, {naam: \"Gertha\", kleur: \"R\"}, {naam: \"Janette\", kleur: \"B\"}, {naam: \"Sherryl\", kleur: \"B\"}, {naam: \"Stewart\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Gertha\", \"Stewart\", \"Sherryl\", \"Janette\", \"Lena\", \"Brian\", \"Graham\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Gertha\", \"Stewart\", \"Sherryl\", \"Janette\", \"Lena\", \"Brian\", \"Graham\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Mason\", kleur: \"R\"}, {naam: \"Janette\", kleur: \"R\"}, {naam: \"Allan\", kleur: \"B\"}, {naam: \"Mariana\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Mason\", \"Janette\", \"Mariana\", \"Allan\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Mason\", \"Janette\", \"Mariana\", \"Allan\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Mason\", kleur: \"R\"}, {naam: \"Julieta\", kleur: \"R\"}, {naam: \"Stewart\", kleur: \"R\"}, {naam: \"Pandora\", kleur: \"R\"}, {naam: \"Ingrid\", kleur: \"R\"}, {naam: \"Zachery\", kleur: \"R\"}, {naam: \"Johnny\", kleur: \"R\"}, {naam: \"Rich\", kleur: \"R\"}, {naam: \"Dorie\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Mason\", \"Julieta\", \"Stewart\", \"Pandora\", \"Ingrid\", \"Zachery\", \"Johnny\", \"Rich\", \"Dorie\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Mason\", \"Julieta\", \"Stewart\", \"Pandora\", \"Ingrid\", \"Zachery\", \"Johnny\", \"Rich\", \"Dorie\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Lauren\", kleur: \"B\"}, {naam: \"Toby\", kleur: \"B\"}, {naam: \"Juno\", kleur: \"B\"}, {naam: \"Coleen\", kleur: \"R\"}, {naam: \"Pedro\", kleur: \"R\"}, {naam: \"Delfina\", kleur: \"R\"}, {naam: \"Sidney\", kleur: \"B\"}, {naam: \"Teresa\", kleur: \"R\"}, {naam: \"Christi\", kleur: \"B\"}, {naam: \"Lindsey\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Coleen\", \"Pedro\", \"Delfina\", \"Teresa\", \"Lindsey\", \"Christi\", \"Sidney\", \"Juno\", \"Toby\", \"Lauren\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Coleen\", \"Pedro\", \"Delfina\", \"Teresa\", \"Lindsey\", \"Christi\", \"Sidney\", \"Juno\", \"Toby\", \"Lauren\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Gayla\", kleur: \"B\"}, {naam: \"Linda\", kleur: \"B\"}, {naam: \"Matthew\", kleur: \"B\"}, {naam: \"Bethel\", kleur: \"B\"}, {naam: \"Ingrid\", kleur: \"B\"}, {naam: \"Coleen\", kleur: \"B\"}, {naam: \"Sidney\", kleur: \"B\"}, {naam: \"Mason\", kleur: \"B\"}, {naam: \"May\", kleur: \"B\"}, {naam: \"Rich\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Rich\", \"May\", \"Mason\", \"Sidney\", \"Coleen\", \"Ingrid\", \"Bethel\", \"Matthew\", \"Linda\", \"Gayla\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Rich\", \"May\", \"Mason\", \"Sidney\", \"Coleen\", \"Ingrid\", \"Bethel\", \"Matthew\", \"Linda\", \"Gayla\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Dorie\", kleur: \"B\"}, {naam: \"Sparkle\", kleur: \"B\"}, {naam: \"Gertha\", kleur: \"R\"}, {naam: \"Adell\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Gertha\", \"Adell\", \"Sparkle\", \"Dorie\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Gertha\", \"Adell\", \"Sparkle\", \"Dorie\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Jules\", kleur: \"B\"}, {naam: \"Allan\", kleur: \"R\"}, {naam: \"Graham\", kleur: \"B\"}, {naam: \"Jolynn\", kleur: \"B\"}, {naam: \"Marco\", kleur: \"B\"}, {naam: \"Casandra\", kleur: \"B\"}, {naam: \"Gaston\", kleur: \"B\"}, {naam: \"Sherryl\", kleur: \"B\"}, {naam: \"Eileen\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Allan\", \"Eileen\", \"Sherryl\", \"Gaston\", \"Casandra\", \"Marco\", \"Jolynn\", \"Graham\", \"Jules\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Allan\", \"Eileen\", \"Sherryl\", \"Gaston\", \"Casandra\", \"Marco\", \"Jolynn\", \"Graham\", \"Jules\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Leo\", kleur: \"R\"}, {naam: \"Jacklyn\", kleur: \"R\"}, {naam: \"Vickie\", kleur: \"B\"}, {naam: \"Ingrid\", kleur: \"R\"}, {naam: \"Pandora\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Leo\", \"Jacklyn\", \"Ingrid\", \"Pandora\", \"Vickie\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Leo\", \"Jacklyn\", \"Ingrid\", \"Pandora\", \"Vickie\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Cathrine\", kleur: \"R\"}, {naam: \"Stewart\", kleur: \"R\"}, {naam: \"Eileen\", kleur: \"R\"}, {naam: \"Lucinda\", kleur: \"R\"}, {naam: \"Hans\", kleur: \"B\"}, {naam: \"Louisa\", kleur: \"B\"}, {naam: \"Johnny\", kleur: \"R\"}, {naam: \"Lena\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Cathrine\", \"Stewart\", \"Eileen\", \"Lucinda\", \"Johnny\", \"Lena\", \"Louisa\", \"Hans\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Cathrine\", \"Stewart\", \"Eileen\", \"Lucinda\", \"Johnny\", \"Lena\", \"Louisa\", \"Hans\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Lindsey\", kleur: \"B\"}, {naam: \"Nicolette\", kleur: \"R\"}, {naam: \"Adell\", kleur: \"B\"}, {naam: \"Dorie\", kleur: \"R\"}, {naam: \"Mina\", kleur: \"R\"}, {naam: \"Coleen\", kleur: \"B\"}, {naam: \"Margot\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Nicolette\", \"Dorie\", \"Mina\", \"Margot\", \"Coleen\", \"Adell\", \"Lindsey\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Nicolette\", \"Dorie\", \"Mina\", \"Margot\", \"Coleen\", \"Adell\", \"Lindsey\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Mason\", kleur: \"R\"}, {naam: \"Cornell\", kleur: \"R\"}, {naam: \"Janette\", kleur: \"R\"}, {naam: \"Margot\", kleur: \"R\"}, {naam: \"Britt\", kleur: \"R\"}, {naam: \"Matthew\", kleur: \"R\"}, {naam: \"Zora\", kleur: \"R\"}, {naam: \"Nicolette\", kleur: \"R\"}, {naam: \"Gayla\", kleur: \"R\"}, {naam: \"Darron\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Mason\", \"Cornell\", \"Janette\", \"Margot\", \"Britt\", \"Matthew\", \"Zora\", \"Nicolette\", \"Gayla\", \"Darron\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Mason\", \"Cornell\", \"Janette\", \"Margot\", \"Britt\", \"Matthew\", \"Zora\", \"Nicolette\", \"Gayla\", \"Darron\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Edgardo\", kleur: \"B\"}, {naam: \"Leanne\", kleur: \"B\"}, {naam: \"Grady\", kleur: \"R\"}, {naam: \"Pandora\", kleur: \"B\"}, {naam: \"Vickie\", kleur: \"R\"}, {naam: \"Stewart\", kleur: \"B\"}, {naam: \"Rolf\", kleur: \"B\"}, {naam: \"Christi\", kleur: \"R\"}, {naam: \"Margarette\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Grady\", \"Vickie\", \"Christi\", \"Margarette\", \"Rolf\", \"Stewart\", \"Pandora\", \"Leanne\", \"Edgardo\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Grady\", \"Vickie\", \"Christi\", \"Margarette\", \"Rolf\", \"Stewart\", \"Pandora\", \"Leanne\", \"Edgardo\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Dustin\", kleur: \"R\"}, {naam: \"Aimee\", kleur: \"R\"}, {naam: \"Iona\", kleur: \"B\"}, {naam: \"Dick\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Dustin\", \"Aimee\", \"Dick\", \"Iona\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Dustin\", \"Aimee\", \"Dick\", \"Iona\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Cornell\", kleur: \"R\"}, {naam: \"Mallory\", kleur: \"R\"}, {naam: \"Mariana\", kleur: \"R\"}, {naam: \"Toby\", kleur: \"R\"}, {naam: \"Rolf\", kleur: \"R\"}, {naam: \"Leo\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Cornell\", \"Mallory\", \"Mariana\", \"Toby\", \"Rolf\", \"Leo\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Cornell\", \"Mallory\", \"Mariana\", \"Toby\", \"Rolf\", \"Leo\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Rich\", kleur: \"R\"}, {naam: \"Lindsey\", kleur: \"R\"}, {naam: \"Louisa\", kleur: \"R\"}, {naam: \"Mallory\", kleur: \"R\"}, {naam: \"Pandora\", kleur: \"R\"}, {naam: \"Pedro\", kleur: \"R\"}, {naam: \"Coleen\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Rich\", \"Lindsey\", \"Louisa\", \"Mallory\", \"Pandora\", \"Pedro\", \"Coleen\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Rich\", \"Lindsey\", \"Louisa\", \"Mallory\", \"Pandora\", \"Pedro\", \"Coleen\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Delfina\", kleur: \"R\"}, {naam: \"Teresa\", kleur: \"R\"}, {naam: \"Eileen\", kleur: \"R\"}, {naam: \"Tifany\", kleur: \"R\"}, {naam: \"Allan\", kleur: \"R\"}, {naam: \"Mallory\", kleur: \"R\"}, {naam: \"Leo\", kleur: \"R\"}, {naam: \"Eleni\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Delfina\", \"Teresa\", \"Eileen\", \"Tifany\", \"Allan\", \"Mallory\", \"Leo\", \"Eleni\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Delfina\", \"Teresa\", \"Eileen\", \"Tifany\", \"Allan\", \"Mallory\", \"Leo\", \"Eleni\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Dorie\", kleur: \"R\"}, {naam: \"Sherryl\", kleur: \"B\"}, {naam: \"Ingrid\", kleur: \"B\"}, {naam: \"Grady\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Dorie\", \"Grady\", \"Ingrid\", \"Sherryl\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Dorie\", \"Grady\", \"Ingrid\", \"Sherryl\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Lissa\", kleur: \"R\"}, {naam: \"Cornell\", kleur: \"R\"}, {naam: \"Joaquin\", kleur: \"R\"}, {naam: \"Gayla\", kleur: \"R\"}, {naam: \"Brian\", kleur: \"R\"}, {naam: \"Leo\", kleur: \"R\"}, {naam: \"Jacklyn\", kleur: \"R\"}, {naam: \"Jose\", kleur: \"R\"}, {naam: \"Rey\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Lissa\", \"Cornell\", \"Joaquin\", \"Gayla\", \"Brian\", \"Leo\", \"Jacklyn\", \"Jose\", \"Rey\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Lissa\", \"Cornell\", \"Joaquin\", \"Gayla\", \"Brian\", \"Leo\", \"Jacklyn\", \"Jose\", \"Rey\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Dick\", kleur: \"R\"}, {naam: \"Madie\", kleur: \"B\"}, {naam: \"Pedro\", kleur: \"B\"}, {naam: \"Iona\", kleur: \"B\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Dick\", \"Iona\", \"Pedro\", \"Madie\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Dick\", \"Iona\", \"Pedro\", \"Madie\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Cornell\", kleur: \"R\"}, {naam: \"Leanne\", kleur: \"B\"}, {naam: \"Linda\", kleur: \"B\"}, {naam: \"Manda\", kleur: \"B\"}, {naam: \"Joaquin\", kleur: \"R\"}, {naam: \"Walter\", kleur: \"B\"}, {naam: \"Delfina\", kleur: \"B\"}, {naam: \"Matthew\", kleur: \"B\"}, {naam: \"Christi\", kleur: \"R\"}, {naam: \"Louisa\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Cornell\", \"Joaquin\", \"Christi\", \"Louisa\", \"Matthew\", \"Delfina\", \"Walter\", \"Manda\", \"Linda\", \"Leanne\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Cornell\", \"Joaquin\", \"Christi\", \"Louisa\", \"Matthew\", \"Delfina\", \"Walter\", \"Manda\", \"Linda\", \"Leanne\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 },
                 {
-                    "status": "correct answer",
-                    "accepted": true,
+                    "status": "compilation error",
+                    "accepted": false,
                     "groups": [
                         {
-                            "status": "correct answer",
-                            "accepted": true,
+                            "status": "compilation error",
+                            "accepted": false,
                             "description": {
                                 "description": "lineup([{naam: \"Dustin\", kleur: \"R\"}, {naam: \"Casandra\", kleur: \"R\"}, {naam: \"Hans\", kleur: \"R\"}, {naam: \"Jacklyn\", kleur: \"R\"}, {naam: \"Rich\", kleur: \"R\"}]);",
                                 "format": "code"
                             },
                             "tests": [
                                 {
-                                    "status": "correct answer",
-                                    "accepted": true,
+                                    "status": "compilation error",
+                                    "accepted": false,
                                     "expected": "[\"Dustin\", \"Casandra\", \"Hans\", \"Jacklyn\", \"Rich\"]",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Dustin\", \"Casandra\", \"Hans\", \"Jacklyn\", \"Rich\"]",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-default\" style=\"display:block;text-align:left;\">return (unprocessed)</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0
-                    }
+                    ]
                 }
             ],
-            "badgeCount": 0,
-            "runtime_metrics": {
-                "wall_time": 0.009000000000000001
-            }
+            "badgeCount": 50
         }
     ],
-    "runtime_metrics": {
-        "wall_time": 0.009000000000000001
-    },
     "messages": [
         {
-            "description": "<b>Wall time:</b> 0.009s",
+            "description": "<span class=\"label label-danger\" style=\"display:block;text-align:left;\">compilation error</span>",
             "format": "html"
+        },
+        {
+            "description": "<div class=\"code\">C:\\Users\\pdawyndt\\Documents\\data\\development\\git\\judge-javascript\\output-buffer.js:58<br />                } bytes)`;<br />                ^^^^^^^^^<br />SyntaxError: missing ) after argument list</div>",
+            "format": "html"
+        },
+        {
+            "description": "<span class=\"label label-danger\" style=\"display:block;text-align:left;\">compilation error (staff version)</span>",
+            "format": "html",
+            "permission": "staff"
+        },
+        {
+            "description": "<div class=\"code\">C:\\Users\\pdawyndt\\Documents\\data\\development\\git\\judge-javascript\\output-buffer.js:58<br />                } bytes)`;<br />                ^^^^^^^^^<br />SyntaxError: missing ) after argument list<br />    at createScript (vm.js:56:10)<br />    at Object.runInThisContext (vm.js:97:10)<br />    at Module._compile (module.js:542:28)<br />    at Object.Module._extensions..js (module.js:579:10)<br />    at Module.load (module.js:487:32)<br />    at tryModuleLoad (module.js:446:12)<br />    at Function.Module._load (module.js:438:3)<br />    at Module.require (module.js:497:17)<br />    at require (internal/module.js:20:19)<br />    at Sandbox.execute (C:\\Users\\pdawyndt\\Documents\\data\\development\\git\\judge-javascript\\sandbox.js:41:30)</div>",
+            "format": "html",
+            "permission": "staff"
         }
     ]
 }

@@ -94,7 +94,7 @@ class Test {
         }
       
         // report that object has no property with the given name
-        throw new Error("unknown property \"" + name + "\"");
+        throw new Error(`unknown property "${name}"`);
     }
 
     setAccepted(value) {
@@ -130,7 +130,7 @@ class Test {
         // determine severity of given status
         const severity = statusCodes.indexOf(value);
         if (severity === -1) {
-            throw new Error("invalid status \"" + value + "\"");
+            throw new Error(`invalid status "${value}"`);
         }
         
         // determine current severity
