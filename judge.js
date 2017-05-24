@@ -654,7 +654,7 @@ class Judge {
                             "description", 
                             new Message({
                                 description: testcase.getProperty("description"),
-                                format: "code"
+                                format: "javascript"
                             })
                         );
                         
