@@ -242,7 +242,7 @@ class Judge {
                     .addMessage(errorMessage(utils.displayError(generated.exception, true)))
                     // add message containing runtime error (staff version)
                     .addMessage(bannerMessage(
-                        "exception", 
+                        "exception (staff version)", 
                         "danger",
                         { permission: "staff" }
                     ))
