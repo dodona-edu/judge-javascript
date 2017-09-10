@@ -183,7 +183,7 @@ class Judge {
                 // set feedback status to compilation error
                 .setStatus("compilation error")
                 // add message with compilation error (student version)
-                .addMessage("The following error occurred while compiling the submitted code:")
+                // .addMessage("The following error occurred while compiling the submitted code:")
                 .addMessage(bannerMessage("compilation error", "danger"))
                 .addMessage(errorMessage(utils.displayError(e, true)))
                 // add message with compilation error (staff version)
@@ -239,7 +239,7 @@ class Judge {
                 
                 testgroup
                     // add message containing runtime error (student version)
-                	.addMessage("The following error occurred while running the submitted code:")
+                	// .addMessage("The following error occurred while running the submitted code:")
                     .addMessage(bannerMessage("exception", "danger"))
                     .addMessage(errorMessage(utils.displayError(generated.exception, true)))
                     // add message containing runtime error (staff version)
