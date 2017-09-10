@@ -239,7 +239,7 @@ class Judge {
                 
                 testgroup
                     // add message containing runtime error (student version)
-                	.addMessage(new Message({description: "The following error occurred while compiling the submitted code:"}))
+                	.addMessage(new Message({description: "The following error occurred while running the submitted code:"}))
                     .addMessage(bannerMessage("exception", "danger"))
                     .addMessage(errorMessage(utils.displayError(generated.exception, true)))
                     // add message containing runtime error (staff version)
