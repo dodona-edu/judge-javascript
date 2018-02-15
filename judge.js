@@ -201,7 +201,7 @@ class Judge {
         
         // lint source code
         // TODO: enable linting as soon as ESLint has been added to docker
-        // this.lint(script);
+        this.lint(script);
         
         // output feedback
         // NOTE: includes final cleanups
@@ -612,6 +612,22 @@ class Judge {
         if (messages.length > 0) {
             
             // add new code tab
+        	this.feedback.setProperty(
+        		"annotations", 
+        		messages.map((message) => {
+	        		return {
+	            		row: message['line'],
+	            		column: message['column'],
+	            		text: message['message'],
+	            		type: message['severity'] === 0 ? "warning" : "error",
+	            		// ruleId: message['ruleId'],
+	            		// nodeType: message['nodeType'],
+	            		// source: message['source'],
+	        		};
+        		})
+        	);
+        	// this.feedback.addProperty("annotations", annotations);
+        	/*
             this.feedback.addTab(new Tab({
                 description: "code",
                 data: {
@@ -620,6 +636,7 @@ class Judge {
                     annotations: messages.map(messages => messages)
                 }
             }));
+            */
             
         }
         
