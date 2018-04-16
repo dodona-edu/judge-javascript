@@ -201,7 +201,7 @@ class Judge {
         
         // lint source code
         // TODO: enable linting as soon as ESLint has been added to docker
-        this.lint(script);
+        // this.lint(script);
         
         // output feedback
         // NOTE: includes final cleanups
