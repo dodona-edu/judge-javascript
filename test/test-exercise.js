@@ -7,7 +7,7 @@ const data = fs.readFileSync("./config.json", "utf8")
 const config = JSON.parse(data);
 
 // extract configuration settings
-const opgave = "lineup";
+const opgave = "bitcoins";
 const opgaven = path.join("..", "..", "javascript-oefeningen", "opgaven", opgave);
 const resourcesDir = path.join(opgaven, "evaluation");
 const sourceFile = path.join(opgaven, "solution", "solution.nl.js");

@@ -101,11 +101,11 @@ function recursiveDisplay(obj) {
 
 // helper function for converting Error objects to string
 function displayError(e, cleanup) {
-    
+	
     // cleanup error message by default
     if (cleanup === undefined) {
         cleanup = true;
-    }
+    }    
     
     try {
         
@@ -135,6 +135,16 @@ function displayError(e, cleanup) {
                     line.includes("<test>:")
                 ) {
                 	
+                	if (line.length > 0 && line[0] !== ' ') {
+                    	while (line.includes('[')) {
+                    		let start = line.indexOf('['); 
+                    		while (start > 0 && line[start - 1] === ' ') {
+                    			start -= 1;
+                    		}
+                    		let stop = line.indexOf(']');
+                    		line = line.slice(0, start) + line.slice(stop + 1);
+                    	}                		
+                	}
                     message.push(line);                    
 
                 } 
@@ -150,8 +160,17 @@ function displayError(e, cleanup) {
             
             // format message
             if (e.name !== undefined && e.message !== undefined) {
+            	
+            	message = e.name;
+            	while (message.contains('[')) {
+            		let start = message.indexOf('[');
+            		while (start > 0 && message[start - 1] === ' ') {
+            			start -= 1;
+            		}
+            		let stop = message.indexOf(']');
+            		message = message.slice(0, start) + message.slice(stop + 1);
+            	}
                 
-                message = e.name;
                 // add line number if available
                 if (e.lineNumber !== undefined) {
                     message += ` (line ${e.lineNumber})`;

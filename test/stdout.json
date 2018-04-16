@@ -5,7 +5,7 @@
         {
             "status": "correct answer",
             "accepted": true,
-            "description": "lineup",
+            "description": "winst",
             "groups": [
                 {
                     "status": "correct answer",
@@ -15,18 +15,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Alice\", kleur: \"R\"}, {naam: \"Bob\", kleur: \"B\"}, {naam: \"Claire\", kleur: \"R\"}, {naam: \"Dave\", kleur: \"R\"}, {naam: \"Elsa\", kleur: \"B\"}]);",
+                                "description": "winst([5, 11, 4, 2, 8, 10, 7, 4, 3, 6], \"KV-K-V--KV\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Alice\", \"Claire\", \"Dave\", \"Elsa\", \"Bob\"]",
+                                    "expected": "17",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Alice\", \"Claire\", \"Dave\", \"Elsa\", \"Bob\"]",
+                                    "generated": "17",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -50,88 +50,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Sparkle\", kleur: \"R\"}, {naam: \"Rolf\", kleur: \"R\"}, {naam: \"Eileen\", kleur: \"R\"}, {naam: \"Madie\", kleur: \"R\"}]);",
+                                "description": "winst([4, 2, 5, 11, 10, 4, 11, 7, 4, 11, 3, 11], \"-K-V-KV-KVKV\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Sparkle\", \"Rolf\", \"Eileen\", \"Madie\"]",
+                                    "expected": "31",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Sparkle\", \"Rolf\", \"Eileen\", \"Madie\"]",
-                                    "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
-                                        "format": "html"
-                                    }
-                                }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
-                        }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
-                },
-                {
-                    "status": "correct answer",
-                    "accepted": true,
-                    "groups": [
-                        {
-                            "status": "correct answer",
-                            "accepted": true,
-                            "description": {
-                                "description": "lineup([{naam: \"Brian\", kleur: \"B\"}, {naam: \"Margot\", kleur: \"B\"}, {naam: \"Hans\", kleur: \"B\"}, {naam: \"Lucinda\", kleur: \"B\"}]);",
-                                "format": "javascript"
-                            },
-                            "tests": [
-                                {
-                                    "status": "correct answer",
-                                    "accepted": true,
-                                    "expected": "[\"Lucinda\", \"Hans\", \"Margot\", \"Brian\"]",
-                                    "data": {
-                                        "channel": "return"
-                                    },
-                                    "generated": "[\"Lucinda\", \"Hans\", \"Margot\", \"Brian\"]",
-                                    "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
-                                        "format": "html"
-                                    }
-                                }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
-                        }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
-                },
-                {
-                    "status": "correct answer",
-                    "accepted": true,
-                    "groups": [
-                        {
-                            "status": "correct answer",
-                            "accepted": true,
-                            "description": {
-                                "description": "lineup([{naam: \"Joaquin\", kleur: \"B\"}, {naam: \"Jules\", kleur: \"B\"}, {naam: \"Zora\", kleur: \"R\"}, {naam: \"Cherise\", kleur: \"B\"}, {naam: \"Adell\", kleur: \"R\"}, {naam: \"Pandora\", kleur: \"B\"}, {naam: \"Aimee\", kleur: \"B\"}, {naam: \"Teresa\", kleur: \"R\"}, {naam: \"Leanne\", kleur: \"B\"}]);",
-                                "format": "javascript"
-                            },
-                            "tests": [
-                                {
-                                    "status": "correct answer",
-                                    "accepted": true,
-                                    "expected": "[\"Zora\", \"Adell\", \"Teresa\", \"Leanne\", \"Aimee\", \"Pandora\", \"Cherise\", \"Jules\", \"Joaquin\"]",
-                                    "data": {
-                                        "channel": "return"
-                                    },
-                                    "generated": "[\"Zora\", \"Adell\", \"Teresa\", \"Leanne\", \"Aimee\", \"Pandora\", \"Cherise\", \"Jules\", \"Joaquin\"]",
+                                    "generated": "31",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -155,18 +85,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Casandra\", kleur: \"R\"}, {naam: \"Omar\", kleur: \"R\"}, {naam: \"Louisa\", kleur: \"R\"}, {naam: \"Lauren\", kleur: \"B\"}, {naam: \"Eileen\", kleur: \"B\"}, {naam: \"Katrina\", kleur: \"B\"}, {naam: \"Linda\", kleur: \"R\"}, {naam: \"Lena\", kleur: \"B\"}]);",
+                                "description": "winst([10, 9, 9, 10, 10, 9, 1, 4, 9, 3, 5, 6, 10], \"-K-V--K-VK--V\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Casandra\", \"Omar\", \"Louisa\", \"Linda\", \"Lena\", \"Katrina\", \"Eileen\", \"Lauren\"]",
+                                    "expected": "16",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Casandra\", \"Omar\", \"Louisa\", \"Linda\", \"Lena\", \"Katrina\", \"Eileen\", \"Lauren\"]",
+                                    "generated": "16",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -190,18 +120,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Dustin\", kleur: \"R\"}, {naam: \"Cornell\", kleur: \"R\"}, {naam: \"Rey\", kleur: \"R\"}, {naam: \"Vickie\", kleur: \"R\"}]);",
+                                "description": "winst([12, 4, 9, 5, 6, 7, 9, 9, 11, 7, 10], \"-KVK----VKV\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Dustin\", \"Cornell\", \"Rey\", \"Vickie\"]",
+                                    "expected": "14",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Dustin\", \"Cornell\", \"Rey\", \"Vickie\"]",
+                                    "generated": "14",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -225,18 +155,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Tifany\", kleur: \"B\"}, {naam: \"Gayla\", kleur: \"B\"}, {naam: \"Lindsey\", kleur: \"R\"}, {naam: \"Sherryl\", kleur: \"R\"}, {naam: \"Jeffrey\", kleur: \"R\"}, {naam: \"Zachery\", kleur: \"R\"}, {naam: \"Gaston\", kleur: \"R\"}, {naam: \"Delfina\", kleur: \"R\"}, {naam: \"Madie\", kleur: \"B\"}, {naam: \"Linda\", kleur: \"B\"}]);",
+                                "description": "winst([10, 9, 8, 7, 6, 5, 4, 3, 2, 1], \"----------\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Lindsey\", \"Sherryl\", \"Jeffrey\", \"Zachery\", \"Gaston\", \"Delfina\", \"Linda\", \"Madie\", \"Gayla\", \"Tifany\"]",
+                                    "expected": "0",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Lindsey\", \"Sherryl\", \"Jeffrey\", \"Zachery\", \"Gaston\", \"Delfina\", \"Linda\", \"Madie\", \"Gayla\", \"Tifany\"]",
+                                    "generated": "0",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -260,18 +190,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Iona\", kleur: \"R\"}, {naam: \"Cherise\", kleur: \"R\"}, {naam: \"Joaquin\", kleur: \"R\"}, {naam: \"Eileen\", kleur: \"R\"}, {naam: \"Pedro\", kleur: \"R\"}, {naam: \"Katrina\", kleur: \"B\"}, {naam: \"Zachery\", kleur: \"B\"}, {naam: \"Ricky\", kleur: \"R\"}, {naam: \"Aileen\", kleur: \"R\"}]);",
+                                "description": "winst([10, 4, 2, 4, 8, 12], \"--K--V\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Iona\", \"Cherise\", \"Joaquin\", \"Eileen\", \"Pedro\", \"Ricky\", \"Aileen\", \"Zachery\", \"Katrina\"]",
+                                    "expected": "10",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Iona\", \"Cherise\", \"Joaquin\", \"Eileen\", \"Pedro\", \"Ricky\", \"Aileen\", \"Zachery\", \"Katrina\"]",
+                                    "generated": "10",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -295,18 +225,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Dorie\", kleur: \"R\"}, {naam: \"Katrina\", kleur: \"R\"}, {naam: \"Delphine\", kleur: \"R\"}, {naam: \"Mason\", kleur: \"B\"}, {naam: \"Nicolette\", kleur: \"R\"}, {naam: \"Rolf\", kleur: \"B\"}, {naam: \"Johnny\", kleur: \"R\"}, {naam: \"Margarette\", kleur: \"B\"}]);",
+                                "description": "winst([8, 4, 6, 2, 1, 6, 6, 9, 6, 5, 8, 2, 12], \"K-VK---VK---V\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Dorie\", \"Katrina\", \"Delphine\", \"Nicolette\", \"Johnny\", \"Margarette\", \"Rolf\", \"Mason\"]",
+                                    "expected": "11",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Dorie\", \"Katrina\", \"Delphine\", \"Nicolette\", \"Johnny\", \"Margarette\", \"Rolf\", \"Mason\"]",
+                                    "generated": "11",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -330,18 +260,105 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Aileen\", kleur: \"B\"}, {naam: \"Lissa\", kleur: \"B\"}, {naam: \"Marco\", kleur: \"B\"}, {naam: \"Ashly\", kleur: \"R\"}, {naam: \"Allan\", kleur: \"B\"}]);",
+                                "description": "winst([3, 7, 10, 12, 4, 10, 5, 12, 3], \"---KVK-VKK\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Ashly\", \"Allan\", \"Marco\", \"Lissa\", \"Aileen\"]",
+                                    "expected": "AssertionError: ongeldige acties",
+                                    "data": {
+                                        "channel": "exception"
+                                    },
+                                    "generated": "assert.js:42\n  throw new errors.AssertionError({\n  ^\n\nAssertionError: ongeldige acties\n    at winst (<code>:9:5)\n    at <test>:1:1",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">exception</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "winst([5, 10, 3, 10, 12, 3, 3, 3, 6, 6, 8, 7, 9, 6, 4, 3, 2, 5, 6, 10], \"KV--KV-K-V-----KV--K\");",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "AssertionError: ongeldige acties",
+                                    "data": {
+                                        "channel": "exception"
+                                    },
+                                    "generated": "assert.js:42\n  throw new errors.AssertionError({\n  ^\n\nAssertionError: ongeldige acties\n    at winst (<code>:38:5)\n    at <test>:1:1",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">exception</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "winst([4, 7, 3, 5, 10, 9, 6, 8, 12], \"-K--VK-VK\");",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "AssertionError: ongeldige acties",
+                                    "data": {
+                                        "channel": "exception"
+                                    },
+                                    "generated": "assert.js:42\n  throw new errors.AssertionError({\n  ^\n\nAssertionError: ongeldige acties\n    at winst (<code>:38:5)\n    at <test>:1:1",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">exception</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "winst([6, 4, 3, 5, 3, 2, 8, 6, 6, 5, 8, 7, 5, 11, 7, 8, 2], \"--KV-KV--KV-KVKV-\");",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "18",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Ashly\", \"Allan\", \"Marco\", \"Lissa\", \"Aileen\"]",
+                                    "generated": "18",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -365,18 +382,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Matthew\", kleur: \"R\"}, {naam: \"Margarette\", kleur: \"B\"}, {naam: \"Eryn\", kleur: \"B\"}, {naam: \"Mina\", kleur: \"B\"}, {naam: \"Aimee\", kleur: \"R\"}, {naam: \"Janette\", kleur: \"R\"}, {naam: \"Iona\", kleur: \"B\"}, {naam: \"Darron\", kleur: \"B\"}]);",
+                                "description": "winst([5, 10, 5, 12, 12, 11, 6, 2, 8, 11, 7, 5, 3, 9, 5], \"K--VK-VKV-KV---\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Matthew\", \"Aimee\", \"Janette\", \"Darron\", \"Iona\", \"Mina\", \"Eryn\", \"Margarette\"]",
+                                    "expected": "5",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Matthew\", \"Aimee\", \"Janette\", \"Darron\", \"Iona\", \"Mina\", \"Eryn\", \"Margarette\"]",
+                                    "generated": "5",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -400,18 +417,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Rey\", kleur: \"R\"}, {naam: \"Lindsey\", kleur: \"R\"}, {naam: \"May\", kleur: \"R\"}, {naam: \"Jeffrey\", kleur: \"R\"}, {naam: \"Delphine\", kleur: \"R\"}, {naam: \"Walter\", kleur: \"R\"}]);",
+                                "description": "winst([7, 1, 6, 12, 7, 3, 11, 8, 4, 6, 11, 1, 9], \"-K-V-KV-K-VKV\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Rey\", \"Lindsey\", \"May\", \"Jeffrey\", \"Delphine\", \"Walter\"]",
+                                    "expected": "34",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Rey\", \"Lindsey\", \"May\", \"Jeffrey\", \"Delphine\", \"Walter\"]",
+                                    "generated": "34",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -435,18 +452,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Sparkle\", kleur: \"R\"}, {naam: \"Cornell\", kleur: \"B\"}, {naam: \"Leanne\", kleur: \"R\"}, {naam: \"Gayla\", kleur: \"R\"}, {naam: \"Ingrid\", kleur: \"R\"}, {naam: \"Pricilla\", kleur: \"R\"}]);",
+                                "description": "winst([8, 1, 12, 10, 2, 8, 7], \"-KV-KV-\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Sparkle\", \"Leanne\", \"Gayla\", \"Ingrid\", \"Pricilla\", \"Cornell\"]",
+                                    "expected": "17",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Sparkle\", \"Leanne\", \"Gayla\", \"Ingrid\", \"Pricilla\", \"Cornell\"]",
+                                    "generated": "17",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -470,18 +487,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Pricilla\", kleur: \"B\"}, {naam: \"Leanne\", kleur: \"R\"}, {naam: \"Delfina\", kleur: \"R\"}, {naam: \"Darron\", kleur: \"B\"}, {naam: \"Nicolette\", kleur: \"B\"}, {naam: \"Delphine\", kleur: \"B\"}]);",
+                                "description": "winst([9, 6, 5, 6, 8, 11, 3, 3, 5, 6, 11, 9, 11, 11, 12], \"-KVKVK-V---K--V\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Leanne\", \"Delfina\", \"Delphine\", \"Nicolette\", \"Darron\", \"Pricilla\"]",
+                                    "expected": "-4",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Leanne\", \"Delfina\", \"Delphine\", \"Nicolette\", \"Darron\", \"Pricilla\"]",
+                                    "generated": "-4",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -505,18 +522,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Pedro\", kleur: \"B\"}, {naam: \"Zachery\", kleur: \"B\"}, {naam: \"Lucius\", kleur: \"B\"}, {naam: \"Gaston\", kleur: \"B\"}, {naam: \"Grady\", kleur: \"B\"}, {naam: \"Britt\", kleur: \"B\"}, {naam: \"Omar\", kleur: \"B\"}, {naam: \"Julieta\", kleur: \"B\"}, {naam: \"Ingrid\", kleur: \"B\"}]);",
+                                "description": "winst([4, 4, 3, 6, 3, 7], \"--KVKV\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Ingrid\", \"Julieta\", \"Omar\", \"Britt\", \"Grady\", \"Gaston\", \"Lucius\", \"Zachery\", \"Pedro\"]",
+                                    "expected": "7",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Ingrid\", \"Julieta\", \"Omar\", \"Britt\", \"Grady\", \"Gaston\", \"Lucius\", \"Zachery\", \"Pedro\"]",
+                                    "generated": "7",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -540,18 +557,76 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Rick\", kleur: \"B\"}, {naam: \"Jeri\", kleur: \"B\"}, {naam: \"Walter\", kleur: \"B\"}, {naam: \"Gertha\", kleur: \"R\"}, {naam: \"Lindsey\", kleur: \"B\"}, {naam: \"Gayla\", kleur: \"B\"}, {naam: \"Teresa\", kleur: \"R\"}, {naam: \"Pedro\", kleur: \"R\"}, {naam: \"Grady\", kleur: \"R\"}, {naam: \"Gaston\", kleur: \"B\"}]);",
+                                "description": "winst([6, 1, 9, 3, 10, 7, 2, 9, 7, 10, 4], \"--KVV--KV-\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Gertha\", \"Teresa\", \"Pedro\", \"Grady\", \"Gaston\", \"Gayla\", \"Lindsey\", \"Walter\", \"Jeri\", \"Rick\"]",
+                                    "expected": "AssertionError: ongeldige acties",
+                                    "data": {
+                                        "channel": "exception"
+                                    },
+                                    "generated": "assert.js:42\n  throw new errors.AssertionError({\n  ^\n\nAssertionError: ongeldige acties\n    at winst (<code>:9:5)\n    at <test>:1:1",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">exception</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "winst([9, 10, 11, 2, 5, 10, 10, 6, 12, 2, 9, 5, 5, 7], \"K-V-KVK-----VV\");",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "AssertionError: ongeldige acties",
+                                    "data": {
+                                        "channel": "exception"
+                                    },
+                                    "generated": "assert.js:42\n  throw new errors.AssertionError({\n  ^\n\nAssertionError: ongeldige acties\n    at winst (<code>:28:13)\n    at <test>:1:1",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">exception</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "winst([4, 7, 4, 8, 4, 5, 5, 2, 11, 5, 8, 11, 8, 1, 9, 2, 10, 8, 12], \"KVKVKV-KVK-V-KVKVKV\");",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "43",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Gertha\", \"Teresa\", \"Pedro\", \"Grady\", \"Gaston\", \"Gayla\", \"Lindsey\", \"Walter\", \"Jeri\", \"Rick\"]",
+                                    "generated": "43",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -575,18 +650,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Stephane\", kleur: \"B\"}, {naam: \"Brian\", kleur: \"B\"}, {naam: \"Ricky\", kleur: \"B\"}, {naam: \"Mason\", kleur: \"B\"}]);",
+                                "description": "winst([8, 6, 5, 10, 10, 3, 3, 11, 9, 6, 9, 4, 7, 11, 6, 11, 3, 11, 1], \"--KV-K-V-KVK-VKVKV-\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Mason\", \"Ricky\", \"Brian\", \"Stephane\"]",
+                                    "expected": "36",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Mason\", \"Ricky\", \"Brian\", \"Stephane\"]",
+                                    "generated": "36",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -610,18 +685,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Marco\", kleur: \"R\"}, {naam: \"Allan\", kleur: \"B\"}, {naam: \"Stephane\", kleur: \"B\"}, {naam: \"Sparkle\", kleur: \"R\"}]);",
+                                "description": "winst([6, 2, 8, 1, 10, 10, 4, 1, 10, 11, 7], \"-KVKV--K-V-\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Marco\", \"Sparkle\", \"Stephane\", \"Allan\"]",
+                                    "expected": "25",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Marco\", \"Sparkle\", \"Stephane\", \"Allan\"]",
+                                    "generated": "25",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -645,18 +720,47 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Jules\", kleur: \"R\"}, {naam: \"Karissa\", kleur: \"R\"}, {naam: \"Edgardo\", kleur: \"R\"}, {naam: \"Sherryl\", kleur: \"R\"}]);",
+                                "description": "winst([6, 12, 6, 12, 7, 6, 10, 4, 2, 3, 2, 2], \"-K--K-V--K--\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Jules\", \"Karissa\", \"Edgardo\", \"Sherryl\"]",
+                                    "expected": "AssertionError: ongeldige acties",
+                                    "data": {
+                                        "channel": "exception"
+                                    },
+                                    "generated": "assert.js:42\n  throw new errors.AssertionError({\n  ^\n\nAssertionError: ongeldige acties\n    at winst (<code>:24:13)\n    at <test>:1:1",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">exception</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "winst([8, 4, 5, 2, 3, 2, 9, 7, 5, 5, 9], \"------KVK-V\");",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "2",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Jules\", \"Karissa\", \"Edgardo\", \"Sherryl\"]",
+                                    "generated": "2",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -680,18 +784,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Nicolette\", kleur: \"R\"}, {naam: \"Casandra\", kleur: \"R\"}, {naam: \"Vickie\", kleur: \"R\"}, {naam: \"Sidney\", kleur: \"B\"}, {naam: \"Allan\", kleur: \"R\"}]);",
+                                "description": "winst([12, 5, 8, 7, 11, 12, 7, 6, 11, 3, 2, 2, 6, 2, 10, 3, 12, 4], \"-KVK-V-KV-K-VKVKV-\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Nicolette\", \"Casandra\", \"Vickie\", \"Allan\", \"Sidney\"]",
+                                    "expected": "34",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Nicolette\", \"Casandra\", \"Vickie\", \"Allan\", \"Sidney\"]",
+                                    "generated": "34",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -715,18 +819,82 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Gaston\", kleur: \"B\"}, {naam: \"Toby\", kleur: \"B\"}, {naam: \"Joelle\", kleur: \"B\"}, {naam: \"Lucinda\", kleur: \"B\"}, {naam: \"Zora\", kleur: \"B\"}, {naam: \"Eleni\", kleur: \"B\"}]);",
+                                "description": "winst([2, 12, 2, 11, 12, 3, 1, 12, 4, 10, 11, 9, 10, 1, 12, 9, 11, 9, 5, 11], \"KV-KV--KV-K--VKV-KVVK\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Eleni\", \"Zora\", \"Lucinda\", \"Joelle\", \"Toby\", \"Gaston\"]",
+                                    "expected": "AssertionError: ongeldige acties",
+                                    "data": {
+                                        "channel": "exception"
+                                    },
+                                    "generated": "assert.js:42\n  throw new errors.AssertionError({\n  ^\n\nAssertionError: ongeldige acties\n    at winst (<code>:9:5)\n    at <test>:1:1",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">exception</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "winst([1, 4, 10, 8, 9, 6, 9], \"-K--VKV\");",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "8",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Eleni\", \"Zora\", \"Lucinda\", \"Joelle\", \"Toby\", \"Gaston\"]",
+                                    "generated": "8",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0.016
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0.016
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "winst([3, 11, 5, 12, 3, 8], \"KVKVKV\");",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "20",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "20",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -750,18 +918,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Allan\", kleur: \"R\"}, {naam: \"Jules\", kleur: \"R\"}, {naam: \"Juno\", kleur: \"R\"}, {naam: \"Zachery\", kleur: \"R\"}, {naam: \"Leo\", kleur: \"R\"}, {naam: \"Stewart\", kleur: \"R\"}]);",
+                                "description": "winst([3, 5, 12, 11, 9, 1, 7, 8, 12, 2, 10, 6, 7, 2, 7, 10, 4, 1], \"K-V--K--VKVKVK-V--\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Allan\", \"Jules\", \"Juno\", \"Zachery\", \"Leo\", \"Stewart\"]",
+                                    "expected": "37",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Allan\", \"Jules\", \"Juno\", \"Zachery\", \"Leo\", \"Stewart\"]",
+                                    "generated": "37",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -785,18 +953,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Ingrid\", kleur: \"B\"}, {naam: \"Walter\", kleur: \"R\"}, {naam: \"Dorie\", kleur: \"R\"}, {naam: \"Jeri\", kleur: \"R\"}, {naam: \"Stephane\", kleur: \"R\"}, {naam: \"Ricky\", kleur: \"B\"}, {naam: \"Brian\", kleur: \"R\"}, {naam: \"Gayla\", kleur: \"B\"}, {naam: \"Rich\", kleur: \"B\"}, {naam: \"Zachery\", kleur: \"R\"}]);",
+                                "description": "winst([10, 3, 3, 12, 12, 5, 9, 9], \"-K-V-KV-\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Walter\", \"Dorie\", \"Jeri\", \"Stephane\", \"Brian\", \"Zachery\", \"Rich\", \"Gayla\", \"Ricky\", \"Ingrid\"]",
+                                    "expected": "13",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Walter\", \"Dorie\", \"Jeri\", \"Stephane\", \"Brian\", \"Zachery\", \"Rich\", \"Gayla\", \"Ricky\", \"Ingrid\"]",
+                                    "generated": "13",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -820,53 +988,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Karissa\", kleur: \"B\"}, {naam: \"Lucinda\", kleur: \"R\"}, {naam: \"Delfina\", kleur: \"R\"}, {naam: \"Madie\", kleur: \"B\"}, {naam: \"Ingrid\", kleur: \"R\"}, {naam: \"Ashly\", kleur: \"B\"}]);",
+                                "description": "winst([3, 5, 5, 7, 3, 10, 11, 4, 9, 1, 1, 6], \"K-V--K-V-KV-\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Lucinda\", \"Delfina\", \"Ingrid\", \"Ashly\", \"Madie\", \"Karissa\"]",
+                                    "expected": "-4",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Lucinda\", \"Delfina\", \"Ingrid\", \"Ashly\", \"Madie\", \"Karissa\"]",
-                                    "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
-                                        "format": "html"
-                                    }
-                                }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
-                        }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
-                },
-                {
-                    "status": "correct answer",
-                    "accepted": true,
-                    "groups": [
-                        {
-                            "status": "correct answer",
-                            "accepted": true,
-                            "description": {
-                                "description": "lineup([{naam: \"Zachery\", kleur: \"B\"}, {naam: \"Jeri\", kleur: \"R\"}, {naam: \"Matthew\", kleur: \"B\"}, {naam: \"Katrina\", kleur: \"B\"}, {naam: \"Brian\", kleur: \"R\"}, {naam: \"Cathrine\", kleur: \"B\"}, {naam: \"Stewart\", kleur: \"R\"}]);",
-                                "format": "javascript"
-                            },
-                            "tests": [
-                                {
-                                    "status": "correct answer",
-                                    "accepted": true,
-                                    "expected": "[\"Jeri\", \"Brian\", \"Stewart\", \"Cathrine\", \"Katrina\", \"Matthew\", \"Zachery\"]",
-                                    "data": {
-                                        "channel": "return"
-                                    },
-                                    "generated": "[\"Jeri\", \"Brian\", \"Stewart\", \"Cathrine\", \"Katrina\", \"Matthew\", \"Zachery\"]",
+                                    "generated": "-4",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -890,18 +1023,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Iona\", kleur: \"B\"}, {naam: \"Manda\", kleur: \"B\"}, {naam: \"Vickie\", kleur: \"R\"}, {naam: \"Lucinda\", kleur: \"R\"}, {naam: \"Toby\", kleur: \"B\"}, {naam: \"Darron\", kleur: \"R\"}, {naam: \"Dick\", kleur: \"R\"}, {naam: \"Lissa\", kleur: \"B\"}, {naam: \"Madie\", kleur: \"B\"}, {naam: \"Rich\", kleur: \"B\"}]);",
+                                "description": "winst([1, 5, 12, 2, 4, 10, 3, 9], \"K-VK-VKV\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Vickie\", \"Lucinda\", \"Darron\", \"Dick\", \"Rich\", \"Madie\", \"Lissa\", \"Toby\", \"Manda\", \"Iona\"]",
+                                    "expected": "25",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Vickie\", \"Lucinda\", \"Darron\", \"Dick\", \"Rich\", \"Madie\", \"Lissa\", \"Toby\", \"Manda\", \"Iona\"]",
+                                    "generated": "25",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -925,18 +1058,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Lena\", kleur: \"B\"}, {naam: \"Pandora\", kleur: \"B\"}, {naam: \"Margot\", kleur: \"R\"}, {naam: \"Cherise\", kleur: \"R\"}, {naam: \"Hertha\", kleur: \"B\"}, {naam: \"Sidney\", kleur: \"R\"}, {naam: \"Dick\", kleur: \"R\"}]);",
+                                "description": "winst([5, 7, 4, 2, 10, 9, 9, 1, 12, 3, 11, 8, 10, 9, 9, 4, 4, 1], \"K--V--K---V--KVKV-\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Margot\", \"Cherise\", \"Sidney\", \"Dick\", \"Hertha\", \"Pandora\", \"Lena\"]",
+                                    "expected": "-1",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Margot\", \"Cherise\", \"Sidney\", \"Dick\", \"Hertha\", \"Pandora\", \"Lena\"]",
+                                    "generated": "-1",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -960,53 +1093,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Casandra\", kleur: \"B\"}, {naam: \"Leo\", kleur: \"B\"}, {naam: \"Sparkle\", kleur: \"B\"}, {naam: \"Rey\", kleur: \"B\"}, {naam: \"Tifany\", kleur: \"B\"}, {naam: \"Sherryl\", kleur: \"B\"}, {naam: \"Graham\", kleur: \"B\"}, {naam: \"Aimee\", kleur: \"B\"}]);",
+                                "description": "winst([3, 1, 2, 2, 5, 7, 6, 5, 12, 11, 9, 3, 11, 12, 10, 12], \"KVK----V----K--V\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Aimee\", \"Graham\", \"Sherryl\", \"Tifany\", \"Rey\", \"Sparkle\", \"Leo\", \"Casandra\"]",
+                                    "expected": "2",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Aimee\", \"Graham\", \"Sherryl\", \"Tifany\", \"Rey\", \"Sparkle\", \"Leo\", \"Casandra\"]",
-                                    "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
-                                        "format": "html"
-                                    }
-                                }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
-                        }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
-                },
-                {
-                    "status": "correct answer",
-                    "accepted": true,
-                    "groups": [
-                        {
-                            "status": "correct answer",
-                            "accepted": true,
-                            "description": {
-                                "description": "lineup([{naam: \"Johnny\", kleur: \"B\"}, {naam: \"Zachery\", kleur: \"R\"}, {naam: \"Mallory\", kleur: \"R\"}, {naam: \"Zora\", kleur: \"B\"}, {naam: \"Eryn\", kleur: \"B\"}]);",
-                                "format": "javascript"
-                            },
-                            "tests": [
-                                {
-                                    "status": "correct answer",
-                                    "accepted": true,
-                                    "expected": "[\"Zachery\", \"Mallory\", \"Eryn\", \"Zora\", \"Johnny\"]",
-                                    "data": {
-                                        "channel": "return"
-                                    },
-                                    "generated": "[\"Zachery\", \"Mallory\", \"Eryn\", \"Zora\", \"Johnny\"]",
+                                    "generated": "2",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -1030,32 +1128,26 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Graham\", kleur: \"B\"}, {naam: \"Brian\", kleur: \"B\"}, {naam: \"Lena\", kleur: \"B\"}, {naam: \"Gertha\", kleur: \"R\"}, {naam: \"Janette\", kleur: \"B\"}, {naam: \"Sherryl\", kleur: \"B\"}, {naam: \"Stewart\", kleur: \"R\"}]);",
+                                "description": "winst([9, 8, 3, 2, 1, 6, 4], \"V-VKVK-\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Gertha\", \"Stewart\", \"Sherryl\", \"Janette\", \"Lena\", \"Brian\", \"Graham\"]",
+                                    "expected": "AssertionError: ongeldige acties",
                                     "data": {
-                                        "channel": "return"
+                                        "channel": "exception"
                                     },
-                                    "generated": "[\"Gertha\", \"Stewart\", \"Sherryl\", \"Janette\", \"Lena\", \"Brian\", \"Graham\"]",
+                                    "generated": "assert.js:42\n  throw new errors.AssertionError({\n  ^\n\nAssertionError: ongeldige acties\n    at winst (<code>:28:13)\n    at <test>:1:1",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">exception</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
+                    ]
                 },
                 {
                     "status": "correct answer",
@@ -1065,228 +1157,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Mason\", kleur: \"R\"}, {naam: \"Janette\", kleur: \"R\"}, {naam: \"Allan\", kleur: \"B\"}, {naam: \"Mariana\", kleur: \"R\"}]);",
+                                "description": "winst([3, 12, 11, 1, 4, 2, 4, 7, 8], \"KVKVK-VKV\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Mason\", \"Janette\", \"Mariana\", \"Allan\"]",
+                                    "expected": "0",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Mason\", \"Janette\", \"Mariana\", \"Allan\"]",
-                                    "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
-                                        "format": "html"
-                                    }
-                                }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
-                        }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
-                },
-                {
-                    "status": "correct answer",
-                    "accepted": true,
-                    "groups": [
-                        {
-                            "status": "correct answer",
-                            "accepted": true,
-                            "description": {
-                                "description": "lineup([{naam: \"Mason\", kleur: \"R\"}, {naam: \"Julieta\", kleur: \"R\"}, {naam: \"Stewart\", kleur: \"R\"}, {naam: \"Pandora\", kleur: \"R\"}, {naam: \"Ingrid\", kleur: \"R\"}, {naam: \"Zachery\", kleur: \"R\"}, {naam: \"Johnny\", kleur: \"R\"}, {naam: \"Rich\", kleur: \"R\"}, {naam: \"Dorie\", kleur: \"R\"}]);",
-                                "format": "javascript"
-                            },
-                            "tests": [
-                                {
-                                    "status": "correct answer",
-                                    "accepted": true,
-                                    "expected": "[\"Mason\", \"Julieta\", \"Stewart\", \"Pandora\", \"Ingrid\", \"Zachery\", \"Johnny\", \"Rich\", \"Dorie\"]",
-                                    "data": {
-                                        "channel": "return"
-                                    },
-                                    "generated": "[\"Mason\", \"Julieta\", \"Stewart\", \"Pandora\", \"Ingrid\", \"Zachery\", \"Johnny\", \"Rich\", \"Dorie\"]",
-                                    "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
-                                        "format": "html"
-                                    }
-                                }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
-                        }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
-                },
-                {
-                    "status": "correct answer",
-                    "accepted": true,
-                    "groups": [
-                        {
-                            "status": "correct answer",
-                            "accepted": true,
-                            "description": {
-                                "description": "lineup([{naam: \"Lauren\", kleur: \"B\"}, {naam: \"Toby\", kleur: \"B\"}, {naam: \"Juno\", kleur: \"B\"}, {naam: \"Coleen\", kleur: \"R\"}, {naam: \"Pedro\", kleur: \"R\"}, {naam: \"Delfina\", kleur: \"R\"}, {naam: \"Sidney\", kleur: \"B\"}, {naam: \"Teresa\", kleur: \"R\"}, {naam: \"Christi\", kleur: \"B\"}, {naam: \"Lindsey\", kleur: \"R\"}]);",
-                                "format": "javascript"
-                            },
-                            "tests": [
-                                {
-                                    "status": "correct answer",
-                                    "accepted": true,
-                                    "expected": "[\"Coleen\", \"Pedro\", \"Delfina\", \"Teresa\", \"Lindsey\", \"Christi\", \"Sidney\", \"Juno\", \"Toby\", \"Lauren\"]",
-                                    "data": {
-                                        "channel": "return"
-                                    },
-                                    "generated": "[\"Coleen\", \"Pedro\", \"Delfina\", \"Teresa\", \"Lindsey\", \"Christi\", \"Sidney\", \"Juno\", \"Toby\", \"Lauren\"]",
-                                    "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
-                                        "format": "html"
-                                    }
-                                }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
-                        }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
-                },
-                {
-                    "status": "correct answer",
-                    "accepted": true,
-                    "groups": [
-                        {
-                            "status": "correct answer",
-                            "accepted": true,
-                            "description": {
-                                "description": "lineup([{naam: \"Gayla\", kleur: \"B\"}, {naam: \"Linda\", kleur: \"B\"}, {naam: \"Matthew\", kleur: \"B\"}, {naam: \"Bethel\", kleur: \"B\"}, {naam: \"Ingrid\", kleur: \"B\"}, {naam: \"Coleen\", kleur: \"B\"}, {naam: \"Sidney\", kleur: \"B\"}, {naam: \"Mason\", kleur: \"B\"}, {naam: \"May\", kleur: \"B\"}, {naam: \"Rich\", kleur: \"B\"}]);",
-                                "format": "javascript"
-                            },
-                            "tests": [
-                                {
-                                    "status": "correct answer",
-                                    "accepted": true,
-                                    "expected": "[\"Rich\", \"May\", \"Mason\", \"Sidney\", \"Coleen\", \"Ingrid\", \"Bethel\", \"Matthew\", \"Linda\", \"Gayla\"]",
-                                    "data": {
-                                        "channel": "return"
-                                    },
-                                    "generated": "[\"Rich\", \"May\", \"Mason\", \"Sidney\", \"Coleen\", \"Ingrid\", \"Bethel\", \"Matthew\", \"Linda\", \"Gayla\"]",
-                                    "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
-                                        "format": "html"
-                                    }
-                                }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
-                        }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
-                },
-                {
-                    "status": "correct answer",
-                    "accepted": true,
-                    "groups": [
-                        {
-                            "status": "correct answer",
-                            "accepted": true,
-                            "description": {
-                                "description": "lineup([{naam: \"Dorie\", kleur: \"B\"}, {naam: \"Sparkle\", kleur: \"B\"}, {naam: \"Gertha\", kleur: \"R\"}, {naam: \"Adell\", kleur: \"R\"}]);",
-                                "format": "javascript"
-                            },
-                            "tests": [
-                                {
-                                    "status": "correct answer",
-                                    "accepted": true,
-                                    "expected": "[\"Gertha\", \"Adell\", \"Sparkle\", \"Dorie\"]",
-                                    "data": {
-                                        "channel": "return"
-                                    },
-                                    "generated": "[\"Gertha\", \"Adell\", \"Sparkle\", \"Dorie\"]",
-                                    "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
-                                        "format": "html"
-                                    }
-                                }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
-                        }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
-                },
-                {
-                    "status": "correct answer",
-                    "accepted": true,
-                    "groups": [
-                        {
-                            "status": "correct answer",
-                            "accepted": true,
-                            "description": {
-                                "description": "lineup([{naam: \"Jules\", kleur: \"B\"}, {naam: \"Allan\", kleur: \"R\"}, {naam: \"Graham\", kleur: \"B\"}, {naam: \"Jolynn\", kleur: \"B\"}, {naam: \"Marco\", kleur: \"B\"}, {naam: \"Casandra\", kleur: \"B\"}, {naam: \"Gaston\", kleur: \"B\"}, {naam: \"Sherryl\", kleur: \"B\"}, {naam: \"Eileen\", kleur: \"R\"}]);",
-                                "format": "javascript"
-                            },
-                            "tests": [
-                                {
-                                    "status": "correct answer",
-                                    "accepted": true,
-                                    "expected": "[\"Allan\", \"Eileen\", \"Sherryl\", \"Gaston\", \"Casandra\", \"Marco\", \"Jolynn\", \"Graham\", \"Jules\"]",
-                                    "data": {
-                                        "channel": "return"
-                                    },
-                                    "generated": "[\"Allan\", \"Eileen\", \"Sherryl\", \"Gaston\", \"Casandra\", \"Marco\", \"Jolynn\", \"Graham\", \"Jules\"]",
-                                    "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
-                                        "format": "html"
-                                    }
-                                }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
-                        }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
-                },
-                {
-                    "status": "correct answer",
-                    "accepted": true,
-                    "groups": [
-                        {
-                            "status": "correct answer",
-                            "accepted": true,
-                            "description": {
-                                "description": "lineup([{naam: \"Leo\", kleur: \"R\"}, {naam: \"Jacklyn\", kleur: \"R\"}, {naam: \"Vickie\", kleur: \"B\"}, {naam: \"Ingrid\", kleur: \"R\"}, {naam: \"Pandora\", kleur: \"R\"}]);",
-                                "format": "javascript"
-                            },
-                            "tests": [
-                                {
-                                    "status": "correct answer",
-                                    "accepted": true,
-                                    "expected": "[\"Leo\", \"Jacklyn\", \"Ingrid\", \"Pandora\", \"Vickie\"]",
-                                    "data": {
-                                        "channel": "return"
-                                    },
-                                    "generated": "[\"Leo\", \"Jacklyn\", \"Ingrid\", \"Pandora\", \"Vickie\"]",
+                                    "generated": "0",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -1310,18 +1192,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Cathrine\", kleur: \"R\"}, {naam: \"Stewart\", kleur: \"R\"}, {naam: \"Eileen\", kleur: \"R\"}, {naam: \"Lucinda\", kleur: \"R\"}, {naam: \"Hans\", kleur: \"B\"}, {naam: \"Louisa\", kleur: \"B\"}, {naam: \"Johnny\", kleur: \"R\"}, {naam: \"Lena\", kleur: \"R\"}]);",
+                                "description": "winst([7, 8, 4, 12, 4, 9, 3, 12, 8], \"K-VK---V-\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Cathrine\", \"Stewart\", \"Eileen\", \"Lucinda\", \"Johnny\", \"Lena\", \"Louisa\", \"Hans\"]",
+                                    "expected": "-3",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Cathrine\", \"Stewart\", \"Eileen\", \"Lucinda\", \"Johnny\", \"Lena\", \"Louisa\", \"Hans\"]",
+                                    "generated": "-3",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -1345,32 +1227,26 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Lindsey\", kleur: \"B\"}, {naam: \"Nicolette\", kleur: \"R\"}, {naam: \"Adell\", kleur: \"B\"}, {naam: \"Dorie\", kleur: \"R\"}, {naam: \"Mina\", kleur: \"R\"}, {naam: \"Coleen\", kleur: \"B\"}, {naam: \"Margot\", kleur: \"B\"}]);",
+                                "description": "winst([3, 3, 9, 7, 5, 4], \"-KV-K\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Nicolette\", \"Dorie\", \"Mina\", \"Margot\", \"Coleen\", \"Adell\", \"Lindsey\"]",
+                                    "expected": "AssertionError: ongeldige acties",
                                     "data": {
-                                        "channel": "return"
+                                        "channel": "exception"
                                     },
-                                    "generated": "[\"Nicolette\", \"Dorie\", \"Mina\", \"Margot\", \"Coleen\", \"Adell\", \"Lindsey\"]",
+                                    "generated": "assert.js:42\n  throw new errors.AssertionError({\n  ^\n\nAssertionError: ongeldige acties\n    at winst (<code>:9:5)\n    at <test>:1:1",
                                     "description": {
-                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">exception</span>",
                                         "format": "html"
                                     }
                                 }
-                            ],
-                            "runtime_metrics": {
-                                "wall_time": 0.001
-                            }
+                            ]
                         }
-                    ],
-                    "runtime_metrics": {
-                        "wall_time": 0.001
-                    }
+                    ]
                 },
                 {
                     "status": "correct answer",
@@ -1380,18 +1256,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Mason\", kleur: \"R\"}, {naam: \"Cornell\", kleur: \"R\"}, {naam: \"Janette\", kleur: \"R\"}, {naam: \"Margot\", kleur: \"R\"}, {naam: \"Britt\", kleur: \"R\"}, {naam: \"Matthew\", kleur: \"R\"}, {naam: \"Zora\", kleur: \"R\"}, {naam: \"Nicolette\", kleur: \"R\"}, {naam: \"Gayla\", kleur: \"R\"}, {naam: \"Darron\", kleur: \"R\"}]);",
+                                "description": "winst([7, 7, 10, 1, 6, 4, 2, 4, 2], \"K--VK-VKV\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Mason\", \"Cornell\", \"Janette\", \"Margot\", \"Britt\", \"Matthew\", \"Zora\", \"Nicolette\", \"Gayla\", \"Darron\"]",
+                                    "expected": "-12",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Mason\", \"Cornell\", \"Janette\", \"Margot\", \"Britt\", \"Matthew\", \"Zora\", \"Nicolette\", \"Gayla\", \"Darron\"]",
+                                    "generated": "-12",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -1415,18 +1291,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Edgardo\", kleur: \"B\"}, {naam: \"Leanne\", kleur: \"B\"}, {naam: \"Grady\", kleur: \"R\"}, {naam: \"Pandora\", kleur: \"B\"}, {naam: \"Vickie\", kleur: \"R\"}, {naam: \"Stewart\", kleur: \"B\"}, {naam: \"Rolf\", kleur: \"B\"}, {naam: \"Christi\", kleur: \"R\"}, {naam: \"Margarette\", kleur: \"R\"}]);",
+                                "description": "winst([7, 9, 12, 4, 8, 2, 2, 3, 12, 4, 11, 12, 9, 2, 5, 6, 11, 11, 4, 4], \"KVK-VK--VKVK---V-KV-\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Grady\", \"Vickie\", \"Christi\", \"Margarette\", \"Rolf\", \"Stewart\", \"Pandora\", \"Leanne\", \"Edgardo\"]",
+                                    "expected": "2",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Grady\", \"Vickie\", \"Christi\", \"Margarette\", \"Rolf\", \"Stewart\", \"Pandora\", \"Leanne\", \"Edgardo\"]",
+                                    "generated": "2",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -1450,18 +1326,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Dustin\", kleur: \"R\"}, {naam: \"Aimee\", kleur: \"R\"}, {naam: \"Iona\", kleur: \"B\"}, {naam: \"Dick\", kleur: \"R\"}]);",
+                                "description": "winst([2, 5, 3, 2, 2, 1, 1, 4, 2, 9, 11, 2, 1, 2], \"--K-V-KVK-VK-V\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Dustin\", \"Aimee\", \"Dick\", \"Iona\"]",
+                                    "expected": "11",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Dustin\", \"Aimee\", \"Dick\", \"Iona\"]",
+                                    "generated": "11",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -1485,18 +1361,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Cornell\", kleur: \"R\"}, {naam: \"Mallory\", kleur: \"R\"}, {naam: \"Mariana\", kleur: \"R\"}, {naam: \"Toby\", kleur: \"R\"}, {naam: \"Rolf\", kleur: \"R\"}, {naam: \"Leo\", kleur: \"B\"}]);",
+                                "description": "winst([1, 11, 8, 2, 6, 1, 12, 9, 11, 11, 1, 10, 3, 4, 3, 4, 1], \"KV-KVKVKV-KVKVKV-\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Cornell\", \"Mallory\", \"Mariana\", \"Toby\", \"Rolf\", \"Leo\"]",
+                                    "expected": "38",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Cornell\", \"Mallory\", \"Mariana\", \"Toby\", \"Rolf\", \"Leo\"]",
+                                    "generated": "38",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -1520,18 +1396,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Rich\", kleur: \"R\"}, {naam: \"Lindsey\", kleur: \"R\"}, {naam: \"Louisa\", kleur: \"R\"}, {naam: \"Mallory\", kleur: \"R\"}, {naam: \"Pandora\", kleur: \"R\"}, {naam: \"Pedro\", kleur: \"R\"}, {naam: \"Coleen\", kleur: \"R\"}]);",
+                                "description": "winst([5, 12, 7, 5, 2, 10, 7, 4, 8, 2, 3, 7, 9], \"K-VK---V-K--V\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Rich\", \"Lindsey\", \"Louisa\", \"Mallory\", \"Pandora\", \"Pedro\", \"Coleen\"]",
+                                    "expected": "8",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Rich\", \"Lindsey\", \"Louisa\", \"Mallory\", \"Pandora\", \"Pedro\", \"Coleen\"]",
+                                    "generated": "8",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -1555,18 +1431,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Delfina\", kleur: \"R\"}, {naam: \"Teresa\", kleur: \"R\"}, {naam: \"Eileen\", kleur: \"R\"}, {naam: \"Tifany\", kleur: \"R\"}, {naam: \"Allan\", kleur: \"R\"}, {naam: \"Mallory\", kleur: \"R\"}, {naam: \"Leo\", kleur: \"R\"}, {naam: \"Eleni\", kleur: \"R\"}]);",
+                                "description": "winst([9, 12, 8, 10, 1, 1, 10, 1, 3], \"KVKVK-VKV\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Delfina\", \"Teresa\", \"Eileen\", \"Tifany\", \"Allan\", \"Mallory\", \"Leo\", \"Eleni\"]",
+                                    "expected": "16",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Delfina\", \"Teresa\", \"Eileen\", \"Tifany\", \"Allan\", \"Mallory\", \"Leo\", \"Eleni\"]",
+                                    "generated": "16",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -1590,18 +1466,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Dorie\", kleur: \"R\"}, {naam: \"Sherryl\", kleur: \"B\"}, {naam: \"Ingrid\", kleur: \"B\"}, {naam: \"Grady\", kleur: \"R\"}]);",
+                                "description": "winst([6, 10, 4, 6, 9, 2, 10, 1, 8, 9, 7], \"KVK-VKVK-V-\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Dorie\", \"Grady\", \"Ingrid\", \"Sherryl\"]",
+                                    "expected": "25",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Dorie\", \"Grady\", \"Ingrid\", \"Sherryl\"]",
+                                    "generated": "25",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -1625,18 +1501,134 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Lissa\", kleur: \"R\"}, {naam: \"Cornell\", kleur: \"R\"}, {naam: \"Joaquin\", kleur: \"R\"}, {naam: \"Gayla\", kleur: \"R\"}, {naam: \"Brian\", kleur: \"R\"}, {naam: \"Leo\", kleur: \"R\"}, {naam: \"Jacklyn\", kleur: \"R\"}, {naam: \"Jose\", kleur: \"R\"}, {naam: \"Rey\", kleur: \"R\"}]);",
+                                "description": "winst([1, 9, 11, 2, 5, 7, 9, 10, 10, 1], \"K-V--K--VV\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Lissa\", \"Cornell\", \"Joaquin\", \"Gayla\", \"Brian\", \"Leo\", \"Jacklyn\", \"Jose\", \"Rey\"]",
+                                    "expected": "AssertionError: ongeldige acties",
+                                    "data": {
+                                        "channel": "exception"
+                                    },
+                                    "generated": "assert.js:42\n  throw new errors.AssertionError({\n  ^\n\nAssertionError: ongeldige acties\n    at winst (<code>:28:13)\n    at <test>:1:1",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">exception</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "winst([12, 12, 5, 6, 11, 2, 12, 4], \"-V-K-VK\");",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "AssertionError: ongeldige acties",
+                                    "data": {
+                                        "channel": "exception"
+                                    },
+                                    "generated": "assert.js:42\n  throw new errors.AssertionError({\n  ^\n\nAssertionError: ongeldige acties\n    at winst (<code>:9:5)\n    at <test>:1:1",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">exception</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "winst([4, 8, 4, 12, 9, 6, 6, 9, 8, 8, 2, 5, 3, 6, 12, 8, 12, 3, 3], \"K---V-K-V--KVK---VK\");",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "AssertionError: ongeldige acties",
+                                    "data": {
+                                        "channel": "exception"
+                                    },
+                                    "generated": "assert.js:42\n  throw new errors.AssertionError({\n  ^\n\nAssertionError: ongeldige acties\n    at winst (<code>:38:5)\n    at <test>:1:1",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">exception</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "winst([10, 7, 2, 10, 11, 5, 1, 3, 8, 6, 3], \"--KVKVK---\");",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "AssertionError: ongeldige acties",
+                                    "data": {
+                                        "channel": "exception"
+                                    },
+                                    "generated": "assert.js:42\n  throw new errors.AssertionError({\n  ^\n\nAssertionError: ongeldige acties\n    at winst (<code>:9:5)\n    at <test>:1:1",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">exception</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "winst([10, 12, 7, 7, 3, 11, 1, 7, 2, 5], \"KV-K-VK--V\");",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "10",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Lissa\", \"Cornell\", \"Joaquin\", \"Gayla\", \"Brian\", \"Leo\", \"Jacklyn\", \"Jose\", \"Rey\"]",
+                                    "generated": "10",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -1660,18 +1652,58 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Dick\", kleur: \"R\"}, {naam: \"Madie\", kleur: \"B\"}, {naam: \"Pedro\", kleur: \"B\"}, {naam: \"Iona\", kleur: \"B\"}]);",
+                                "description": "winst([6, 1, 12, 6, 9, 11, 5, 6, 4, 7, 10, 8, 5, 12, 6, 10, 2, 11], \"-K--V---K--VK---VK\");",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Dick\", \"Iona\", \"Pedro\", \"Madie\"]",
+                                    "expected": "AssertionError: ongeldige acties",
+                                    "data": {
+                                        "channel": "exception"
+                                    },
+                                    "generated": "assert.js:42\n  throw new errors.AssertionError({\n  ^\n\nAssertionError: ongeldige acties\n    at winst (<code>:38:5)\n    at <test>:1:1",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">exception</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "badgeCount": 0,
+            "runtime_metrics": {
+                "wall_time": 0.016
+            }
+        },
+        {
+            "status": "correct answer",
+            "accepted": true,
+            "description": "maximaleWinst",
+            "groups": [
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([5, 11, 4, 2, 8, 10, 7, 4, 3, 6]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "17",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Dick\", \"Iona\", \"Pedro\", \"Madie\"]",
+                                    "generated": "17",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -1695,18 +1727,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Cornell\", kleur: \"R\"}, {naam: \"Leanne\", kleur: \"B\"}, {naam: \"Linda\", kleur: \"B\"}, {naam: \"Manda\", kleur: \"B\"}, {naam: \"Joaquin\", kleur: \"R\"}, {naam: \"Walter\", kleur: \"B\"}, {naam: \"Delfina\", kleur: \"B\"}, {naam: \"Matthew\", kleur: \"B\"}, {naam: \"Christi\", kleur: \"R\"}, {naam: \"Louisa\", kleur: \"R\"}]);",
+                                "description": "maximaleWinst([4, 2, 5, 11, 10, 4, 11, 7, 4, 11, 3, 11]);",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Cornell\", \"Joaquin\", \"Christi\", \"Louisa\", \"Matthew\", \"Delfina\", \"Walter\", \"Manda\", \"Linda\", \"Leanne\"]",
+                                    "expected": "31",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Cornell\", \"Joaquin\", \"Christi\", \"Louisa\", \"Matthew\", \"Delfina\", \"Walter\", \"Manda\", \"Linda\", \"Leanne\"]",
+                                    "generated": "31",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -1714,12 +1746,12 @@
                                 }
                             ],
                             "runtime_metrics": {
-                                "wall_time": 0.001
+                                "wall_time": 0
                             }
                         }
                     ],
                     "runtime_metrics": {
-                        "wall_time": 0.001
+                        "wall_time": 0
                     }
                 },
                 {
@@ -1730,18 +1762,18 @@
                             "status": "correct answer",
                             "accepted": true,
                             "description": {
-                                "description": "lineup([{naam: \"Dustin\", kleur: \"R\"}, {naam: \"Casandra\", kleur: \"R\"}, {naam: \"Hans\", kleur: \"R\"}, {naam: \"Jacklyn\", kleur: \"R\"}, {naam: \"Rich\", kleur: \"R\"}]);",
+                                "description": "maximaleWinst([10, 9, 9, 10, 10, 9, 1, 4, 9, 3, 5, 6, 10]);",
                                 "format": "javascript"
                             },
                             "tests": [
                                 {
                                     "status": "correct answer",
                                     "accepted": true,
-                                    "expected": "[\"Dustin\", \"Casandra\", \"Hans\", \"Jacklyn\", \"Rich\"]",
+                                    "expected": "16",
                                     "data": {
                                         "channel": "return"
                                     },
-                                    "generated": "[\"Dustin\", \"Casandra\", \"Hans\", \"Jacklyn\", \"Rich\"]",
+                                    "generated": "16",
                                     "description": {
                                         "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
                                         "format": "html"
@@ -1749,35 +1781,1686 @@
                                 }
                             ],
                             "runtime_metrics": {
-                                "wall_time": 0.001
+                                "wall_time": 0
                             }
                         }
                     ],
                     "runtime_metrics": {
-                        "wall_time": 0.001
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([12, 4, 9, 5, 6, 7, 9, 9, 11, 7, 10]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "14",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "14",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "0",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "0",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([10, 4, 2, 4, 8, 12]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "10",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "10",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([8, 4, 6, 2, 1, 6, 6, 9, 6, 5, 8, 2, 12]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "23",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "23",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([3, 7, 10, 12, 4, 10, 5, 12, 3]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "22",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "22",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([5, 10, 3, 10, 12, 3, 3, 3, 6, 6, 8, 7, 9, 6, 4, 3, 2, 5, 6, 10]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "29",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "29",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([4, 7, 3, 5, 10, 9, 6, 8, 12]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "16",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "16",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([6, 4, 3, 5, 3, 2, 8, 6, 6, 5, 8, 7, 5, 11, 7, 8, 2]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "18",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "18",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([5, 10, 5, 12, 12, 11, 6, 2, 8, 11, 7, 5, 3, 9, 5]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "27",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "27",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([7, 1, 6, 12, 7, 3, 11, 8, 4, 6, 11, 1, 9]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "34",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "34",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([8, 1, 12, 10, 2, 8, 7]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "17",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "17",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([9, 6, 5, 6, 8, 11, 3, 3, 5, 6, 11, 9, 11, 11, 12]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "17",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "17",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([4, 4, 3, 6, 3, 7]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "7",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "7",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([6, 1, 9, 3, 10, 7, 2, 9, 7, 10, 4]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "25",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "25",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([9, 10, 11, 2, 5, 10, 10, 6, 12, 2, 9, 5, 5, 7]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "25",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "25",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([4, 7, 4, 8, 4, 5, 5, 2, 11, 5, 8, 11, 8, 1, 9, 2, 10, 8, 12]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "43",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "43",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([8, 6, 5, 10, 10, 3, 3, 11, 9, 6, 9, 4, 7, 11, 6, 11, 3, 11, 1]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "36",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "36",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([6, 2, 8, 1, 10, 10, 4, 1, 10, 11, 7]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "25",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "25",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([6, 12, 6, 12, 7, 6, 10, 4, 2, 3, 2, 2]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "17",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "17",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([8, 4, 5, 2, 3, 2, 9, 7, 5, 5, 9]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "13",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "13",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([12, 5, 8, 7, 11, 12, 7, 6, 11, 3, 2, 2, 6, 2, 10, 3, 12, 4]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "34",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "34",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([2, 12, 2, 11, 12, 3, 1, 12, 4, 10, 11, 9, 10, 1, 12, 9, 11, 9, 5, 11]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "58",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "58",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([1, 4, 10, 8, 9, 6, 9]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "13",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "13",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([3, 11, 5, 12, 3, 8]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "20",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "20",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([3, 5, 12, 11, 9, 1, 7, 8, 12, 2, 10, 6, 7, 2, 7, 10, 4, 1]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "37",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "37",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([10, 3, 3, 12, 12, 5, 9, 9]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "13",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "13",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([3, 5, 5, 7, 3, 10, 11, 4, 9, 1, 1, 6]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "22",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "22",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([1, 5, 12, 2, 4, 10, 3, 9]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "25",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "25",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([5, 7, 4, 2, 10, 9, 9, 1, 12, 3, 11, 8, 10, 9, 9, 4, 4, 1]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "31",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "31",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([3, 1, 2, 2, 5, 7, 6, 5, 12, 11, 9, 3, 11, 12, 10, 12]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "24",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "24",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([9, 8, 3, 2, 1, 6, 4]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "5",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "5",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([3, 12, 11, 1, 4, 2, 4, 7, 8]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "18",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "18",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([7, 8, 4, 12, 4, 9, 3, 12, 8]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "23",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "23",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([3, 3, 9, 7, 5, 4]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "6",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "6",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([7, 7, 10, 1, 6, 4, 2, 4, 2]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "10",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "10",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([7, 9, 12, 4, 8, 2, 2, 3, 12, 4, 11, 12, 9, 2, 5, 6, 11, 11, 4, 4]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "36",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "36",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([2, 5, 3, 2, 2, 1, 1, 4, 2, 9, 11, 2, 1, 2]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "16",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "16",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([1, 11, 8, 2, 6, 1, 12, 9, 11, 11, 1, 10, 3, 4, 3, 4, 1]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "38",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "38",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([5, 12, 7, 5, 2, 10, 7, 4, 8, 2, 3, 7, 9]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "26",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "26",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([9, 12, 8, 10, 1, 1, 10, 1, 3]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "16",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "16",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([6, 10, 4, 6, 9, 2, 10, 1, 8, 9, 7]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "25",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "25",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([1, 9, 11, 2, 5, 7, 9, 10, 10, 1]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "18",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "18",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([12, 12, 5, 6, 11, 2, 12, 4]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "16",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "16",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([4, 8, 4, 12, 9, 6, 6, 9, 8, 8, 2, 5, 3, 6, 12, 8, 12, 3, 3]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "31",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "31",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([10, 7, 2, 10, 11, 5, 1, 3, 8, 6, 3]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "16",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "16",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([10, 12, 7, 7, 3, 11, 1, 7, 2, 5]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "19",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "19",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
+                    }
+                },
+                {
+                    "status": "correct answer",
+                    "accepted": true,
+                    "groups": [
+                        {
+                            "status": "correct answer",
+                            "accepted": true,
+                            "description": {
+                                "description": "maximaleWinst([6, 1, 12, 6, 9, 11, 5, 6, 4, 7, 10, 8, 5, 12, 6, 10, 2, 11]);",
+                                "format": "javascript"
+                            },
+                            "tests": [
+                                {
+                                    "status": "correct answer",
+                                    "accepted": true,
+                                    "expected": "43",
+                                    "data": {
+                                        "channel": "return"
+                                    },
+                                    "generated": "43",
+                                    "description": {
+                                        "description": "<span class=\"label label-success\" style=\"display:block;text-align:left;\">return</span>",
+                                        "format": "html"
+                                    }
+                                }
+                            ],
+                            "runtime_metrics": {
+                                "wall_time": 0
+                            }
+                        }
+                    ],
+                    "runtime_metrics": {
+                        "wall_time": 0
                     }
                 }
             ],
             "badgeCount": 0,
             "runtime_metrics": {
-                "wall_time": 0.014000000000000005
+                "wall_time": 0
             }
         }
     ],
     "annotations": [
         {
-            "row": 1,
+            "row": 3,
             "column": 10,
-            "text": "'lineup' is defined but never used.",
+            "text": "'winst' is defined but never used.",
+            "type": "error"
+        },
+        {
+            "row": 45,
+            "column": 10,
+            "text": "'maximaleWinst' is defined but never used.",
             "type": "error"
         }
     ],
     "runtime_metrics": {
-        "wall_time": 0.014000000000000005
+        "wall_time": 0.016
     },
     "messages": [
         {
-            "description": "<b>Wall time:</b> 0.014s",
+            "description": "<b>Wall time:</b> 0.016s",
             "format": "html"
         }
     ]
