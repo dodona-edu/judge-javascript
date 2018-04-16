@@ -162,7 +162,7 @@ function displayError(e, cleanup) {
             if (e.name !== undefined && e.message !== undefined) {
             	
             	message = e.name;
-            	while (message.contains('[')) {
+            	while (message.includes('[')) {
             		let start = message.indexOf('[');
             		while (start > 0 && message[start - 1] === ' ') {
             			start -= 1;
