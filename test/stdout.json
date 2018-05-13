@@ -867,12 +867,12 @@
                                 }
                             ],
                             "runtime_metrics": {
-                                "wall_time": 0.016
+                                "wall_time": 0
                             }
                         }
                     ],
                     "runtime_metrics": {
-                        "wall_time": 0.016
+                        "wall_time": 0
                     }
                 },
                 {
@@ -1676,7 +1676,7 @@
             ],
             "badgeCount": 0,
             "runtime_metrics": {
-                "wall_time": 0.016
+                "wall_time": 0
             }
         },
         {
@@ -1711,12 +1711,12 @@
                                 }
                             ],
                             "runtime_metrics": {
-                                "wall_time": 0
+                                "wall_time": 0.015
                             }
                         }
                     ],
                     "runtime_metrics": {
-                        "wall_time": 0
+                        "wall_time": 0.015
                     }
                 },
                 {
@@ -2586,12 +2586,12 @@
                                 }
                             ],
                             "runtime_metrics": {
-                                "wall_time": 0
+                                "wall_time": 0.016
                             }
                         }
                     ],
                     "runtime_metrics": {
-                        "wall_time": 0
+                        "wall_time": 0.016
                     }
                 },
                 {
@@ -3437,30 +3437,16 @@
             ],
             "badgeCount": 0,
             "runtime_metrics": {
-                "wall_time": 0
+                "wall_time": 0.031
             }
         }
     ],
-    "annotations": [
-        {
-            "row": 3,
-            "column": 10,
-            "text": "'winst' is defined but never used.",
-            "type": "error"
-        },
-        {
-            "row": 45,
-            "column": 10,
-            "text": "'maximaleWinst' is defined but never used.",
-            "type": "error"
-        }
-    ],
     "runtime_metrics": {
-        "wall_time": 0.016
+        "wall_time": 0.031
     },
     "messages": [
         {
-            "description": "<b>Wall time:</b> 0.016s",
+            "description": "<b>Wall time:</b> 0.031s",
             "format": "html"
         }
     ]
