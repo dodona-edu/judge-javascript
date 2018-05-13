@@ -122,7 +122,7 @@ function displayError(e, cleanup) {
             // filter lines of the stack trace
             for (let line of e.stack.split("\n")) {
                 
-            	if (cleanup and line.trim() === "") {
+            	if (cleanup && line.trim() === "") {
             		// remove part above stack trace that describes where the
             		// error occurs in the code (not necessarily user code)
             		message = [];
